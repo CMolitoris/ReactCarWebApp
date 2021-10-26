@@ -9,8 +9,8 @@ class App extends Component {
   state = {
     loggedUser: null
   }
-  registerURL = "https://localhost:44394/api/authentication/"
-  loginURL = "https://localhost:44394/api/authentication/login"
+  registerURL = "https://localhost:5000/api/authentication/"
+  loginURL = "https://localhost:5000/api/authentication/login"
 
   componentDidMount() {
     this.setUserToken();
@@ -30,20 +30,19 @@ class App extends Component {
     }
 
     
-    registerUser = async (user) => {
+    registerUser = async (userToRegister) => {
       try {
-        await axios.post(this.registerURL, user)
+        let response = await axios.post(this.registerURL, userToRegister);
+        console.log(response);
       } catch(err){
         console.log("🚀 ~ file: App.js ~ line 39 ~ App ~ registerUser= ~ err", err)
       }
     }
 
-    loginUser = async (user) => {
+    loginUser = async (userToLogin) => {
       try {
-        const response = await axios.post(this.loginURL, {
-          username: user.username,
-          password: user.password,
-        })
+        const response = await axios.post(this.loginURL,userToLogin)
+        console.log(response);
         localStorage.setItem('token', response.token)
         
       } catch(err){
