@@ -12,10 +12,9 @@ class App extends Component {
     loginModalShow: false
   }
   registerURL = "https://localhost:5000/api/authentication/"
-  loginURL = "https://localhost:5000/api/authentication/login"
+  loginURL = "https://localhost:5001/api/authentication/login"
 
   componentDidMount() {
-    this.setUserToken();
     const jwt = localStorage.getItem('token');
     try{
       const user = jwtDecode(jwt);
@@ -25,10 +24,6 @@ class App extends Component {
     } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
       }
-    }
-
-    setUserToken = () => {
-      localStorage.setItem('token', '');
     }
 
     
@@ -51,11 +46,12 @@ class App extends Component {
         console.log("🚀 ~ file: App.jsx ~ line 51 ~ App ~ loginUser= ~ err", err)
       }
     }
-  toggleLoginModal = () => {
-    this.setState({
-      loginModalShow: !this.state.loginModalShow
-    })
-  }
+
+    toggleLoginModal = () => {
+      this.setState({
+        loginModalShow: !this.state.loginModalShow
+      })
+    }
   
   
   render() {
@@ -75,7 +71,7 @@ class App extends Component {
           {/* Cart/Account logged in*/}
           <Route path = "/account" />
           {/* Login Page */}
-          <Route path = "/login" render = {props => <Login {...props} modalShow = {this.state.loginModalShow} />} />
+          <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>
