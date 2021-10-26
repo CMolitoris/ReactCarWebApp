@@ -13,7 +13,6 @@ class App extends Component {
   loginURL = "https://localhost:5000/api/authentication/login"
 
   componentDidMount() {
-    this.setUserToken();
     const jwt = localStorage.getItem('token');
     try{
       const user = jwtDecode(jwt);
@@ -25,11 +24,6 @@ class App extends Component {
       }
     }
 
-    setUserToken = () => {
-      localStorage.setItem('token', '');
-    }
-
-    
     registerUser = async (userToRegister) => {
       try {
         let response = await axios.post(this.registerURL, userToRegister);
@@ -44,6 +38,7 @@ class App extends Component {
         const response = await axios.post(this.loginURL,userToLogin)
         console.log(response);
         localStorage.setItem('token', response.token)
+        window.location = "/";
         
       } catch(err){
         console.log("🚀 ~ file: App.js ~ line 41 ~ App ~ loginUser= ~ err", err)
@@ -54,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser} login={this.loginUser}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser} registerUser={this.registerUser}/>
         <div>
         <Switch>
           {/* Home Page */}
