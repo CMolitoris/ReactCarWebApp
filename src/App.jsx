@@ -12,8 +12,8 @@ class App extends Component {
     loggedUser: null,
     loginModalShow: false
   }
-  registerURL = "https://localhost:5000/api/authentication/"
-  loginURL = "https://localhost:5001/api/authentication/login"
+  registerURL = "https://localhost:44394/api/authentication/"
+  loginURL = "https://localhost:44394/api/authentication/login"
 
   componentDidMount() {
     const jwt = localStorage.getItem('token');
@@ -41,7 +41,7 @@ class App extends Component {
       try {
         const response = await axios.post(this.loginURL,userToLogin)
         console.log(response);
-        localStorage.setItem('token', response.token)
+        localStorage.setItem('token', response.data.token)
         window.location = "/";
         
       } catch(err){
