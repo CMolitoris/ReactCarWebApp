@@ -3,11 +3,14 @@ import { Redirect, Switch, Route } from 'react-router';
 import './App.css';
 import jwtDecode from 'jwt-decode';
 import NavBar from './components/Navbar/Navbar';
+import axios from 'axios';
 
 class App extends Component {
   state = {
     loggedUser: null
   }
+  registerURL = "https://localhost:44394/api/authentication/"
+  loginURL = "https://localhost:44394/api/authentication/login"
 
   componentDidMount() {
     this.setUserToken();
@@ -25,12 +28,34 @@ class App extends Component {
     setUserToken = () => {
       localStorage.setItem('token', '');
     }
+
+    
+    registerUser = async (user) => {
+      try {
+        await axios.post(this.registerURL, user)
+      } catch(err){
+        console.log("🚀 ~ file: App.js ~ line 39 ~ App ~ registerUser= ~ err", err)
+      }
+    }
+
+    loginUser = async (user) => {
+      try {
+        const response = await axios.post(this.loginURL, {
+          username: user.username,
+          password: user.password,
+        })
+        localStorage.setItem('token', response.token)
+        
+      } catch(err){
+        console.log("🚀 ~ file: App.js ~ line 41 ~ App ~ loginUser= ~ err", err)
+      }
+    }
   
   
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser}/>
         <div>
         <Switch>
           {/* Home Page */}
