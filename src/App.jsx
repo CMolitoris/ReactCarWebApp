@@ -5,14 +5,15 @@ import jwtDecode from 'jwt-decode';
 import NavBar from './components/Navbar/Navbar';
 import axios from 'axios';
 import Login from './components/Login/Login';
+import RegisterUser from './components/RegisterUser/RegisterUser';
 
 class App extends Component {
   state = {
     loggedUser: null,
     loginModalShow: false
   }
-  registerURL = "https://localhost:5000/api/authentication/"
-  loginURL = "https://localhost:5001/api/authentication/login"
+  registerURL = "https://localhost:44394/api/authentication/"
+  loginURL = "https://localhost:44394/api/authentication/login"
 
   componentDidMount() {
     const jwt = localStorage.getItem('token');
@@ -73,6 +74,8 @@ class App extends Component {
           <Route path = "/account" />
           {/* Login Page */}
           <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
+          {/* Register user */}
+          <Route path = "/register" render = {props => <RegisterUser {...props} registerUser={this.registerUser}/>} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>
