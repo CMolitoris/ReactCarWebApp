@@ -4,10 +4,12 @@ import './App.css';
 import jwtDecode from 'jwt-decode';
 import NavBar from './components/Navbar/Navbar';
 import axios from 'axios';
+import Login from './components/Login/Login';
 
 class App extends Component {
   state = {
-    loggedUser: null
+    loggedUser: null,
+    loginModalShow: false
   }
   registerURL = "https://localhost:5000/api/authentication/"
   loginURL = "https://localhost:5000/api/authentication/login"
@@ -20,7 +22,7 @@ class App extends Component {
         loggedUser: user
       });
     } catch(err){
-      console.log("Error in component Did mount", err)
+        console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
       }
     }
 
@@ -29,7 +31,7 @@ class App extends Component {
         let response = await axios.post(this.registerURL, userToRegister);
         console.log(response);
       } catch(err){
-        console.log("🚀 ~ file: App.js ~ line 39 ~ App ~ registerUser= ~ err", err)
+        console.log("🚀 ~ file: App.jsx ~ line 40 ~ App ~ registerUser= ~ err", err)
       }
     }
 
@@ -41,15 +43,20 @@ class App extends Component {
         window.location = "/";
         
       } catch(err){
-        console.log("🚀 ~ file: App.js ~ line 41 ~ App ~ loginUser= ~ err", err)
+        console.log("🚀 ~ file: App.jsx ~ line 51 ~ App ~ loginUser= ~ err", err)
       }
     }
+  toggleLoginModal = () => {
+    this.setState({
+      loginModalShow: !this.state.loginModalShow
+    })
+  }
   
   
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser} login={this.loginUser} registerUser={this.registerUser}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser} toggleLoginModal = {this.toggleLoginModal}/>
         <div>
         <Switch>
           {/* Home Page */}
@@ -62,6 +69,8 @@ class App extends Component {
           <Route path = "/seller" />
           {/* Cart/Account logged in*/}
           <Route path = "/account" />
+          {/* Login Page */}
+          <Route path = "/login" render = {props => <Login {...props} modalShow = {this.state.loginModalShow} />} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>

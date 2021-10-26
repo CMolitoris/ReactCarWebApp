@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from "react-router-dom"
+import React from 'react';
+import { Link } from "react-router-dom";
+
 
 const NavBar = (props) => {
     return ( 
@@ -8,7 +9,7 @@ const NavBar = (props) => {
                 {!props.user && 
                     <React.Fragment>
                         <li>
-                            <Link to='/login'>Log In | </Link>
+                            <Link to='/login' onClick = {props.toggleLoginModal}>Log In | </Link>
                         </li>
                         <li>
                             <Link to='/register'>Register</Link>
