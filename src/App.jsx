@@ -4,10 +4,12 @@ import './App.css';
 import jwtDecode from 'jwt-decode';
 import NavBar from './components/Navbar/Navbar';
 import axios from 'axios';
+import Login from './components/Login/Login';
 
 class App extends Component {
   state = {
-    loggedUser: null
+    loggedUser: null,
+    loginModalShow: false
   }
   registerURL = "https://localhost:5000/api/authentication/"
   loginURL = "https://localhost:5000/api/authentication/login"
@@ -49,12 +51,17 @@ class App extends Component {
         console.log("🚀 ~ file: App.js ~ line 41 ~ App ~ loginUser= ~ err", err)
       }
     }
+  toggleLoginModal = () => {
+    this.setState({
+      loginModalShow: !this.state.loginModalShow
+    })
+  }
   
   
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser} login={this.loginUser}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser} toggleLoginModal = {this.toggleLoginModal}/>
         <div>
         <Switch>
           {/* Home Page */}
@@ -67,6 +74,8 @@ class App extends Component {
           <Route path = "/seller" />
           {/* Cart/Account logged in*/}
           <Route path = "/account" />
+          {/* Login Page */}
+          <Route path = "/login" render = {props => <Login {...props} modalShow = {this.state.loginModalShow} />} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>
