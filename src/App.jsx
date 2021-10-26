@@ -23,7 +23,7 @@ class App extends Component {
         loggedUser: user
       });
     } catch(err){
-      console.log("Error in component Did mount", err)
+        console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
       }
     }
 
@@ -37,7 +37,7 @@ class App extends Component {
         let response = await axios.post(this.registerURL, userToRegister);
         console.log(response);
       } catch(err){
-        console.log("🚀 ~ file: App.js ~ line 39 ~ App ~ registerUser= ~ err", err)
+        console.log("🚀 ~ file: App.jsx ~ line 40 ~ App ~ registerUser= ~ err", err)
       }
     }
 
@@ -48,7 +48,7 @@ class App extends Component {
         localStorage.setItem('token', response.token)
         
       } catch(err){
-        console.log("🚀 ~ file: App.js ~ line 41 ~ App ~ loginUser= ~ err", err)
+        console.log("🚀 ~ file: App.jsx ~ line 51 ~ App ~ loginUser= ~ err", err)
       }
     }
   toggleLoginModal = () => {
