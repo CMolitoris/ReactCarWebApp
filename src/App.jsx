@@ -6,6 +6,7 @@ import NavBar from './components/Navbar/Navbar';
 import axios from 'axios';
 import Login from './components/Login/Login';
 import RegisterUser from './components/RegisterUser/RegisterUser';
+import Landing from './components/Landing/Landing';
 
 class App extends Component {
   state = {
@@ -41,7 +42,7 @@ class App extends Component {
       try {
         const response = await axios.post(this.loginURL,userToLogin)
         console.log(response);
-        localStorage.setItem('token', response.token)
+        localStorage.setItem('token', response.data.token)
         window.location = "/";
         
       } catch(err){
@@ -63,7 +64,7 @@ class App extends Component {
         <div>
         <Switch>
           {/* Home Page */}
-          <Route path = "/" exact />
+          <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
           <Route path = "/products" />
           {/* Search Page */}

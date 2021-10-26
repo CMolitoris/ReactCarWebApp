@@ -22,12 +22,12 @@ const Login = (props) => {
 
 
     return ( 
-        <Modal show = {props.modalShow} backdrop="static">
+        <Modal show = {props.modalShow}>
             <ModalHeader>
                 <ModalTitle>Log In</ModalTitle>
             </ModalHeader>
             <ModalBody>
-                <form className = "my-auto" onSubmit={()=> {loginUser()}}>
+                <form className = "my-auto" onSubmit={loginUser}>
                     <div>
                         <label htmlFor="inputUsername">Username</label>
                         <input name = "username" type="text" value={loginValues.username} onChange={handleChange}/>
