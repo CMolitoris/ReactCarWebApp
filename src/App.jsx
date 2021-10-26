@@ -5,6 +5,7 @@ import jwtDecode from 'jwt-decode';
 import NavBar from './components/Navbar/Navbar';
 import axios from 'axios';
 import Login from './components/Login/Login';
+import Landing from './components/Landing/Landing';
 
 class App extends Component {
   state = {
@@ -65,7 +66,7 @@ class App extends Component {
         <div>
         <Switch>
           {/* Home Page */}
-          <Route path = "/" exact />
+          <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
           <Route path = "/products" />
           {/* Search Page */}
