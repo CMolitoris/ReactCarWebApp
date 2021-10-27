@@ -25,6 +25,7 @@ const NavBar = (props) => {
                         <li>
                             <Link to='/cart'>Cart | </Link>
                         </li>
+                            <Link to='/seller'>Sellers</Link>
                         <li>
                             <a onClick = {props.logoutUser}>Log Out</a>
                         </li>

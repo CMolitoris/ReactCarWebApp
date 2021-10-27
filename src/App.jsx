@@ -10,6 +10,7 @@ import Landing from './components/Landing/Landing';
 import EditAccount from './components/Account/EditAccount';
 import Products from './components/Products/Products';
 import CarDetails from './components/CarDetails/CarDetails';
+import SellerPage from './components/SellerPage/SellerPage';
 
 
 class App extends Component {
@@ -40,7 +41,7 @@ class App extends Component {
       } catch(err){
           console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
         }
-      }
+    }
 
     updateAddressDetails = async (updateInfo) => {
       try {
@@ -146,8 +147,12 @@ class App extends Component {
     }
 
     addToCart = async (car) => {
-      let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
-      console.log(response);
+      try {
+        let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
+        console.log(response);
+      } catch (e) {
+        console.log("Error from addShoppingCart: " + e);
+      }
     }
 
     deleteFromCart = async (userId,carId) => {
@@ -156,6 +161,24 @@ class App extends Component {
         console.log(response);
       } catch (e) {
         console.log("Error in deleteFromCart: " + e); 
+      }
+    }
+
+    addToSellerConnection = async (car) => {
+      try {
+        let response = await axios.post('https://localhost:44394/api/seller/',car);
+        console.log(response);
+      } catch (e) {
+        console.log("Error from addSellerConnection: " + e);
+      }
+    }
+
+    deleteFromSellerConnection = async (userId,carId) => {
+      try {
+        let response = await axios.delete(`https://localhost:44394/api/seller/${userId}/${carId}`);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in deleteFromSeller: " + e); 
       }
     }
 
@@ -203,11 +226,11 @@ class App extends Component {
           {/* Product Page */}
           <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} />
           {/* Product Page */}
-          <Route path = "/car-details" render={props => <CarDetails {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} car={this.state.carDetails} />
+          <Route path = "/car-details" render={props => <CarDetails {...props} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} car={this.state.carDetails} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
-          <Route path = "/seller" />
+          <Route path = "/seller" render={props => <SellerPage {...props}/>} />
           {/* Cart/Account logged in*/}
           <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
           {/* Invalid Page Redirect */}
