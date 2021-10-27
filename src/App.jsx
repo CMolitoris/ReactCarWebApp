@@ -16,6 +16,7 @@ class App extends Component {
   state = {
     loggedUser: null,
     loginModalShow: false,
+    regModalShow: false,
     cars: [],
     carDetails: []
   }
@@ -88,6 +89,12 @@ class App extends Component {
     toggleLoginModal = () => {
       this.setState({
         loginModalShow: !this.state.loginModalShow
+      })
+    }
+
+    toggleRegModal = () => {
+      this.setState({
+        regModalShow: !this.state.regModalShow
       })
     }
 
@@ -176,8 +183,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleModal = {this.toggleLoginModal}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleLogModal = {this.
+          toggleLoginModal} toggleRegModal = {this.toggleRegModal}/>
         {this.state.loginModalShow && <Login login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>}
+        {this.state.regModalShow && <RegisterUser register = {this.registerUser} modalShow = {this.state.regModalShow} toggleModal={this.toggleRegModal} registerUser={this.registerUser}/>}
         <div>
         <Switch>
           {/* Home Page */}
@@ -192,8 +201,6 @@ class App extends Component {
           <Route path = "/seller" />
           {/* Cart/Account logged in*/}
           <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
-          {/* Register user */}
-          <Route path = "/register" render = {props => <RegisterUser {...props} register = {this.registerUser} modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal} registerUser={this.registerUser}/>} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>

@@ -3,7 +3,6 @@ import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import Modal from 'react-bootstrap/Modal';
 import ModalTitle from 'react-bootstrap/ModalTitle';
 import ModalBody from 'react-bootstrap/ModalBody';
-import Landing from '../Landing/Landing';
 
 
 const Login = (props) => {
@@ -18,7 +17,7 @@ const Login = (props) => {
 
     const loginUser = (event) => {
         event.preventDefault()
-        props.toggleModal()
+        props.toggleModal('loginModalShow')
         props.login(loginValues);
     }
 

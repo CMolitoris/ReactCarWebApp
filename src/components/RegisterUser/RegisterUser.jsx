@@ -7,7 +7,6 @@ import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import Modal from 'react-bootstrap/Modal';
 import ModalTitle from 'react-bootstrap/ModalTitle';
 import ModalBody from 'react-bootstrap/ModalBody';
-import Landing from '../Landing/Landing';
 
 const RegisterUser = (props) => {
     
@@ -22,6 +21,7 @@ const RegisterUser = (props) => {
 
     const registerUser = (event) => {
         event.preventDefault();
+        props.toggleModal()
         props.register(registerValues)
     }
 
@@ -58,13 +58,12 @@ const RegisterUser = (props) => {
                                 <Form.Control placeholder="Phone Number.." name="phonenumber" onChange={handleChange} value={registerValues.phonenumber}/>
                             </Col>
                             <Col lg={1}>
-                                <Button className='btn btn-md btn-danger shadow' onClick = {props.toggleModal} type="submit">Submit</Button>
+                                <Button className='btn btn-md btn-danger shadow' type="submit">Submit</Button>
                             </Col>
                         </Form.Group>
                     </form>
             </ModalBody>
             </Modal>
-            <Landing />
        </div>
     );
     
