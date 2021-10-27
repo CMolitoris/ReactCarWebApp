@@ -5,29 +5,40 @@ import { Link } from "react-router-dom";
 const NavBar = (props) => {
     return ( 
         <nav>
-            <ul>
-                <li><Link to  = '/'>Home</Link></li>
+            <ul className='nav justify-content-end'>
+                <li className='nav-item'><Link to  = '/' className='nav-link'>Home</Link></li>
                 {!props.user && 
                     <React.Fragment>
-                        <li>
-                            <a onClick = {props.toggleLogModal}>Log In | </a>
+                        <li >
+                            <a className='nav-link' onClick = {props.toggleLogModal}>Log In</a>
                         </li>
-                        <li>
-                            <a onClick = {props.toggleRegModal}>Register</a>
+                        <li className='nav-item'>
+                            <a className='nav-link' onClick = {props.toggleRegModal}>Register</a>
+                        </li>
+                        <li className='nav-item'>
+                            <Link to='/products' className='nav-link'> Products </Link>
                         </li>
                     </React.Fragment>
                 }
                 {props.user && 
                     <React.Fragment>
-                        <li>
-                            <Link to='/account'>Account | </Link>
+                        <li className='nav-item'>
+                            <Link to='/account' className='nav-link'>Account</Link>
                         </li>
-                        <li>
-                            <Link to='/cart'>Cart | </Link>
+                        <li className='nav-item'>
+                            <Link to='/cart' className='nav-link'>Cart</Link>
                         </li>
+                        <li className='nav-item'>
+                            <a onClick = {props.logoutUser} className='nav-link'>Log Out</a>
+                        </li>
+                        <li className='nav-item'>
                             <Link to='/seller'>Sellers</Link>
+                        </li>
                         <li>
                             <a onClick = {props.logoutUser}>Log Out</a>
+                        </li>    
+                        <li className='nav-item'>
+                            <Link to='/products' className='nav-link'> Products </Link>
                         </li>
                     </React.Fragment>
                 }

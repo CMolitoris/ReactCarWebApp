@@ -10,7 +10,7 @@ import Landing from './components/Landing/Landing';
 import EditAccount from './components/Account/EditAccount';
 import Products from './components/Products/Products';
 import CarDetails from './components/CarDetails/CarDetails';
-import SellerPage from './components/SellerPage/SellerPage';
+import Seller from './components/Seller/Seller';
 
 
 class App extends Component {
@@ -118,7 +118,7 @@ class App extends Component {
       try{
         let response = await axios.get(`https://localhost:44394/api/car/${carID}`);
         this.setState({
-            cars: response.data
+            carDetails: response.data
         });
       } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 116 ~ App ~ getAllCars= ~ err", err)
@@ -230,7 +230,7 @@ class App extends Component {
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
-          <Route path = "/seller" render={props => <SellerPage {...props}/>} />
+          <Route path = "/seller" render={props => <Seller {...props}/>} />
           {/* Cart/Account logged in*/}
           <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
           {/* Invalid Page Redirect */}

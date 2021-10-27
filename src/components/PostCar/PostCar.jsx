@@ -13,7 +13,7 @@ const PostCar = (props) => {
         year: '',
         type: '',
         description: '',
-        mileage: props.car.mileage,
+        mileage: '',
         averageRating: 0.0
     })
 
