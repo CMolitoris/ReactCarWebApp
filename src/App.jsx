@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import RegisterUser from './components/RegisterUser/RegisterUser';
 import Landing from './components/Landing/Landing';
 import EditAccount from './components/Account/EditAccount';
+import Products from './components/Products/Products';
 
 class App extends Component {
   state = {
