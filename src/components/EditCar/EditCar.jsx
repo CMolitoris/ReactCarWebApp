@@ -7,12 +7,12 @@ import Button from 'react-bootstrap/Button'
 
 const PostCar = (props) => {
     const [car, setCar] = useState({
-        price: '',
-        make: '',
-        model: '',
-        year: '',
-        type: '',
-        description: '',
+        price: props.car.price,
+        make: props.car.make,
+        model: props.car.model,
+        year: props.car.year,
+        type: props.type,
+        description: props.description,
         mileage: props.car.mileage,
         averageRating: 0.0
     })
