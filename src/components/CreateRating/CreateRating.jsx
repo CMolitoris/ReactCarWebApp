@@ -59,7 +59,6 @@ const RegisterUser = (props) => {
                     </form>
             </ModalBody>
             </Modal>
-            <Landing />
        </div>
     );
     
