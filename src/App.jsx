@@ -7,6 +7,8 @@ import axios from 'axios';
 import Login from './components/Login/Login';
 import RegisterUser from './components/RegisterUser/RegisterUser';
 import Landing from './components/Landing/Landing';
+import EditAccount from './components/Account/EditAccount';
+import Products from './components/Products/Products';
 
 class App extends Component {
   state = {
@@ -18,6 +20,7 @@ class App extends Component {
   loginURL = "https://localhost:44394/api/authentication/login"
 
   componentDidMount() {
+    this.getAllCars()
     const jwt = localStorage.getItem('token');
     try{
       const user = jwtDecode(jwt);
@@ -27,7 +30,7 @@ class App extends Component {
     } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
       }
-    }
+  }
 
 
     registerUser = async (userToRegister) => {
@@ -105,13 +108,13 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" />
+          <Route path = "/products" render={props => <Products {...props} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
           <Route path = "/seller" />
           {/* Cart/Account logged in*/}
-          <Route path = "/account" />
+          <Route path = "/account" component = {EditAccount} />
           {/* Login Page */}
           <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
           {/* Register user */}
