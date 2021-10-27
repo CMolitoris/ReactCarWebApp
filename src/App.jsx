@@ -10,6 +10,7 @@ import Landing from './components/Landing/Landing';
 import EditAccount from './components/Account/EditAccount';
 import Products from './components/Products/Products';
 import CarDetails from './components/CarDetails/CarDetails';
+import Seller from './components/Seller/Seller';
 
 
 class App extends Component {
@@ -197,22 +198,22 @@ class App extends Component {
         {this.state.loginModalShow && <Login login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>}
         {this.state.regModalShow && <RegisterUser register = {this.registerUser} modalShow = {this.state.regModalShow} toggleModal={this.toggleRegModal} registerUser={this.registerUser}/>}
         <div>
-        <Switch>
-          {/* Home Page */}
-          <Route path = "/" exact component={Landing}  />
-          {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} />
-          {/* Product Page */}
-          <Route path = "/car-details" render={props => <CarDetails {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} car={this.state.carDetails} />
-          {/* Search Page */}
-          <Route path = "/search"/>
-          {/* Seller Page logged in*/}
-          <Route path = "/seller" />
-          {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
-          {/* Invalid Page Redirect */}
-          <Redirect to='/not-found' />
-        </Switch>
+          <Switch>
+            {/* Home Page */}
+            <Route path = "/" exact component={Landing}  />
+            {/* Product Page */}
+            <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} />
+            {/* Product Page */}
+            <Route path = "/car-details" render={props => <CarDetails {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} car={this.state.carDetails} />
+            {/* Search Page */}
+            <Route path = "/search"/>
+            {/* Seller Page logged in*/}
+            <Route path = "/seller" component={Seller}/>
+            {/* Cart/Account logged in*/}
+            <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
+            {/* Invalid Page Redirect */}
+            <Redirect to='/not-found' />
+          </Switch>
         </div>
       </div>
     );
