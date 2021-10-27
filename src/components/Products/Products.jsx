@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import {Row, Col, Button} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 const Products = (props) => {
+    
     const [SearchTerm, setSearchTerm] = useState("")
 
     return ( 
@@ -33,12 +35,22 @@ const Products = (props) => {
                                 <Card.Body>
                                     <Card.Title>{car.make} {car.model}</Card.Title>
                                     <Card.Text>
-                                        $ {car.price}
+                                        <p>${car.price}</p>
+                                        <br />
+                                        <p>Average Rating: {car.rating}</p>
                                     </Card.Text>
                                     <hr />
                                     <h6 className="font-weight-bold"> Description </h6>
                                     <Card.Text>
                                         {car.description}
+                                    </Card.Text>
+                                    <Card.Text>
+                                            <Link to="/car-details">
+                                                <Button variant="btn-link" onClick={() => props.getSingleCar(car.id)} size="lg">
+                                                <span class="material-icons">info</span>
+                                                Car Details
+                                                </Button>   
+                                            </Link>
                                     </Card.Text>
                                 </Card.Body>
                                 <Button onClick={() => props.addToCart({
