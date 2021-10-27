@@ -7,6 +7,7 @@ import axios from 'axios';
 import Login from './components/Login/Login';
 import RegisterUser from './components/RegisterUser/RegisterUser';
 import Landing from './components/Landing/Landing';
+import EditAccount from './components/Account/EditAccount';
 
 class App extends Component {
   state = {
@@ -111,7 +112,7 @@ class App extends Component {
           {/* Seller Page logged in*/}
           <Route path = "/seller" />
           {/* Cart/Account logged in*/}
-          <Route path = "/account" />
+          <Route path = "/account" component = {EditAccount} />
           {/* Login Page */}
           <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
           {/* Register user */}
