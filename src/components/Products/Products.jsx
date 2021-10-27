@@ -60,8 +60,9 @@ const Products = (props) => {
                                     })} variant="success" size="lg">
                                     <span class="material-icons">add_shopping_cart</span>
                                     Add to Cart
-                                </Button>
+                                </Button> 
                             </Card>
+                            
                         </Col>
                     ))}
             </Row>

@@ -10,12 +10,14 @@ import Landing from './components/Landing/Landing';
 import EditAccount from './components/Account/EditAccount';
 import Products from './components/Products/Products';
 import CarDetails from './components/CarDetails/CarDetails';
+import Seller from './components/Seller/Seller';
 
 
 class App extends Component {
   state = {
     loggedUser: null,
     loginModalShow: false,
+    regModalShow: false,
     cars: [],
     carDetails: []
   }
@@ -91,6 +93,12 @@ class App extends Component {
       })
     }
 
+    toggleRegModal = () => {
+      this.setState({
+        regModalShow: !this.state.regModalShow
+      })
+    }
+
     logoutUser = () => {
       localStorage.removeItem('token');
       window.location = "/";
@@ -143,6 +151,15 @@ class App extends Component {
       console.log(response);
     }
 
+    deleteFromCart = async (userId,carId) => {
+      try {
+        let response = await axios.delete(`https://localhost:44394/api/shoppingcart/${userId}/${carId}`);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in deleteFromCart: " + e); 
+      }
+    }
+
     completeAddressDetails = async (addressDetails) => {
       let userId = this.state.loggedUser.Id;
       try {
@@ -176,28 +193,27 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleModal = {this.toggleLoginModal}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleLogModal = {this.
+          toggleLoginModal} toggleRegModal = {this.toggleRegModal}/>
+        {this.state.loginModalShow && <Login login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>}
+        {this.state.regModalShow && <RegisterUser register = {this.registerUser} modalShow = {this.state.regModalShow} toggleModal={this.toggleRegModal} registerUser={this.registerUser}/>}
         <div>
-        <Switch>
-          {/* Home Page */}
-          <Route path = "/" exact component={Landing}  />
-          {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} />
-          {/* Product Page */}
-          <Route path = "/car-details" render={props => <CarDetails {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.carDetails}/>}/>
-          {/* Search Page */}
-          <Route path = "/search"/>
-          {/* Seller Page logged in*/}
-          <Route path = "/seller" />
-          {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
-          {/* Login Page */}
-          <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
-          {/* Register user */}
-          <Route path = "/register" render = {props => <RegisterUser {...props} register = {this.registerUser} modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal} registerUser={this.registerUser}/>} />
-          {/* Invalid Page Redirect */}
-          <Redirect to='/not-found' />
-        </Switch>
+          <Switch>
+            {/* Home Page */}
+            <Route path = "/" exact component={Landing}  />
+            {/* Product Page */}
+            <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} />
+            {/* Product Page */}
+            <Route path = "/car-details" render={props => <CarDetails {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} car={this.state.carDetails} />
+            {/* Search Page */}
+            <Route path = "/search"/>
+            {/* Seller Page logged in*/}
+            <Route path = "/seller" component={Seller}/>
+            {/* Cart/Account logged in*/}
+            <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
+            {/* Invalid Page Redirect */}
+            <Redirect to='/not-found' />
+          </Switch>
         </div>
       </div>
     );

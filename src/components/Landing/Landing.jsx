@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import SearchBar from './SearchBar/SearchBar';
 import './Landing.css';
 
 
@@ -15,14 +14,14 @@ class Landing extends Component {
 
     render() { 
         return ( 
-            <div className='container mx-auto my-auto' id="main-panel">
+            <div className='container mx-auto my-auto overflow-hidden' id="main-panel">
                 <div className='row'>
-                    <div className='col'>
-                        <SearchBar/>
+                    <div className='col h3'>
+                        Store Name
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col'>
+                    <div className='col carousel align-items-center'>
                         <Carousel>
                             <Carousel.Item>
                                 <img
@@ -46,6 +45,11 @@ class Landing extends Component {
                                 />
                             </Carousel.Item>
                         </Carousel>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col text-end me-5'>
+                        Store Copyright
                     </div>
                 </div>
             </div>
