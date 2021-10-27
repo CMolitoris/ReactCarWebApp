@@ -150,6 +150,15 @@ class App extends Component {
       console.log(response);
     }
 
+    deleteFromCart = async (userId,carId) => {
+      try {
+        let response = await axios.delete(`https://localhost:44394/api/shoppingcart/${userId}/${carId}`);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in deleteFromCart: " + e); 
+      }
+    }
+
     completeAddressDetails = async (addressDetails) => {
       let userId = this.state.loggedUser.Id;
       try {
