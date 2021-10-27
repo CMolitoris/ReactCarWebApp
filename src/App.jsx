@@ -16,7 +16,9 @@ class App extends Component {
   state = {
     loggedUser: null,
     loginModalShow: false,
-    cars: []
+    regModalShow: false,
+    cars: [],
+    carDetails: []
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -90,6 +92,12 @@ class App extends Component {
       })
     }
 
+    toggleRegModal = () => {
+      this.setState({
+        regModalShow: !this.state.regModalShow
+      })
+    }
+
     logoutUser = () => {
       localStorage.removeItem('token');
       window.location = "/";
@@ -103,6 +111,17 @@ class App extends Component {
       this.setState({
           cars: response.data
       });
+    }
+
+    getSingleCar = async (carID) => {
+      try{
+        let response = await axios.get(`https://localhost:44394/api/car/${carID}`);
+        this.setState({
+            cars: response.data
+        });
+      } catch(err){
+        console.log("🚀 ~ file: App.jsx ~ line 116 ~ App ~ getAllCars= ~ err", err)
+      }
     }
 
     postCar = async (car) => {
@@ -164,23 +183,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleModal = {this.toggleLoginModal}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleLogModal = {this.
+          toggleLoginModal} toggleRegModal = {this.toggleRegModal}/>
+        {this.state.loginModalShow && <Login login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>}
+        {this.state.regModalShow && <RegisterUser register = {this.registerUser} modalShow = {this.state.regModalShow} toggleModal={this.toggleRegModal} registerUser={this.registerUser}/>}
         <div>
         <Switch>
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
+          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} />
+          {/* Product Page */}
+          <Route path = "/car-details" render={props => <CarDetails {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} car={this.state.carDetails} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
           <Route path = "/seller" />
           {/* Cart/Account logged in*/}
           <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
-          {/* Login Page */}
-          <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
-          {/* Register user */}
-          <Route path = "/register" render = {props => <RegisterUser {...props} register = {this.registerUser} modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal} registerUser={this.registerUser}/>} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>
