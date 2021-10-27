@@ -10,10 +10,10 @@ const NavBar = (props) => {
                 {!props.user && 
                     <React.Fragment>
                         <li >
-                            <Link to='/login' className='nav-link' onClick = {props.toggleModal}>Log In</Link>
+                            <a className='nav-link' onClick = {props.toggleLogModal}>Log In</a>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/register'  className='nav-link' onClick = {props.toggleModal}>Register</Link>
+                            <a className='nav-link' onClick = {props.toggleRegModal}>Register</a>
                         </li>
                         <li className='nav-item'>
                             <Link to='/products' className='nav-link'> Products </Link>

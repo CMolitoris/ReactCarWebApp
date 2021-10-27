@@ -15,4 +15,4 @@
 //      );
 // }
 
-// export default CarDetails;
+export default CarDetails;
