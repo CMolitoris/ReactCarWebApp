@@ -7,6 +7,7 @@ import axios from 'axios';
 import Login from './components/Login/Login';
 import RegisterUser from './components/RegisterUser/RegisterUser';
 import Landing from './components/Landing/Landing';
+import Products from './components/Products/Products';
 
 class App extends Component {
   state = {
@@ -18,6 +19,7 @@ class App extends Component {
   loginURL = "https://localhost:44394/api/authentication/login"
 
   componentDidMount() {
+    this.getAllCars()
     const jwt = localStorage.getItem('token');
     try{
       const user = jwtDecode(jwt);
@@ -105,7 +107,7 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" />
+          <Route path = "/products" render={props => <Products {...props} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
