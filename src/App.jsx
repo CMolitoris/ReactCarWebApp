@@ -26,7 +26,7 @@ class App extends Component {
     } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
       }
-    }
+  }
 
 
     registerUser = async (userToRegister) => {
