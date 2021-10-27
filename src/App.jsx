@@ -16,6 +16,7 @@ class App extends Component {
     loginModalShow: false,
     cars: []
   }
+
   registerURL = "https://localhost:44394/api/authentication/"
   loginURL = "https://localhost:44394/api/authentication/login"
   updateAddressURL = "https://localhost:44394/api/users/complete/"
@@ -107,6 +108,13 @@ class App extends Component {
         console.log(err);
       });
     }
+
+    addToCart = async (car) => {
+      let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
+      console.log(response);
+    }
+
+
   
   
   
