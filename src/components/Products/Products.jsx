@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import {Row, Col, Button} from 'react-bootstrap';
-import CreateRating from '../CreateRating/CreateRating';
+
 
 const Products = (props) => {
     const [SearchTerm, setSearchTerm] = useState("")
@@ -48,8 +48,7 @@ const Products = (props) => {
                                     })} variant="success" size="lg">
                                     <span class="material-icons">add_shopping_cart</span>
                                     Add to Cart
-                                </Button>
-                                
+                                </Button> 
                             </Card>
                             
                         </Col>

@@ -25,9 +25,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getAllCars();
-   
-      this.getToken();
-    
+    this.getToken();
   }
 
     getToken = () => {
@@ -133,6 +131,15 @@ class App extends Component {
       console.log(response);
     }
 
+    deleteFromCart = async (userId,carId) => {
+      try {
+        let response = await axios.delete(`https://localhost:44394/api/shoppingcart/${userId}/${carId}`);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in deleteFromCart: " + e); 
+      }
+    }
+
     completeAddressDetails = async (addressDetails) => {
       let userId = this.state.loggedUser.Id;
       try {
@@ -173,6 +180,8 @@ class App extends Component {
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
           <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
+          {/* Product Page */}
+          <Route path = "/car-details" render={props => <CarDetails {...props} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
