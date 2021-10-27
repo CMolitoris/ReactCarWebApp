@@ -130,8 +130,37 @@ class App extends Component {
       let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
       console.log(response);
     }
-  
-  
+
+    completeAddressDetails = async (addressDetails) => {
+      let userId = this.state.loggedUser.Id;
+      try {
+        let response = await axios.post(`https://localhost:44394/api/users/complete/${userId}`,addressDetails);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in completeAddressDetails: " + e); 
+      }
+    }
+
+    editUser = async (userDetails) => {
+      let userId = this.state.loggedUser.Id;
+      try {
+        let response = await axios.post(`https://localhost:44394/api/users/edit/${userId}`,userDetails);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in editUser: " + e); 
+      }
+    }
+
+    postRating = async (rating) => {
+      try {
+        let response = await axios.post(`https://localhost:44394/api/rating/`,rating);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in postRating: " + e); 
+      }
+    }
+
+ 
   render() {
     return (
       <div className="App">
