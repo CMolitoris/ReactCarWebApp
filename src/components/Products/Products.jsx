@@ -43,7 +43,11 @@ const Products = (props) => {
                                         {car.description}
                                     </Card.Text>
                                 </Card.Body>
-                                <Button varian="success" size="lg">
+                                <Button onClick={() => this.props.addToCart({
+                                        UserId: this.props.userId,
+                                        CarId: car.Id,
+                                        Quantitiy: 1
+                                    })} variant="success" size="lg">
                                     <span class="material-icons">add_shopping_cart</span>
                                     Add to Cart
                                 </Button>
