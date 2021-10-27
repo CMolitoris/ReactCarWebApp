@@ -40,7 +40,7 @@ class App extends Component {
 
     loginUser = async (userToLogin) => {
       try {
-        const response = await axios.post(this.loginURL,userToLogin)
+        const response = await axios.post(this.loginURL, userToLogin);
         console.log(response);
         localStorage.setItem('token', response.data.token)
         window.location = "/";
@@ -77,6 +77,7 @@ class App extends Component {
           <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
           {/* Register user */}
           <Route path = "/register" render = {props => <RegisterUser {...props} registerUser={this.registerUser}/>} />
+
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>
