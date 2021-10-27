@@ -120,8 +120,32 @@ class App extends Component {
     }
 
     addToCart = async (car) => {
-      let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
-      console.log(response);
+      try {
+        let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in add to cart: " + e); 
+      }
+    }
+
+    completeAddressDetails = async (addressDetails) => {
+      let userId = this.state.loggedUser.Id;
+      try {
+        let response = await axios.post(`https://localhost:44394/api/users/complete/${userId}`,addressDetails);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in completeAddressDetails: " + e); 
+      }
+    }
+
+    editUser = async (userDetails) => {
+      let userId = this.state.loggedUser.Id;
+      try {
+        let response = await axios.post(`https://localhost:44394/api/users/edit/${userId}`,userDetails);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in editUser: " + e); 
+      }
     }
   
   
@@ -134,15 +158,13 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} cars={this.state.cars} getAllCars={this.getAllCars} getCar={this.state.getCar}/>} />
-          {/* Car Detail Page */}
-          <Route path = "/car-details" render={props => <CarDetails {...props} car={this.state.car} addToCart={this.addToCart}/>} />
+          <Route path = "/products" render={props => <Products {...props} userId={this.state.loggedUser.Id} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
           <Route path = "/seller" />
           {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
+          <Route path = "/account" render = {props => <EditAccount {...props } updateDetails = {this.updateAddressDetails}/>} />
           {/* Login Page */}
           <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
           {/* Register user */}
