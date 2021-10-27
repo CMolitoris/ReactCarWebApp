@@ -16,7 +16,8 @@ class App extends Component {
   state = {
     loggedUser: null,
     loginModalShow: false,
-    cars: []
+    cars: [],
+    carDetails: []
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -105,6 +106,17 @@ class App extends Component {
       });
     }
 
+    getSingleCar = async (carID) => {
+      try{
+        let response = await axios.get(`https://localhost:44394/api/car/${carID}`);
+        this.setState({
+            cars: response.data
+        });
+      } catch(err){
+        console.log("🚀 ~ file: App.jsx ~ line 116 ~ App ~ getAllCars= ~ err", err)
+      }
+    }
+
     postCar = async (car) => {
       await axios.post('https://localhost:44394/api/car/', car)
       .then( res => {
@@ -171,7 +183,9 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
+          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} />
+          {/* Product Page */}
+          <Route path = "/car-details" render={props => <CarDetails {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} car={this.state.carDetails} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
