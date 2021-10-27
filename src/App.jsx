@@ -18,6 +18,7 @@ class App extends Component {
   }
   registerURL = "https://localhost:44394/api/authentication/"
   loginURL = "https://localhost:44394/api/authentication/login"
+  updateAddressURL = "https://localhost:44394/api/users/complete/"
 
   componentDidMount() {
     this.getAllCars()
@@ -32,6 +33,16 @@ class App extends Component {
       }
   }
 
+    updateAddressDetails = async (updateInfo) => {
+      try {
+        debugger
+        let response = await axios.put(`${this.updateAddressURL}${this.state.loggedUser.id}`, updateInfo);
+        console.log(response);
+        
+      } catch(err){
+        console.log("🚀 ~ file: App.jsx ~ line 36 ~ App ~ updateAddressDetails= ~ err", err)
+      }
+    }
 
     registerUser = async (userToRegister) => {
       try {
@@ -114,7 +125,7 @@ class App extends Component {
           {/* Seller Page logged in*/}
           <Route path = "/seller" />
           {/* Cart/Account logged in*/}
-          <Route path = "/account" component = {EditAccount} />
+          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
           {/* Login Page */}
           <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
           {/* Register user */}
