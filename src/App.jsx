@@ -38,8 +38,6 @@ class App extends Component {
       try {
         debugger
         let response = await axios.put(`${this.updateAddressURL}${this.state.loggedUser.id}`, updateInfo);
-        console.log(response);
-        
       } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 36 ~ App ~ updateAddressDetails= ~ err", err)
       }
@@ -48,7 +46,6 @@ class App extends Component {
     registerUser = async (userToRegister) => {
       try {
         let response = await axios.post(this.registerURL, userToRegister);
-        console.log(response);
         this.loginUser({'username': userToRegister.username, 'password': userToRegister.password})
       } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 40 ~ App ~ registerUser= ~ err", err)
@@ -58,7 +55,6 @@ class App extends Component {
     loginUser = async (userToLogin) => {
       try {
         const response = await axios.post(this.loginURL, userToLogin);
-        console.log(response);
         localStorage.setItem('token', response.data.token)
         window.location = "/";
         

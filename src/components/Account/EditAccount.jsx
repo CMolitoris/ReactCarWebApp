@@ -18,6 +18,7 @@ const EditAccount = (props) => {
 
     const handleSubmit = (event) => {
         props.updateDetails(accountValues)
+        window.location = '/account';
     }
 
     return ( 
