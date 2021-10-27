@@ -18,6 +18,7 @@ const Login = (props) => {
 
     const loginUser = (event) => {
         event.preventDefault()
+        props.toggleModal()
         props.login(loginValues);
     }
 
@@ -43,11 +44,10 @@ const Login = (props) => {
                             <label htmlFor="inputPass">Password</label>
                             <input name = "Password" type="text" value={loginValues.Password} onChange={handleChange}/>
                         </div>
-                        <button className = "btn btn-light" type = "submit" onClick={props.toggleModal}>Log In</button>
+                        <button className = "btn btn-light" type = "submit">Log In</button>
                     </form>
                 </ModalBody>
             </Modal>
-        <Landing />
         </div>
      );
 }

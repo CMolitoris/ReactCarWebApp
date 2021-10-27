@@ -10,7 +10,7 @@ const NavBar = (props) => {
                 {!props.user && 
                     <React.Fragment>
                         <li>
-                            <Link to='/login' onClick = {props.toggleModal}>Log In | </Link>
+                            <a onClick = {props.toggleModal}>Log In | </a>
                         </li>
                         <li>
                             <Link to='/register' onClick = {props.toggleModal}>Register</Link>
