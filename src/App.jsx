@@ -25,9 +25,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getAllCars();
-    if (this.state.loggedUser != null){
-      this.getToken();
-    }
+    this.getToken();
   }
 
     getToken = () => {
