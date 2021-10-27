@@ -16,7 +16,6 @@ class App extends Component {
   state = {
     loggedUser: null,
     loginModalShow: false,
-    car: [],
     cars: []
   }
 
@@ -25,22 +24,26 @@ class App extends Component {
   updateAddressURL = "https://localhost:44394/api/users/complete/"
 
   componentDidMount() {
-    this.getAllCars()
-    const jwt = localStorage.getItem('token');
-    try{
-      const user = jwtDecode(jwt);
-      this.setState({
-        loggedUser: user
-      });
-    } catch(err){
-        console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
-      }
+    this.getAllCars();
+    this.getToken();
   }
+
+    getToken = () => {
+      const jwt = localStorage.getItem('token');
+      try{
+        const user = jwtDecode(jwt);
+        this.setState({
+          loggedUser: user
+        });
+      } catch(err){
+          console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
+        }
+      }
 
     updateAddressDetails = async (updateInfo) => {
       try {
-        debugger
         let response = await axios.put(`${this.updateAddressURL}${this.state.loggedUser.id}`, updateInfo);
+        window.location = "/account";
       } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 36 ~ App ~ updateAddressDetails= ~ err", err)
       }
@@ -59,10 +62,26 @@ class App extends Component {
       try {
         const response = await axios.post(this.loginURL, userToLogin);
         localStorage.setItem('token', response.data.token)
-        window.location = "/";
-        
+        // window.location = "/";
+        this.getToken();
+        this.getUserDetails(this.state.loggedUser.id);
       } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 51 ~ App ~ loginUser= ~ err", err)
+      }
+    }
+
+    getUserDetails = async (userId) => {
+      try{
+      let response = await axios.get(`https://localhost:44394/api/users/${userId}`, {headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}})
+      this.setState({
+        loggedUser: response.data
+      })
+      if (this.state.loggedUser.streetAddress == null || this.state.loggedUser.city == null || this.state.loggedUser.state == null){
+        //Redirect user to add address details page
+        window.location = "/account"
+      }
+      }catch(err) {
+        console.log("Error in getting user details", err)
       }
     }
 
@@ -87,17 +106,6 @@ class App extends Component {
       });
     }
 
-    getCar = async (carID) => {
-      try{
-        let response = await axios.get(`https://localhost:44394/api/car/${carID}`);
-        this.setState({
-            car: response.data
-        });
-      } catch(err){
-        console.log("🚀 ~ file: App.jsx ~ line 96 ~ App ~ getCar= ~ err", err)
-      }
-    }
-
     postCar = async (car) => {
       await axios.post('https://localhost:44394/api/car/', car)
       .then( res => {
@@ -120,32 +128,8 @@ class App extends Component {
     }
 
     addToCart = async (car) => {
-      try {
-        let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
-        console.log(response);
-      } catch (e) {
-        console.log("Error in add to cart: " + e); 
-      }
-    }
-
-    completeAddressDetails = async (addressDetails) => {
-      let userId = this.state.loggedUser.Id;
-      try {
-        let response = await axios.post(`https://localhost:44394/api/users/complete/${userId}`,addressDetails);
-        console.log(response);
-      } catch (e) {
-        console.log("Error in completeAddressDetails: " + e); 
-      }
-    }
-
-    editUser = async (userDetails) => {
-      let userId = this.state.loggedUser.Id;
-      try {
-        let response = await axios.post(`https://localhost:44394/api/users/edit/${userId}`,userDetails);
-        console.log(response);
-      } catch (e) {
-        console.log("Error in editUser: " + e); 
-      }
+      let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
+      console.log(response);
     }
   
   
@@ -158,13 +142,13 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} userId={this.state.loggedUser.Id} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
+          <Route path = "/products" render={props => <Products {...props} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
           <Route path = "/seller" />
           {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props } updateDetails = {this.updateAddressDetails}/>} />
+          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
           {/* Login Page */}
           <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
           {/* Register user */}
