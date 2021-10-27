@@ -25,7 +25,9 @@ class App extends Component {
 
   componentDidMount() {
     this.getAllCars();
-    this.getToken();
+    if (this.state.loggedUser != null){
+      this.getToken();
+    }
   }
 
     getToken = () => {
@@ -62,7 +64,6 @@ class App extends Component {
       try {
         const response = await axios.post(this.loginURL, userToLogin);
         localStorage.setItem('token', response.data.token)
-        // window.location = "/";
         this.getToken();
         this.getUserDetails(this.state.loggedUser.id);
       } catch(err){
