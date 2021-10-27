@@ -29,24 +29,24 @@ const Login = (props) => {
 
     return ( 
         <div>
-        <Modal show = {props.modalShow} onHide = {hideModal}>
-            <ModalHeader closeButton>
-                <ModalTitle>Log In</ModalTitle>
-            </ModalHeader>
-            <ModalBody>
-                <form className = "my-auto" onSubmit={loginUser}>
-                    <div>
-                        <label htmlFor="inputUsername">Username</label>
-                        <input name = "UserName" type="text" value={loginValues.UserName} onChange={handleChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor="inputPass">Password</label>
-                        <input name = "Password" type="text" value={loginValues.Password} onChange={handleChange}/>
-                    </div>
-                    <button className = "btn btn-light" type = "submit" onClick={props.toggleModal}>Log In</button>
-                </form>
-            </ModalBody>
-        </Modal>
+            <Modal show = {props.modalShow} onHide = {hideModal}>
+                <ModalHeader closeButton>
+                    <ModalTitle>Log In</ModalTitle>
+                </ModalHeader>
+                <ModalBody>
+                    <form className = "my-auto" onSubmit={loginUser}>
+                        <div>
+                            <label htmlFor="inputUsername">Username</label>
+                            <input name = "UserName" type="text" value={loginValues.UserName} onChange={handleChange}/>
+                        </div>
+                        <div>
+                            <label htmlFor="inputPass">Password</label>
+                            <input name = "Password" type="text" value={loginValues.Password} onChange={handleChange}/>
+                        </div>
+                        <button className = "btn btn-light" type = "submit" onClick={props.toggleModal}>Log In</button>
+                    </form>
+                </ModalBody>
+            </Modal>
         <Landing />
         </div>
      );

@@ -33,6 +33,7 @@ class App extends Component {
       try {
         let response = await axios.post(this.registerURL, userToRegister);
         console.log(response);
+        this.loginUser({'username': userToRegister.username, 'password': userToRegister.password})
       } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 40 ~ App ~ registerUser= ~ err", err)
       }
@@ -68,7 +69,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleLoginModal = {this.toggleLoginModal}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleModal = {this.toggleLoginModal}/>
         <div>
         <Switch>
           {/* Home Page */}
@@ -84,7 +85,7 @@ class App extends Component {
           {/* Login Page */}
           <Route path = "/login" render = {props => <Login {...props} login = {this.loginUser}modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>} />
           {/* Register user */}
-          <Route path = "/register" render = {props => <RegisterUser {...props} registerUser={this.registerUser}/>} />
+          <Route path = "/register" render = {props => <RegisterUser {...props} register = {this.registerUser} modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal} registerUser={this.registerUser}/>} />
 
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
