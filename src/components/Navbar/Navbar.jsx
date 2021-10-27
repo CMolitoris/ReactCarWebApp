@@ -6,6 +6,7 @@ const NavBar = (props) => {
     return ( 
         <nav>
             <ul>
+                <Link to  = '/'>Home</Link>
                 {!props.user && 
                     <React.Fragment>
                         <li>
