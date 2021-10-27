@@ -11,7 +11,8 @@ import Landing from './components/Landing/Landing';
 class App extends Component {
   state = {
     loggedUser: null,
-    loginModalShow: false
+    loginModalShow: false,
+    cars: []
   }
   registerURL = "https://localhost:44394/api/authentication/"
   loginURL = "https://localhost:44394/api/authentication/login"
@@ -64,6 +65,35 @@ class App extends Component {
         loggedUser: null
       })
     }
+
+    getAllCars = async () => {
+      let response = await axios.get('https://localhost:44394/api/car');
+      this.setState({
+          cars: response.data
+      });
+    }
+
+    postCar = async (car) => {
+      await axios.post('https://localhost:44394/api/car/', car)
+      .then( res => {
+        this.getAllCars();
+        })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+
+    editCar = async (id, car) => {
+      const path = 'https://localhost:44394/api/car/edit/' + id + '/'
+      await axios.put(path, car)
+      .then(res => {
+        this.getAllCars();
+        })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+  
   
   
   render() {
