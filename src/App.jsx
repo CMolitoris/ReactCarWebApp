@@ -146,10 +146,15 @@ class App extends Component {
       }
     }
 
+    postRating = async (rating) => {
+      try {
+        let response = await axios.post(`https://localhost:44394/api/rating/`,rating);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in postRating: " + e); 
+      }
+    }
 
-  
-  
-  
   render() {
     return (
       <div className="App">
@@ -159,7 +164,7 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} userId={this.state.loggedUser.Id} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
+          <Route path = "/products" render={props => <Products {...props} postRating={this.postRating} userId={this.state.loggedUser.Id} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}

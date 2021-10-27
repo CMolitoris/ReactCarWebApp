@@ -46,7 +46,7 @@ const Products = (props) => {
                                 <Button onClick={() => this.props.addToCart({
                                         UserId: this.props.userId,
                                         CarId: car.Id,
-                                        Quantitiy: 1
+                                        Quantity: 1
                                     })} variant="success" size="lg">
                                     <span class="material-icons">add_shopping_cart</span>
                                     Add to Cart
