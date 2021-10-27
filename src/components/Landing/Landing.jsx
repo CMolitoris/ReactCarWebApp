@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import SearchBar from './SearchBar/SearchBar';
+import './Landing.css';
 
 
 class Landing extends Component {
@@ -14,7 +15,7 @@ class Landing extends Component {
 
     render() { 
         return ( 
-            <div className='container'>
+            <div className='container mx-auto my-auto' id="main-panel">
                 <div className='row'>
                     <div className='col'>
                         <SearchBar/>
