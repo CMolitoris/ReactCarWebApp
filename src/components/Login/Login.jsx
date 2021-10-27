@@ -44,7 +44,7 @@ const Login = (props) => {
                             <label htmlFor="inputPass">Password</label>
                             <input name = "Password" type="text" value={loginValues.Password} onChange={handleChange}/>
                         </div>
-                        <button className = "btn btn-light" type = "submit">Log In</button>
+                        <button className = "btn btn-danger" type = "submit">Log In</button>
                     </form>
                 </ModalBody>
             </Modal>

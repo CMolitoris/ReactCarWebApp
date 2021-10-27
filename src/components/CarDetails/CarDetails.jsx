@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function CarDetails() {
+function CarDetails(props) {
     return ( 
         <div className="row">
             <div className="col-sm-3 bg-danger">
