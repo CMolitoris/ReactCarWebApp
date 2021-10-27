@@ -14,6 +14,7 @@ class App extends Component {
   state = {
     loggedUser: null,
     loginModalShow: false,
+    car: [],
     cars: []
   }
 
@@ -82,6 +83,17 @@ class App extends Component {
       this.setState({
           cars: response.data
       });
+    }
+
+    getCar = async (carID) => {
+      try{
+        let response = await axios.get(`https://localhost:44394/api/car/${carID}`);
+        this.setState({
+            car: response.data
+        });
+      } catch(err){
+        console.log("🚀 ~ file: App.jsx ~ line 96 ~ App ~ getCar= ~ err", err)
+      }
     }
 
     postCar = async (car) => {
