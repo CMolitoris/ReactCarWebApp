@@ -5,8 +5,6 @@ import {Row, Col, Button} from 'react-bootstrap';
 
 const Products = (props) => {
     const [SearchTerm, setSearchTerm] = useState("")
-    console.log(props.cars)
-
 
     return ( 
         <div className="container">
@@ -43,9 +41,9 @@ const Products = (props) => {
                                         {car.description}
                                     </Card.Text>
                                 </Card.Body>
-                                <Button onClick={() => this.props.addToCart({
-                                        UserId: this.props.userId,
-                                        CarId: car.Id,
+                                <Button onClick={() => props.addToCart({
+                                        UserId: props.user.id,
+                                        CarId: car.id,
                                         Quantity: 1
                                     })} variant="success" size="lg">
                                     <span class="material-icons">add_shopping_cart</span>
@@ -56,6 +54,7 @@ const Products = (props) => {
                     ))}
             </Row>
         </div>
+
     );
 }
 
