@@ -16,8 +16,8 @@ const EditAccount = (props) => {
         }));
     }
 
-    const handleSubmit = () => {
-        
+    const handleSubmit = (event) => {
+        props.updateDetails(accountValues)
     }
 
     return ( 
@@ -45,7 +45,7 @@ const EditAccount = (props) => {
                             </Col>
                         </FormGroup>
                         <div align = "center">
-                            <Button disabled className = "justify-content-center"variant = "danger" type = "submit">Update Account</Button>
+                            <Button className = "justify-content-center"variant = "danger" type = "submit">Update Account</Button>
                         </div>
                     </Form>
                 </div>
