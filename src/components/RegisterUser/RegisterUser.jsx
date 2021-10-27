@@ -37,7 +37,7 @@ const RegisterUser = (props) => {
                     <ModalTitle>Register</ModalTitle>
                 </ModalHeader>
                 <ModalBody>
-                    <form className = "my-auto"onSubmit={registerUser}>
+                    <form className = "my-auto" onSubmit={registerUser}>
                         <Form.Group as={Row} className='my-1' controlId='registerUser'>
                             <Col lg={3}>
                                 <Form.Control placeholder="First Name.." name="firstname" onChange={handleChange} value={registerValues.firstname}/>

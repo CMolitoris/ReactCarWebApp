@@ -19,7 +19,6 @@ const NavBar = (props) => {
                 }
                 {props.user && 
                     <React.Fragment>
-                        <h1>{props.user.firstName}</h1>
                         {console.log(props.user)}
                         <li>
                             <Link to='/account'>Account | </Link>
