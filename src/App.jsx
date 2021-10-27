@@ -55,12 +55,20 @@ class App extends Component {
         loginModalShow: !this.state.loginModalShow
       })
     }
+
+    logoutUser = () => {
+      localStorage.removeItem('token');
+      window.location = "/";
+      this.setState({
+        loggedUser: null
+      })
+    }
   
   
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser} login={this.loginUser} toggleLoginModal = {this.toggleLoginModal}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleLoginModal = {this.toggleLoginModal}/>
         <div>
         <Switch>
           {/* Home Page */}
