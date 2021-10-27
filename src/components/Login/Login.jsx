@@ -20,9 +20,14 @@ const Login = (props) => {
         props.login(loginValues);
     }
 
+    const hideModal = () => {
+        props.toggleModal();
+        window.location = "/";
+    }
+
 
     return ( 
-        <Modal show = {props.modalShow} onHide = {props.toggleModal}>
+        <Modal show = {props.modalShow} onHide = {hideModal}>
             <ModalHeader closeButton>
                 <ModalTitle>Log In</ModalTitle>
             </ModalHeader>
