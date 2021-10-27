@@ -9,6 +9,8 @@ import RegisterUser from './components/RegisterUser/RegisterUser';
 import Landing from './components/Landing/Landing';
 import EditAccount from './components/Account/EditAccount';
 import Products from './components/Products/Products';
+import CarDetails from './components/CarDetails/CarDetails';
+
 
 class App extends Component {
   state = {
@@ -121,9 +123,6 @@ class App extends Component {
       let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
       console.log(response);
     }
-
-
-  
   
   
   render() {
@@ -135,7 +134,9 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} cars={this.state.cars} getAllCars={this.getAllCars}/>} />
+          <Route path = "/products" render={props => <Products {...props} cars={this.state.cars} getAllCars={this.getAllCars} getCar={this.state.getCar}/>} />
+          {/* Car Detail Page */}
+          <Route path = "/car-details" render={props => <CarDetails {...props} car={this.state.car} addToCart={this.addToCart}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
