@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { FormControl, Form, Button, FloatingLabel } from 'react-bootstrap';
+import { FormControl, Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
 
 const RatingForm = (props) => {
 
@@ -32,40 +32,48 @@ const RatingForm = (props) => {
 
 
     return ( 
-        <>
+        <Row className="g-2 mb-5">
+            <h5 className="text-start p-2">Leave a review!</h5>
             <Form className="d-flex" onSubmit={handleSubmit}>
-                <Form.Group>
-                    <FloatingLabel controlId="floatingSelectGrid" label="Rating">
-                        <FormControl 
-                            type="text"
-                            placeholder="0 - 10"
-                            className="mr-2 form-control"
-                            aria-label='Rating'
-                            name='RatingScore'
-                            onChange={handleChange}
-                            size= "sm"
-                            value={ratingValues.RatingScore}
-                        />
-                    </FloatingLabel>
-                </Form.Group>
+                <Col md="auto">
+                    <Form.Group>
+                        <FloatingLabel controlId="floatingSelectGrid" label="Rating">
+                            <Form.Select
+                                aria-label='Select rating'
+                                name='RatingScore'
+                                onChange={handleChange}
+                                value={ratingValues.RatingScore}
+                            >
+                                <option>Select a rating</option>
+                                <option value="1">1/5 - Poor</option>
+                                <option value="2">2/5 - Below Average</option>
+                                <option value="3">3/5 - Average</option>
+                                <option value="4">4/5 - Above Average</option>
+                                <option value="5">5/5 - Excellent</option>
 
-                <Form.Group>
-                    <FloatingLabel controlId="floatingInputGrid" label="Review">
-                        <FormControl 
-                            type="text"
-                            placeholder="What's your thoughts..."
-                            className="mr-2 form-control"
-                            aria-label='Message'
-                            name='Message'
-                            onChange={handleChange}
-                            size= "sm"
-                            value={ratingValues.Message}
-                        />
-                    </FloatingLabel>
-                </Form.Group>
-                <Button className="btn btn-secondary" type='submit' size = "sm">Submit</Button>
+                            </Form.Select>
+                        </FloatingLabel>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group>
+                        <FloatingLabel controlId="floatingInputGrid" label="Review">
+                            <FormControl 
+                                type="text"
+                                placeholder="What's your thoughts..."
+                                aria-label='Message'
+                                name='Message'
+                                onChange={handleChange}
+                                value={ratingValues.Message}
+                            />
+                        </FloatingLabel>
+                    </Form.Group>
+                </Col>
+                <Button variant="primary" type='submit' size = "lg">
+                    Submit
+                </Button>
             </Form>
-        </>
+        </Row>
      );
 }
 export default RatingForm;
