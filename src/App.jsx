@@ -131,9 +131,9 @@ class App extends Component {
 
     getSingleCar = async (carID) => {
       try{
-        let response = await axios.get(`https://localhost:44394/api/car/${carID}`);
+        const response = await axios.get(`https://localhost:44394/api/car/${carID}`);
         this.setState({
-            carDetails: response.data
+            car: response.data
         });
       } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 116 ~ App ~ getAllCars= ~ err", err)
@@ -232,6 +232,7 @@ class App extends Component {
     postRating = async (rating) => {
       try {
         let response = await axios.post(`https://localhost:44394/api/rating/`,rating);
+        this.getCarRatings(rating.CarId)
         console.log(response);
       } catch (e) {
         console.log("Error in postRating: " + e); 
@@ -250,7 +251,7 @@ class App extends Component {
     getCarRatings = async (carID) => {
       try {
         const response = await axios.get(`https://localhost:44394/api/rating/${carID}/`);
-        console.log(response);
+        console.log("🚀 ~ file: App.jsx ~ line 240 ~ App ~ getCarRatings= ~ response", response.data)
         this.setState({
           ratings: response.data
         })
