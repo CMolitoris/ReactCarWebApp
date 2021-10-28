@@ -101,7 +101,6 @@ class App extends Component {
 
     logoutUser = () => {
       localStorage.removeItem('token');
-      window.location = "/";
       this.setState({
         loggedUser: null
       })
