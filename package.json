@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@mui/material": "^5.0.5",
+    "@paypal/paypal-js": "^4.1.0",
+    "@paypal/react-paypal-js": "^7.4.2",
+    "@paypal/sdk-constants": "^1.0.110",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
