@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, Switch, Route } from 'react-router';
 import './App.css';
-import { useLocation } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import NavBar from './components/Navbar/Navbar';
 import axios from 'axios';
