@@ -12,7 +12,7 @@ function CarDetails(props) {
     
     useEffect(() => {
         props.getCarRatings(car[0].id)
-    }, [props.ratings]);
+    }, []);
 
     
     return ( 

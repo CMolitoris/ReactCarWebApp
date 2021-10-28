@@ -219,6 +219,7 @@ class App extends Component {
     postRating = async (rating) => {
       try {
         let response = await axios.post(`https://localhost:44394/api/rating/`,rating);
+        this.getCarRatings(rating.CarId)
         console.log(response);
       } catch (e) {
         console.log("Error in postRating: " + e); 
