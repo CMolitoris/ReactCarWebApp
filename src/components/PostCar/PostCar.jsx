@@ -28,6 +28,9 @@ const PostCar = (props) => {
     const handleSubmit = (event, car) => {
         event.preventDefault();
         props.postCar(car)
+        if(props.hasOwnProperty('sellerConnection')){
+            props.addToSellerConnection(props.sellerConnection);
+        }
     }
 
     return ( 
