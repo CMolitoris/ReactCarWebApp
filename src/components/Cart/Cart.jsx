@@ -25,7 +25,6 @@ class Cart extends Component{
         this.setState({
             cars: carArray
         })
-        console.log(carArray)
     }
 
     deleteCar = async (carId) => {
@@ -55,7 +54,7 @@ class Cart extends Component{
                         </thead>
                         <tbody className = "cartTable">
                             {this.state.cars.map(car => {
-                                return <tr><td>{car.make} {car.model}</td><td>${car.price}</td><td>{car.quantity}</td><td>
+                                return <tr key = {car.carId}><td>{car.make} {car.model}</td><td>${car.price}</td><td>{car.quantity}</td><td>
                                     <Button onClick = {() => this.deleteCar(car.carId)} variant = "light">Delete</Button></td></tr>
                             })}
                         </tbody>

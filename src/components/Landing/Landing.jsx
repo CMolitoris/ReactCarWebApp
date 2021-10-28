@@ -17,7 +17,7 @@ class Landing extends Component {
             <div className='container mx-auto my-auto overflow-hidden shadow' id="main-panel">
                 <div className='row'>
                     <div className='col title'>
-                        CAR <i class="bi bi-bullseye"></i> GET
+                        CAR <i className="bi bi-bullseye"></i> GET
                     </div>
                 </div>
                 <div className='row'>
