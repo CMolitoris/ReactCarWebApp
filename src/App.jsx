@@ -143,7 +143,7 @@ class App extends Component {
         this.getAllCars();
         })
       .catch(err => {
-        console.log(err);
+        console.log("Error in postCar: " + err);
       });
     }
 
@@ -251,7 +251,7 @@ class App extends Component {
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
-          <Route path = "/seller" render={props => <Seller {...props} nextCarId={this.getNextCarId} addToSellerConnection={this.addToSellerConnection} user={this.state.loggedUser}/>} />
+          <Route path = "/seller" render={props => <Seller {...props} postCar={this.postCar} nextCarId={this.getNextCarId} addToSellerConnection={this.addToSellerConnection} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
           <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
           {/* Invalid Page Redirect */}
