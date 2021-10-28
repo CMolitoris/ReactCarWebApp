@@ -5,6 +5,13 @@
 }
 
 .carousel{
-    width: 100%;
+    width: 105%;
     height: 100%;
+    position: relative;
+    right: 1rem;
+
+}
+.title{
+    font-weight: 400;
+    font-size: 3rem;
 }

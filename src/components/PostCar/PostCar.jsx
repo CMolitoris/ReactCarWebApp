@@ -25,7 +25,7 @@ const PostCar = (props) => {
         }));
     }
 
-    const handleSubmit = (event, car) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         props.postCar(car)
         
