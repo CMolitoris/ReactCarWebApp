@@ -8,12 +8,11 @@ import RatingSection from '../RatingSection/RatingSection';
 
 function CarDetails(props) {
     
-    const car = props.cars.filter(car => car.id === props.location.state.carID)
+    const car = props.car
     
     useEffect(() => {
-        props.getCarRatings(car[0].id)
+        props.getCarRatings(car.id)
     }, []);
-
     
     return ( 
         <div className="row">
@@ -22,18 +21,18 @@ function CarDetails(props) {
                     <h4>Related Cars</h4>
                     {/* Related Cars Cards - Filters cars by Type and excludes the current car from the list */}
                     {props.cars.filter(
-                        value => value.type.toLowerCase() === car[0].type.toLowerCase() 
-                        && value.id != car[0].id
+                        value => value.type === car.type 
+                        && value.id != car.id
                     )
-                    .map((car)=>(
+                    .map((related)=>(
                         <Card className="mb-4">
                             <div className="container mt-4">
                                 <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
                             </div>
                             <Card.Body>
-                                <Card.Title>{car.make} {car.model}</Card.Title>
+                                <Card.Title>{related.make} {related.model}</Card.Title>
                                 <Card.Text>
-                                    ${car.price} | {car.type}
+                                    ${related.price} | {related.type}
                                 </Card.Text>
                                 <hr />
                                 {/* Related Cars - Link to car-details */}
@@ -46,7 +45,7 @@ function CarDetails(props) {
                             <div className="container col-sm-10">
                                 <Button className="form-control mb-2" onClick={() => props.addToCart({
                                         UserId: props.user.id,
-                                        CarId: car.id,
+                                        CarId: related.id,
                                         Quantity: 1
                                     })} variant="success btn-sm">
                                     <span class="material-icons">add_shopping_cart</span>
@@ -64,23 +63,23 @@ function CarDetails(props) {
                         <Card.Img src="staticImages\Ford_Shelby.jpg" fluid />
                     </div>
                     <Card.Body>
-                        <Card.Title>{car[0].make} {car[0].model}</Card.Title>
+                        <Card.Title>{car.make} {car.model}</Card.Title>
                         <Card.Text>
-                            <h6>${car[0].price}</h6>
+                            <h6>${car.price}</h6>
                         </Card.Text>
                         <hr />
                         <Card.Text>
-                            <h6>Average Rating: {car[0].averageRating}/5</h6>
+                            <h6>Average Rating: {car.averageRating}/5</h6>
                         </Card.Text>
                         <hr />
                         <Card.Text>
-                            {car[0].description}
+                            {car.description}
                         </Card.Text>
                         <Card.Text>
-                            Type: {car[0].type} | Make: {car[0].make} | Model: {car[0].model}
+                            Type: {car.type} | Make: {car.make} | Model: {car.model}
                         </Card.Text>
                         <Card.Text>
-                            Mileage: {car[0].mileage}
+                            Mileage: {car.mileage}
                         </Card.Text>
                         <hr />
                         {/* Car Details - Add to cart btn */}
@@ -100,7 +99,7 @@ function CarDetails(props) {
                 </Card>
                 {/* TODO: Add Accordion here for reviews section */}
             <RatingSection 
-                carID={props.location.state.carID} 
+                carID={car.id} 
                 postRating={props.postRating} 
                 getCarRatings={props.getCarRatings} 
                 ratings={props.ratings} 

@@ -47,7 +47,7 @@ const Products = (props) => {
                             })
                             .map((car) => (
                                         <Card>
-                                            <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
+                                            <Link to="/car-details" onClick={() => props.getSingleCar(car)}>
                                                 <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
                                             </Link>
                                             <Card.Body>
