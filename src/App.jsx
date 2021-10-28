@@ -226,7 +226,7 @@ class App extends Component {
           {/* Product Page */}
           <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} />
           {/* Product Page */}
-          <Route path = "/car-details" render={props => <CarDetails {...props} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar}/>} car={this.state.carDetails} />
+          <Route path = "/car-details" render={props => <CarDetails {...props} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.carDetails}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
