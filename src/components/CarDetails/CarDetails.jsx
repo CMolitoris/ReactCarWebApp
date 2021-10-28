@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Button, Accordion} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import RatingSection from '../RatingSection/RatingSection';
 
 //! Bug: When the page refreshes the page is lost and the user will have to go back to the product page
 //! Not updating state for 'car' when calling props.getSingleCar() function
@@ -93,6 +94,7 @@ function CarDetails(props) {
                     </Card.Body>
                 </Card>
                 {/* TODO: Add Accordion here for reviews section */}
+                <RatingSection carID={car.id} postRating={props.postRating} />
             </div>
         </div>
     );
