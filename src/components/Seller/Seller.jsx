@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Container, Row, Col} from 'react-bootstrap';
+import PhotoUpload from '../PhotoUpload/PhotoUpload';
 import PostCar from '../PostCar/PostCar';
 
 
@@ -10,10 +12,18 @@ class Seller extends Component {
          }
     }
 
+    // id='main-panel'
+
     render() { 
         return ( 
-            <div className='row' id='main-panel'>
-                <PostCar sellerFlag={this.props.sellerFlag} postCar={this.props.postCar} nextCarId={this.props.nextCarId} addToSellerConnection={this.props.addToSellerConnection} user={this.props.user} />
+            <div className='mx-auto my-auto row'>
+               <Container>
+                   
+                   <Row>
+                       <Col><PostCar sellerFlag={this.props.sellerFlag} postCar={this.props.postCar} nextCarId={this.props.nextCarId} addToSellerConnection={this.props.addToSellerConnection} user={this.props.user} /></Col>
+                   </Row>
+               </Container>
+                
             </div>
          );
     }
