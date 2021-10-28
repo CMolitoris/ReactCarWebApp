@@ -27,8 +27,8 @@ const EditAccount = (props) => {
     return ( 
         <div className='container mx-auto my-auto' id="main-panel">
             <div className = "row">
-                <div className="col-md-3"><Button><Link to='/seller' className='nav-link'>Post Car</Link></Button></div>
-                    <div className="col-md-6" align = "left">
+                <div className="col-md-3"><Button className = "m-3" variant = "secondary"><Link to='/seller' className = "nav-link">Post Car</Link></Button></div>
+                    <div className="col-md-6 p-3" align = "left">
                         <Form onSubmit = {handleSubmit}>
                             <FormGroup as = {Row}>
                                 <FormLabel column sm={3}>Street address</FormLabel>
