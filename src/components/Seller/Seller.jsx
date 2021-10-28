@@ -13,7 +13,7 @@ class Seller extends Component {
     render() { 
         return ( 
             <div className='row' id='main-panel'>
-                <PostCar />
+                <PostCar addToSellerConnection={this.props.addToSellerConnection} />
             </div>
          );
     }

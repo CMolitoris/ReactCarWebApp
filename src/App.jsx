@@ -109,6 +109,7 @@ class App extends Component {
 
     getAllCars = async () => {
       let response = await axios.get('https://localhost:44394/api/car');
+      console.log(response.data)
       this.setState({
           cars: response.data
       });
@@ -230,7 +231,7 @@ class App extends Component {
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
-          <Route path = "/seller" render={props => <Seller {...props}/>} />
+          <Route path = "/seller" render={props => <Seller {...props} addToSellerConnection={this.addToSellerConnection} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
           <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
           {/* Invalid Page Redirect */}

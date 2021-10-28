@@ -32,7 +32,7 @@ const NavBar = (props) => {
                             <a onClick = {props.logoutUser} className='nav-link'>Log Out</a>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/seller'>Sellers</Link>
+                            <Link to='/seller' className="nav-link">Sellers</Link>
                         </li>
                         <li>
                             <a onClick = {props.logoutUser}>Log Out</a>
