@@ -237,8 +237,11 @@ class App extends Component {
       try {
         let response = await axios.get(`https://localhost:44394/api/rating/${carID}/`);
         console.log(response);
-        return response.data
-      } catch (err) {
+        this.setState({
+          rating: response.data
+        })
+      } 
+      catch (err) {
         console.log("🚀 ~ file: App.jsx ~ line 240 ~ App ~ getCarRatings= ~ e", err)
       }
     }
