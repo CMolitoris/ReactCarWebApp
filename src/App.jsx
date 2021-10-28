@@ -11,6 +11,7 @@ import EditAccount from './components/Account/EditAccount';
 import Products from './components/Products/Products';
 import CarDetails from './components/CarDetails/CarDetails';
 import Seller from './components/Seller/Seller';
+import Cart from './components/Cart/Cart';
 
 
 class App extends Component {
@@ -264,6 +265,8 @@ class App extends Component {
           <Route path = "/car-details" render={props => <CarDetails {...props} modalShow={this.state.ratingModalShow} toggleModal={this.toggleRatingModal} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} ratings={this.state.ratings}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
+          {/* Cart Page */}
+          <Route path = "/cart" render={props => <Cart {...props} user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
           <Route path = "/seller" render={props => <Seller {...props} nextCarId={this.getNextCarId} addToSellerConnection={this.addToSellerConnection} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
