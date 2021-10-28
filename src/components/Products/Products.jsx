@@ -37,21 +37,17 @@ const Products = (props) => {
                                     <Card.Text>
                                         <p>${car.price}</p>
                                         <br />
-                                        <p>Average Rating: {car.rating}</p>
+                                        <p>Average Rating: {car.averageRating}/5</p>
                                     </Card.Text>
                                     <hr />
                                     <h6 className="font-weight-bold"> Description </h6>
                                     <Card.Text>
                                         {car.description}
                                     </Card.Text>
-                                    <Card.Text>
-                                            <Link to="/car-details">
-                                                <Button variant="btn-link" onClick={() => props.getSingleCar(car.id)} size="lg">
-                                                <span class="material-icons">info</span>
-                                                Car Details
-                                                </Button>   
-                                            </Link>
-                                    </Card.Text>
+                                    <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
+                                        <span class="material-icons">info</span>
+                                        Car Details
+                                    </Link>
                                 </Card.Body>
                                 <Button onClick={() => props.addToCart({
                                         UserId: props.user.id,
@@ -67,8 +63,6 @@ const Products = (props) => {
                     ))}
             </Row>
         </div>
-
     );
 }
-
 export default Products;
