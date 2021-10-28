@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { FormControl, Form, Button } from 'react-bootstrap';
+import { FormControl, Form, Button, FloatingLabel } from 'react-bootstrap';
 
 const RatingForm = (props) => {
 
@@ -32,31 +32,40 @@ const RatingForm = (props) => {
 
 
     return ( 
-        <div>
+        <>
             <Form className="d-flex" onSubmit={handleSubmit}>
-                <FormControl 
-                    type="text"
-                    placeholder="0 - 10"
-                    className="mr-2 form-control"
-                    aria-label='Rating'
-                    name='RatingScore'
-                    onChange={handleChange}
-                    size= "sm"
-                    value={ratingValues.RatingScore}
-                />
-                <FormControl 
-                    type="text"
-                    placeholder="What's your thoughts..."
-                    className="mr-2 form-control"
-                    aria-label='Message'
-                    name='message'
-                    onChange={handleChange}
-                    size= "sm"
-                    value={ratingValues.Message}
-                />
+                <Form.Group>
+                    <FloatingLabel controlId="floatingSelectGrid" label="Rating">
+                        <FormControl 
+                            type="text"
+                            placeholder="0 - 10"
+                            className="mr-2 form-control"
+                            aria-label='Rating'
+                            name='RatingScore'
+                            onChange={handleChange}
+                            size= "sm"
+                            value={ratingValues.RatingScore}
+                        />
+                    </FloatingLabel>
+                </Form.Group>
+
+                <Form.Group>
+                    <FloatingLabel controlId="floatingInputGrid" label="Review">
+                        <FormControl 
+                            type="text"
+                            placeholder="What's your thoughts..."
+                            className="mr-2 form-control"
+                            aria-label='Message'
+                            name='Message'
+                            onChange={handleChange}
+                            size= "sm"
+                            value={ratingValues.Message}
+                        />
+                    </FloatingLabel>
+                </Form.Group>
                 <Button className="btn btn-secondary" type='submit' size = "sm">Submit</Button>
             </Form>
-        </div>
+        </>
      );
 }
 export default RatingForm;
