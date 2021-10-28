@@ -38,33 +38,33 @@ const PostCar = (props) => {
             <Row className='mb-3'>
                 <Form.Group as={Col} controlID='make'>
                         <Form.Label>Make:</Form.Label>
-                        <Form.Control className='form-control shadow m-1' id='input-style-left' name='make' value="Make..." onChange={handleChange} />
+                        <Form.Control className='form-control shadow m-1' id='input-style-left' name='make' placeholder="Make..." onChange={handleChange} />
                 </Form.Group>
                 <Form.Group as={Col} controlID='model'>
                         <Form.Label>Model:</Form.Label>
-                        <Form.Control className='form-control shadow m-1' id='input-style-right' name='model' value="Model..." onChange={handleChange} />
+                        <Form.Control className='form-control shadow m-1' id='input-style-right' name='model' placeholder="Model..." onChange={handleChange} />
                 </Form.Group>
             </Row>
             <Row className='mb-3'>
                 <Form.Group as={Col} controlID='year'>
                         <Form.Label>Year:</Form.Label>
-                        <Form.Control className='form-control shadow m-1' id='input-style-left' name='year' value="Year..." onChange={handleChange} />
+                        <Form.Control className='form-control shadow m-1' id='input-style-left' name='year' placeholder="Year..." onChange={handleChange} />
                 </Form.Group>
                 <Form.Group as={Col} controlID='genre'>
                         <Form.Label>Type:</Form.Label>
-                        <Form.Control className='form-control shadow m-1' id='input-style-middle' name='type' value="Type..." onChange={handleChange} />
+                        <Form.Control className='form-control shadow m-1' id='input-style-middle' name='type' placeholder="Type..." onChange={handleChange} />
                 </Form.Group>
                 <Form.Group as={Col} controlID='price'>
                         <Form.Label>Price:</Form.Label>
-                        <Form.Control className='form-control shadow m-1' id='input-style-middle' name='price' value="Price..." onChange={handleChange} />
+                        <Form.Control className='form-control shadow m-1' id='input-style-middle' name='price' placeholder="Price..." onChange={handleChange} />
                 </Form.Group>
                 <Form.Group as={Col} controlID='mileage'>
                         <Form.Label>Mileage:</Form.Label>
-                        <Form.Control className='form-control shadow m-1' id='input-style-middle' name='mileage' value="Mileage..." onChange={handleChange} />
+                        <Form.Control className='form-control shadow m-1' id='input-style-middle' name='mileage' placeholder="Mileage..." onChange={handleChange} />
                 </Form.Group>
                 <Form.Group as={Col} controlID='description'>
                         <Form.Label>Description:</Form.Label>
-                        <Form.Control className='form-control shadow m-1' id='input-style-middle' name='description' value="Description..." onChange={handleChange} />
+                        <Form.Control className='form-control shadow m-1' id='input-style-middle' name='description' placeholder="Description..." onChange={handleChange} />
                 </Form.Group>
             </Row>
             <Button variant="secondary" className='shadow mt-4 m-1' id='submit-button' type="submit"  >
