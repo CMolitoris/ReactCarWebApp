@@ -41,3 +41,13 @@
     transform: rotate(360deg);
   }
 }
+
+/* Global IDs */
+#main-panel{
+  background-color: #C21E1E;
+  margin: 3rem;
+  border-radius: 5rem;
+  width: 100rem;
+  height: 100%;
+}
+

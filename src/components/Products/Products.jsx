@@ -10,8 +10,8 @@ const Products = (props) => {
     const [SearchTerm, setSearchTerm] = useState("")
 
     return ( 
-        <div className="container mx-auto my-auto" id='main-panel'>
-            <div id='main-panel'>
+        <div className="container mx-auto my-auto overflow-auto" id='product-panel'>
+            <div className='row'>
 
                 {/* SEARCH BAR */}
                 <Row>
@@ -30,6 +30,7 @@ const Products = (props) => {
 
                     {/* PRODUCT CARD */}
                 <Row xs={1} md={3} className="g-4">
+                    <Col>a</Col>
                         {props.cars.filter(value => {
                             if (SearchTerm === "") {
                                 return value
@@ -44,10 +45,8 @@ const Products = (props) => {
                             }
                         })
                         .map((car) => (
-                            <div>
-                                <Col></Col>
-                                <Col>
-                                    <Card>
+                                <Col >
+                                    <Card className='rounded-3'>
                                         <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
                                         <Card.Body>
                                             <Card.Title>{car.make} {car.model}</Card.Title>
@@ -70,14 +69,11 @@ const Products = (props) => {
                                                 UserId: props.user.id,
                                                 CarId: car.id,
                                                 Quantity: 1
-                                            })} variant="success" size="lg">
-                                            <span class="material-icons">add_shopping_cart</span>
-                                            Add to Cart
+                                            })} variant="success" size="lg" className='border-circle'>
+                                            <i class="bi bi-cart4"></i>
                                         </Button> 
                                     </Card>
                                 </Col>
-                                <Col></Col>
-                            </div>
                         ))}
                 </Row>
                 
