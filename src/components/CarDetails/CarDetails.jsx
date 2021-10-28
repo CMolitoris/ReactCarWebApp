@@ -10,10 +10,10 @@ function CarDetails(props) {
     
     useEffect(() => {
         props.getCarRatings(car.id)
-    }, []);
+    }, [props.car]);
 
     const car = props.car
-
+    
     const averageRating = function(ratings) {
         let avg = 0
         ratings.forEach(rating => avg += rating.ratingScore)
@@ -35,7 +35,9 @@ function CarDetails(props) {
                     .map((related)=>(
                         <Card className="mb-4">
                             <div className="container mt-4">
-                                <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
+                                <Link to="/car-details" onClick={() => props.getSingleCar(related)}>
+                                    <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
+                                </Link>
                             </div>
                             <Card.Body>
                                 <Card.Title>{related.make} {related.model}</Card.Title>
@@ -44,10 +46,6 @@ function CarDetails(props) {
                                 </Card.Text>
                                 <hr />
                                 {/* Related Cars - Link to car-details */}
-                                <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
-                                        <span class="material-icons">info</span>
-                                        Car Details
-                                    </Link>
                             </Card.Body>
                             {/* Related Cars - Add to cart btn */}
                             <div className="container col-sm-10">
