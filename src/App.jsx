@@ -115,6 +115,13 @@ class App extends Component {
       });
     }
 
+    //GET LAST CAR TO USE AS LAST INDEX
+    getNextCarId = async () => {
+      let response = await axios.get('https://localhost:44394/api/car/cars/last');
+      console.log(response.data);
+      return response.data.id + 1;
+    }
+
     getSingleCar = async (carID) => {
       try{
         let response = await axios.get(`https://localhost:44394/api/car/${carID}`);
@@ -186,7 +193,7 @@ class App extends Component {
     completeAddressDetails = async (addressDetails) => {
       let userId = this.state.loggedUser.Id;
       try {
-        let response = await axios.post(`https://localhost:44394/api/users/complete/${userId}`,addressDetails);
+        let response = await axios.put(`https://localhost:44394/api/users/complete/${userId}`,addressDetails);
         console.log(response);
       } catch (e) {
         console.log("Error in completeAddressDetails: " + e); 
@@ -196,7 +203,7 @@ class App extends Component {
     editUser = async (userDetails) => {
       let userId = this.state.loggedUser.Id;
       try {
-        let response = await axios.post(`https://localhost:44394/api/users/edit/${userId}`,userDetails);
+        let response = await axios.put(`https://localhost:44394/api/users/edit/${userId}`,userDetails);
         console.log(response);
       } catch (e) {
         console.log("Error in editUser: " + e); 
@@ -209,6 +216,15 @@ class App extends Component {
         console.log(response);
       } catch (e) {
         console.log("Error in postRating: " + e); 
+      }
+    }
+
+    getAllRatings = async () => {
+      try {
+        let response = await axios.get(`https://localhost:44394/api/rating/all/`);
+        console.log(response);
+      } catch (e) {
+        console.log("Error in getAllRatings: " + e); 
       }
     }
 
@@ -231,7 +247,7 @@ class App extends Component {
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
-          <Route path = "/seller" render={props => <Seller {...props} addToSellerConnection={this.addToSellerConnection} user={this.state.loggedUser}/>} />
+          <Route path = "/seller" render={props => <Seller {...props} nextCarId={this.getNextCarId} addToSellerConnection={this.addToSellerConnection} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
           <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
           {/* Invalid Page Redirect */}
