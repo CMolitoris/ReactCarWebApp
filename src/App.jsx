@@ -22,7 +22,8 @@ class App extends Component {
     cars: [],
     car: [],
     location: null,
-    ratings: []
+    ratings: [],
+    sellerFlag: true
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -125,7 +126,7 @@ class App extends Component {
     getNextCarId = async () => {
       let response = await axios.get('https://localhost:44394/api/car/cars/last');
       console.log(response.data);
-      return response.data.id + 1;
+      return response.data;
     }
 
     getSingleCar = async (carID) => {
@@ -139,7 +140,7 @@ class App extends Component {
       }
     }
 
-    postCar = async (car) => {
+    postCar = async (car,sellerFlag = false) => {
       await axios.post('https://localhost:44394/api/car/', car)
       .then( res => {
         this.getAllCars();
@@ -147,6 +148,18 @@ class App extends Component {
       .catch(err => {
         console.log("Error in postCar: " + err);
       });
+
+      if(sellerFlag=true){
+        let carId = await this.getNextCarId();
+        console.log(carId);
+        console.log(this.state.loggedUser.id);
+        
+        this.addToSellerConnection({
+            UserId: this.state.loggedUser.id,
+            CarId: carId,
+            Quantity: 1
+        });
+    }
     }
 
     editCar = async (id, car) => {
@@ -267,9 +280,9 @@ class App extends Component {
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Cart Page */}
-          <Route path = "/cart" render={props => <Cart {...props} user = {this.state.loggedUser}/>} />
+          <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart}user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
-          <Route path = "/seller" render={props => <Seller {...props} postCar={this.postCar} nextCarId={this.getNextCarId} addToSellerConnection={this.addToSellerConnection} user={this.state.loggedUser}/>} />
+          <Route path = "/seller" render={props => <Seller {...props} sellerFlag={this.setState.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
           <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
           {/* Invalid Page Redirect */}
