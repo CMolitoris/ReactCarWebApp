@@ -18,7 +18,7 @@ function CarDetails(props) {
         let avg = 0
         ratings.forEach(rating => avg += rating.ratingScore)
         avg =(avg / ratings.length)
-        return avg.toFixed(1)
+        return Math.ceil(avg*2)/2
     }
     
     
