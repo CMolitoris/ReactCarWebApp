@@ -280,7 +280,7 @@ class App extends Component {
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Cart Page */}
-          <Route path = "/cart" render={props => <Cart {...props} user = {this.state.loggedUser}/>} />
+          <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart}user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
           <Route path = "/seller" render={props => <Seller {...props} sellerFlag={this.setState.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
