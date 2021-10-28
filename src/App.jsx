@@ -109,7 +109,7 @@ class App extends Component {
       this.setState({
         loggedUser: null
       })
-      if (location == '/account' || location == '/seller' || location == '/not-found'){
+      if (location == '/account' || location == '/seller' || location == '/not-found' || location == '/cart'){
         window.location = "/"
       }
     }
