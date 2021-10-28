@@ -13,6 +13,11 @@
 .side-panel{
     background-color: #C21E1E;
 }
+.details-font{
+    font-size: 2rem;
+    font-weight: 400;
+    color: #CBCACA;
+}
 
 /* width */
 ::-webkit-scrollbar {

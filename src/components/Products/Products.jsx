@@ -12,9 +12,9 @@ const Products = (props) => {
     return ( 
         <div className="container mx-auto my-auto overflow-auto" id='product-panel'>
             <div className='row'>
-                <Col md={2} className='side-panel'>
+                <Col md={3} className='side-panel'>
                     <Row>
-                        Search Filter
+                        <p className='details-font mt-4' >Search Filter</p>
                     </Row>
                     {/* SEARCH BAR */}
                     <Row>
@@ -31,7 +31,7 @@ const Products = (props) => {
 
                 <Col>
                     {/* PRODUCT CARD */}
-                    <Row xs={1} md={3} className="g-4">
+                    <Row xs={2} md={3} className="g-4 mt-3">
                             {props.cars.filter(value => {
                                 if (SearchTerm === "") {
                                     return value
@@ -46,8 +46,10 @@ const Products = (props) => {
                                 }
                             })
                             .map((car) => (
-                                        <Card className='rounded-3'>
-                                            <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
+                                        <Card>
+                                            <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
+                                                <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
+                                            </Link>
                                             <Card.Body>
                                                 <Card.Title>{car.make} {car.model}</Card.Title>
                                                 <Card.Text>
@@ -59,16 +61,12 @@ const Products = (props) => {
                                                 <Card.Text>
                                                     {car.description}
                                                 </Card.Text>
-                                                <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
-                                                    <span class="material-icons">info</span>
-                                                    Car Details
-                                                </Link>
                                             </Card.Body>
                                             <Button onClick={() => props.addToCart({
                                                     UserId: props.user.id,
                                                     CarId: car.id,
                                                     Quantity: 1
-                                                })} variant="success" size="lg" className='border-circle'>
+                                                })} variant="primary" size="lg" className='border-circle'>
                                                 <i class="bi bi-cart4"></i>
                                             </Button> 
                                         </Card>
