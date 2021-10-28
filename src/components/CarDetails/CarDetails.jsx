@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, Button, Accordion } from 'react-bootstrap';
+import { Card, Button, Accordion} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 function CarDetails(props) {
@@ -22,21 +23,23 @@ function CarDetails(props) {
                             <Card.Body>
                                 <Card.Title>{car.make} {car.model}</Card.Title>
                                 <Card.Text>
-                                    $ {car.price}
+                                    $ {car.price} | {car.type}
                                 </Card.Text>
                                 <hr />
-                                <Card.Text>
-                                    {car.description}
-                                </Card.Text>
+                                <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
+                                        <span class="material-icons">info</span>
+                                        Car Details
+                                    </Link>
                             </Card.Body>
-                            <Button onClick={() => props.addToCart({
-                                    UserId: props.user.id,
-                                    CarId: car.id,
-                                    Quantity: 1
-                                })} variant="success btn-sm">
-                                <span class="material-icons">add_shopping_cart</span>
-                                Add to Cart
-                            </Button>
+                            <div className="container col-sm-10">
+                                <Button className="form-control" onClick={() => props.addToCart({
+                                        UserId: props.user.id,
+                                        CarId: car.id,
+                                        Quantity: 1
+                                    })} variant="success btn-sm">
+                                    <span class="material-icons">add_shopping_cart</span>
+                                </Button>
+                            </div>
                         </Card>
                     ))}
                 </div>
