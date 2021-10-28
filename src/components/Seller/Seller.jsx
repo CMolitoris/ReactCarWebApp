@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Container, Row, Col} from 'react-bootstrap';
+import PhotoUpload from '../PhotoUpload/PhotoUpload';
 import PostCar from '../PostCar/PostCar';
 
 
@@ -9,6 +11,8 @@ class Seller extends Component {
             isSeller: null
          }
     }
+
+    // id='main-panel'
 
     render() { 
         return ( 
