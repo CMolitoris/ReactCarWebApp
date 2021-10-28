@@ -34,7 +34,8 @@ const PostCar = (props) => {
         
     }
 
-    return ( 
+    return (
+        <div className="col-lg-8 p-4" align = "center" id='main-panel'>
         <form onSubmit={handleSubmit} className='put'>
             <Row className='mb-3'>
                 <Form.Group as={Col} controlID='make'>
@@ -72,6 +73,7 @@ const PostCar = (props) => {
                 Submit
             </Button>
         </form>
+        </div>
      );
 }
 
