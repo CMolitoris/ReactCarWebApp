@@ -21,6 +21,7 @@ class App extends Component {
     cars: [],
     car: [],
     location: null,
+    ratings: []
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -257,7 +258,7 @@ class App extends Component {
           {/* Product Page */}
           <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car}/>} />
           {/* Product Page */}
-          <Route path = "/car-details" render={props => <CarDetails {...props} modalShow={this.state.ratingModalShow} toggleModal={this.toggleRatingModal} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car}/>} />
+          <Route path = "/car-details" render={props => <CarDetails {...props} modalShow={this.state.ratingModalShow} toggleModal={this.toggleRatingModal} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
