@@ -81,7 +81,7 @@ const Products = (props) => {
                                 </Col>
                         ))}
                 </Row>
-                
+               </Col> 
             </div>
         </div>
     );
