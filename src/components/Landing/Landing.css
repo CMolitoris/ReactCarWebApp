@@ -1,3 +1,12 @@
+#main-panel{
+    background-color: #C21E1E;
+    color: #CBCACA;
+    margin: 3rem;
+    border-radius: 5rem;
+    width: 100rem;
+    height: 100%;
+  }
+
 .carousel{
     width: 105%;
     height: 100%;
