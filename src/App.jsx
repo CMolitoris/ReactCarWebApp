@@ -129,15 +129,10 @@ class App extends Component {
       return response.data;
     }
 
-    getSingleCar = async (carID) => {
-      try{
-        const response = await axios.get(`https://localhost:44394/api/car/${carID}`);
-        this.setState({
-            car: response.data
-        });
-      } catch(err){
-        console.log("🚀 ~ file: App.jsx ~ line 116 ~ App ~ getAllCars= ~ err", err)
-      }
+    getSingleCar = async (singleCar) => {
+      this.setState({
+        car: singleCar
+      })
     }
 
     postCar = async (car,sellerFlag = false) => {
