@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Card, Button, Accordion} from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Card, Button, Accordion } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import RatingSection from '../RatingSection/RatingSection';
 
@@ -7,61 +7,68 @@ import RatingSection from '../RatingSection/RatingSection';
 //! Not updating state for 'car' when calling props.getSingleCar() function
 
 function CarDetails(props) {
-    
+    const [car, setCar] = useState()
+
     useEffect(() => {
-        props.getCarRatings(car.id)
-    }, []);
+        if (props.car.length > 0) {
+            setCar(props.car)
+            props.getCarRatings(car.id)
+        }
 
-    const car = props.car
+        console.log("UseEffect - Car Prop: ", props.car)
+    }, [props.car]);
 
-    const averageRating = function(ratings) {
+    // const car = props.car
+
+    const averageRating = function (ratings) {
         let avg = 0
         ratings.forEach(rating => avg += rating.ratingScore)
-        avg =(avg / ratings.length)
+        avg = (avg / ratings.length)
         return avg.toFixed(1)
     }
-    
-    
-    return ( 
+
+
+    return (
         <div className="row">
             <div className="col-sm-3 bg-danger">
                 <div className="container">
                     <h4>Related Cars</h4>
                     {/* Related Cars Cards - Filters cars by Type and excludes the current car from the list */}
                     {props.cars.filter(
-                        value => value.type === car.type 
-                        && value.id != car.id
+                        value => value.type === car.type
+                            && value.id !== car.id
                     )
-                    .map((related)=>(
-                        <Card className="mb-4">
-                            <div className="container mt-4">
-                                <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
-                            </div>
-                            <Card.Body>
-                                <Card.Title>{related.make} {related.model}</Card.Title>
-                                <Card.Text>
-                                    ${related.price} | {related.type}
-                                </Card.Text>
-                                <hr />
-                                {/* Related Cars - Link to car-details */}
-                                <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
-                                        <span class="material-icons">info</span>
+                        .map((related) => (
+                            <Card className="mb-4">
+                                <div className="container mt-4">
+                                    <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg" />
+                                </div>
+                                <Card.Body>
+                                    <Card.Title>{related.make} {related.model}</Card.Title>
+                                    <Card.Text>
+                                        ${related.price} | {related.type}
+                                    </Card.Text>
+                                    <hr />
+                                    {/* Related Cars - Link to car-details */}
+                                    <Link to={{ pathname: "/car-details", state: { carID: car.id } }}>
+                                        <span className="material-icons">info</span>
                                         Car Details
                                     </Link>
-                            </Card.Body>
-                            {/* Related Cars - Add to cart btn */}
-                            <div className="container col-sm-10">
-                                <Button className="form-control mb-2" onClick={() => props.addToCart({
+                                </Card.Body>
+                                {/* Related Cars - Add to cart btn */}
+                                <div className="container col-sm-10">
+                                    <Button className="form-control mb-2" onClick={() => props.addToCart({
                                         UserId: props.user.id,
                                         CarId: related.id,
                                         Quantity: 1
                                     })} variant="success btn-sm">
-                                    <span class="material-icons">add_shopping_cart</span>
-                                    Add to Cart
-                                </Button>
-                            </div>
-                        </Card>
-                    ))}
+                                        <span class="material-icons">add_shopping_cart</span>
+                                        Add to Cart
+                                    </Button>
+                                </div>
+                            </Card>
+                        ))
+                    }
                 </div>
             </div>
             {/* Car Details Card */}
@@ -77,7 +84,11 @@ function CarDetails(props) {
                         </Card.Text>
                         <hr />
                         <Card.Text>
-                            <h6>Average Rating: {averageRating(props.ratings)}/5</h6>
+                            { // Average Rating
+                                (props.ratings.length > 0)
+                                    ? <p> Average Rating: {averageRating(props.ratings)}/5 </p>
+                                    : <p> No ratings available. </p>
+                            }
                         </Card.Text>
                         <hr />
                         <Card.Text>
@@ -92,26 +103,26 @@ function CarDetails(props) {
                         <hr />
                         {/* Car Details - Add to cart btn */}
                         <div className=" container col-md-6">
-                            <Button className="form-control" 
+                            <Button className="form-control"
                                 onClick={() => props.addToCart({
                                     UserId: props.user.id,
                                     CarId: car.id,
                                     Quantity: 1
-                                })} 
+                                })}
                                 variant="success">
                                 <span class="material-icons">add_shopping_cart</span>
                                 Add to Cart
-                            </Button> 
+                            </Button>
                         </div>
                     </Card.Body>
                 </Card>
                 {/* TODO: Add Accordion here for reviews section */}
-            <RatingSection 
-                carID={car.id} 
-                postRating={props.postRating} 
-                getCarRatings={props.getCarRatings} 
-                ratings={props.ratings} 
-            />
+                <RatingSection
+                    carID={car.id}
+                    postRating={props.postRating}
+                    getCarRatings={props.getCarRatings}
+                    ratings={props.ratings}
+                />
             </div>
         </div>
     );
