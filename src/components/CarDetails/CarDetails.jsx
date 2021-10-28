@@ -8,11 +8,19 @@ import RatingSection from '../RatingSection/RatingSection';
 
 function CarDetails(props) {
     
-    const car = props.car
-    
     useEffect(() => {
         props.getCarRatings(car.id)
     }, []);
+
+    const car = props.car
+
+    const averageRating = function(ratings) {
+        let avg = 0
+        ratings.forEach(rating => avg += rating.ratingScore)
+        avg =(avg / ratings.length)
+        return avg.toFixed(1)
+    }
+    
     
     return ( 
         <div className="row">
@@ -69,7 +77,7 @@ function CarDetails(props) {
                         </Card.Text>
                         <hr />
                         <Card.Text>
-                            <h6>Average Rating: {car.averageRating}/5</h6>
+                            <h6>Average Rating: {averageRating(props.ratings)}/5</h6>
                         </Card.Text>
                         <hr />
                         <Card.Text>
