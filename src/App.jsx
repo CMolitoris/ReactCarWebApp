@@ -11,6 +11,7 @@ import EditAccount from './components/Account/EditAccount';
 import Products from './components/Products/Products';
 import CarDetails from './components/CarDetails/CarDetails';
 import Seller from './components/Seller/Seller';
+import Cart from './components/Cart/Cart';
 
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
     cars: [],
     car: [],
     location: null,
+    ratings: []
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -232,6 +234,19 @@ class App extends Component {
       }
     }
 
+    getCarRatings = async (carID) => {
+      try {
+        const response = await axios.get(`https://localhost:44394/api/rating/${carID}/`);
+        console.log(response);
+        this.setState({
+          ratings: response.data
+        })
+      } 
+      catch (err) {
+        console.log("🚀 ~ file: App.jsx ~ line 240 ~ App ~ getCarRatings= ~ e", err)
+      }
+    }
+
  
   render() {
     return (
@@ -245,11 +260,13 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car}/>} />
+          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} />} />
           {/* Product Page */}
-          <Route path = "/car-details" render={props => <CarDetails {...props} modalShow={this.state.ratingModalShow} toggleModal={this.toggleRatingModal} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car}/>} />
+          <Route path = "/car-details" render={props => <CarDetails {...props} modalShow={this.state.ratingModalShow} toggleModal={this.toggleRatingModal} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} ratings={this.state.ratings}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
+          {/* Cart Page */}
+          <Route path = "/cart" render={props => <Cart {...props} user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
           <Route path = "/seller" render={props => <Seller {...props} postCar={this.postCar} nextCarId={this.getNextCarId} addToSellerConnection={this.addToSellerConnection} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}

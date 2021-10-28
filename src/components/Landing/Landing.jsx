@@ -14,14 +14,14 @@ class Landing extends Component {
 
     render() { 
         return ( 
-            <div className='container mx-auto my-auto overflow-hidden' id="main-panel">
+            <div className='container mx-auto my-auto overflow-hidden shadow' id="main-panel">
                 <div className='row'>
-                    <div className='col h3'>
-                        Store Name
+                    <div className='col title'>
+                        CAR <i class="bi bi-bullseye"></i> GET
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col carousel align-items-center'>
+                    <div className='col carousel shadow align-items-center'>
                         <Carousel>
                             <Carousel.Item>
                                 <img

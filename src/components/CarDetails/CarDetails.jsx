@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, Button, Accordion} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import RatingSection from '../RatingSection/RatingSection';
 
 //! Bug: When the page refreshes the page is lost and the user will have to go back to the product page
 //! Not updating state for 'car' when calling props.getSingleCar() function
@@ -8,6 +9,11 @@ import { Link } from 'react-router-dom';
 function CarDetails(props) {
     
     const car = props.cars.filter(car => car.id === props.location.state.carID)
+    
+    useEffect(() => {
+        props.getCarRatings(car[0].id)
+    }, [props.ratings]);
+
     
     return ( 
         <div className="row">
@@ -93,6 +99,12 @@ function CarDetails(props) {
                     </Card.Body>
                 </Card>
                 {/* TODO: Add Accordion here for reviews section */}
+            <RatingSection 
+                carID={props.location.state.carID} 
+                postRating={props.postRating} 
+                getCarRatings={props.getCarRatings} 
+                ratings={props.ratings} 
+            />
             </div>
         </div>
     );
