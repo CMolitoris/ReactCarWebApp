@@ -8,6 +8,7 @@ function Reviews (props) {
     return ( 
         <div className = "row">
             <div className = "col-md-12">
+                <h5 className="text-start p-2">See what others have to say!</h5>
                 <ListGroup>
                     {props.ratings.map((review) => {
                         return   <ListGroupItem className="bg-primary text-black">
@@ -16,7 +17,7 @@ function Reviews (props) {
                                             <Card.Body>
                                                 <p className="d-flex justify-content-start">
                                                     <span class="material-icons px-3">person</span>
-                                                    {review.message}
+                                                    Rating: {review.ratingScore}/5 | {review.message}
                                                 </p>    
                                             </Card.Body>
                                         </Card>
