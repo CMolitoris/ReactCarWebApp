@@ -10,7 +10,7 @@ const Products = (props) => {
     const [SearchTerm, setSearchTerm] = useState("")
 
     return ( 
-        <div className="container mx-auto my-auto overflow-auto" id='product-panel'>
+        <div className="container mx-auto my-auto overflow-auto shadow" id='product-panel'>
             <div className='row'>
                 <Col md={3} className='side-panel'>
                     <Row>
