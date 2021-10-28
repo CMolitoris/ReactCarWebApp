@@ -11,12 +11,12 @@ function RatingSection(props) {
             <Accordion>
                 <Accordion.Item>
                     <Accordion.Header>
-                        <h6 className="text-white"> Reviews </h6>
+                        <h6 className="text-black"> Reviews </h6>
                     </Accordion.Header>
                     <Accordion.Body>
                             <RatingForm postRating={props.postRating} carID={props.carID} />
                             <Card>
-                                <Reviews  />
+                                <Reviews ratings={props.ratings}/>
                             </Card>
                     </Accordion.Body>
                 </Accordion.Item>
