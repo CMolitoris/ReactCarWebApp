@@ -60,7 +60,10 @@ const Products = (props) => {
                                             <Card.Text>
                                                 {car.description}
                                             </Card.Text>
-                                            <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
+                                            <Link 
+                                                to="/car-details"
+                                                onClick={() => props.getSingleCar(car)}
+                                            >
                                                 <span class="material-icons">info</span>
                                                 Car Details
                                             </Link>
