@@ -237,7 +237,7 @@ class App extends Component {
     getCarRatings = async (carID) => {
       try {
         const response = await axios.get(`https://localhost:44394/api/rating/${carID}/`);
-        console.log(response);
+        console.log("🚀 ~ file: App.jsx ~ line 240 ~ App ~ getCarRatings= ~ response", response.data)
         this.setState({
           ratings: response.data
         })
