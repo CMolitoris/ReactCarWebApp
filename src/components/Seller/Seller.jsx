@@ -16,14 +16,11 @@ class Seller extends Component {
 
     render() { 
         return ( 
-            <div className='mx-auto my-auto row'>
-               <Container>
-                   
-                   <Row>
-                       <Col><PostCar sellerFlag={this.props.sellerFlag} postCar={this.props.postCar} nextCarId={this.props.nextCarId} addToSellerConnection={this.props.addToSellerConnection} user={this.props.user} /></Col>
-                   </Row>
-               </Container>
-                
+            <div className='row'>
+                <div className="col"></div>
+                    <PostCar sellerFlag={this.props.sellerFlag} postCar={this.props.postCar} nextCarId={this.props.nextCarId} 
+                    addToSellerConnection={this.props.addToSellerConnection} user={this.props.user} />
+                <div className="col"></div>
             </div>
          );
     }

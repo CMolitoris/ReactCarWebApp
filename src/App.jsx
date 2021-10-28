@@ -49,7 +49,7 @@ class App extends Component {
 
     updateAddressDetails = async (updateInfo) => {
       try {
-        let response = await axios.put(`${this.updateAddressURL}${this.state.loggedUser.id}`, updateInfo);
+        await axios.put(`${this.updateAddressURL}${this.state.loggedUser.id}`, updateInfo);
         window.location = "/account";
       } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 36 ~ App ~ updateAddressDetails= ~ err", err)
@@ -58,7 +58,7 @@ class App extends Component {
 
     registerUser = async (userToRegister) => {
       try {
-        let response = await axios.post(this.registerURL, userToRegister);
+        await axios.post(this.registerURL, userToRegister);
         this.loginUser({'username': userToRegister.username, 'password': userToRegister.password})
       } catch(err){
         console.log("🚀 ~ file: App.jsx ~ line 40 ~ App ~ registerUser= ~ err", err)
@@ -109,14 +109,13 @@ class App extends Component {
       this.setState({
         loggedUser: null
       })
-      if (location == '/account' || location == '/seller' || location == '/not-found'){
+      if (location === '/account' || location === '/seller' || location === '/not-found' || location === '/cart'){
         window.location = "/"
       }
     }
 
     getAllCars = async () => {
       let response = await axios.get('https://localhost:44394/api/car');
-      console.log(response.data)
       this.setState({
           cars: response.data
       });
@@ -125,19 +124,13 @@ class App extends Component {
     //GET LAST CAR TO USE AS LAST INDEX
     getNextCarId = async () => {
       let response = await axios.get('https://localhost:44394/api/car/cars/last');
-      console.log(response.data);
       return response.data;
     }
 
-    getSingleCar = async (carID) => {
-      try{
-        const response = await axios.get(`https://localhost:44394/api/car/${carID}`);
-        this.setState({
-            car: response.data
-        });
-      } catch(err){
-        console.log("🚀 ~ file: App.jsx ~ line 116 ~ App ~ getAllCars= ~ err", err)
-      }
+    getSingleCar = async (singleCar) => {
+      this.setState({
+        car: singleCar
+      })
     }
 
     postCar = async (car,sellerFlag = false) => {
@@ -149,11 +142,8 @@ class App extends Component {
         console.log("Error in postCar: " + err);
       });
 
-      if(sellerFlag=true){
+      if(sellerFlag === true){
         let carId = await this.getNextCarId();
-        console.log(carId);
-        console.log(this.state.loggedUser.id);
-        
         this.addToSellerConnection({
             UserId: this.state.loggedUser.id,
             CarId: carId,
@@ -175,8 +165,7 @@ class App extends Component {
 
     addToCart = async (car) => {
       try {
-        let response = await axios.post('https://localhost:44394/api/shoppingcart/',car);
-        console.log(response);
+        await axios.post('https://localhost:44394/api/shoppingcart/',car);
       } catch (e) {
         console.log("Error from addShoppingCart: " + e);
       }
@@ -184,8 +173,7 @@ class App extends Component {
 
     deleteFromCart = async (userId,carId) => {
       try {
-        let response = await axios.delete(`https://localhost:44394/api/shoppingcart/${userId}/${carId}`);
-        console.log(response);
+        await axios.delete(`https://localhost:44394/api/shoppingcart/${userId}/${carId}`);
       } catch (e) {
         console.log("Error in deleteFromCart: " + e); 
       }
@@ -193,8 +181,7 @@ class App extends Component {
 
     addToSellerConnection = async (car) => {
       try {
-        let response = await axios.post('https://localhost:44394/api/seller/',car);
-        console.log(response);
+        await axios.post('https://localhost:44394/api/seller/',car);
       } catch (e) {
         console.log("Error from addSellerConnection: " + e);
       }
@@ -202,8 +189,7 @@ class App extends Component {
 
     deleteFromSellerConnection = async (userId,carId) => {
       try {
-        let response = await axios.delete(`https://localhost:44394/api/seller/${userId}/${carId}`);
-        console.log(response);
+        await axios.delete(`https://localhost:44394/api/seller/${userId}/${carId}`);
       } catch (e) {
         console.log("Error in deleteFromSeller: " + e); 
       }
@@ -212,8 +198,7 @@ class App extends Component {
     completeAddressDetails = async (addressDetails) => {
       let userId = this.state.loggedUser.Id;
       try {
-        let response = await axios.put(`https://localhost:44394/api/users/complete/${userId}`,addressDetails);
-        console.log(response);
+        await axios.put(`https://localhost:44394/api/users/complete/${userId}`,addressDetails);
       } catch (e) {
         console.log("Error in completeAddressDetails: " + e); 
       }
@@ -222,8 +207,7 @@ class App extends Component {
     editUser = async (userDetails) => {
       let userId = this.state.loggedUser.Id;
       try {
-        let response = await axios.put(`https://localhost:44394/api/users/edit/${userId}`,userDetails);
-        console.log(response);
+        await axios.put(`https://localhost:44394/api/users/edit/${userId}`,userDetails);
       } catch (e) {
         console.log("Error in editUser: " + e); 
       }
@@ -231,9 +215,8 @@ class App extends Component {
 
     postRating = async (rating) => {
       try {
-        let response = await axios.post(`https://localhost:44394/api/rating/`,rating);
+        await axios.post(`https://localhost:44394/api/rating/`,rating);
         this.getCarRatings(rating.CarId)
-        console.log(response);
       } catch (e) {
         console.log("Error in postRating: " + e); 
       }
@@ -241,8 +224,7 @@ class App extends Component {
 
     getAllRatings = async () => {
       try {
-        let response = await axios.get(`https://localhost:44394/api/rating/all/`);
-        console.log(response);
+        await axios.get(`https://localhost:44394/api/rating/all/`);
       } catch (e) {
         console.log("Error in getAllRatings: " + e); 
       }
@@ -251,7 +233,6 @@ class App extends Component {
     getCarRatings = async (carID) => {
       try {
         const response = await axios.get(`https://localhost:44394/api/rating/${carID}/`);
-        console.log("🚀 ~ file: App.jsx ~ line 240 ~ App ~ getCarRatings= ~ response", response.data)
         this.setState({
           ratings: response.data
         })
@@ -265,8 +246,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} toggleLogModal = {this.
-          toggleLoginModal} toggleRegModal = {this.toggleRegModal}/>
+        <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} 
+        toggleLogModal = {this.toggleLoginModal} toggleRegModal = {this.toggleRegModal}/>
         {this.state.loginModalShow && <Login login = {this.loginUser} modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>}
         {this.state.regModalShow && <RegisterUser register = {this.registerUser} modalShow = {this.state.regModalShow} toggleModal={this.toggleRegModal} registerUser={this.registerUser}/>}
         <div>
@@ -280,7 +261,7 @@ class App extends Component {
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Cart Page */}
-          <Route path = "/cart" render={props => <Cart {...props} user = {this.state.loggedUser}/>} />
+          <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart}user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
           <Route path = "/seller" render={props => <Seller {...props} sellerFlag={this.setState.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}

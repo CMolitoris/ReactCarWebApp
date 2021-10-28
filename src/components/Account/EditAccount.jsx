@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import { Row, Col, Button, Form , FormGroup, FormLabel, FormControl } from 'react-bootstrap';
 import Seller from '../Seller/Seller';
 import { Link } from 'react-router-dom';
+import './EditAccount.css'
 
 const EditAccount = (props) => {
 
@@ -25,10 +26,20 @@ const EditAccount = (props) => {
     }
 
     return ( 
-        <div className='container mx-auto my-auto' id="main-panel">
+        <div className='container mx-auto my-auto overflow-hidden shadow' id="product-panel">
             <div className = "row">
-                <div className="col-md-3"><Button className = "m-3" variant = "secondary"><Link to='/seller' className = "nav-link">Post Car</Link></Button></div>
-                    <div className="col-md-6 p-3" align = "left">
+                <div className="col-md-3 side-panel side-panel-height">
+                    <Button 
+                        className = "m-3 mt-5" 
+                        variant = "secondary">
+                        <Link 
+                            to='/seller' 
+                            className = "nav-link">
+                                Post Car
+                        </Link>
+                    </Button>
+                    </div>
+                    <div className="col-md-6 p-3 mt-4" align = "left">
                         <Form onSubmit = {handleSubmit}>
                             <FormGroup as = {Row}>
                                 <FormLabel column sm={3}>Street address</FormLabel>

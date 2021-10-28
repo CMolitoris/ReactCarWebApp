@@ -40,6 +40,7 @@ const PostCar = (props) => {
         
     }
 
+
     const fileSelecterHandler = (event) => {
         console.log(event.target.files[0]);
         setFile(event.target.files[0]);
@@ -54,6 +55,8 @@ const PostCar = (props) => {
 
     return ( 
         <React.Fragment>
+            <div className="col-lg-8 p-4" align = "center" id='main-panel'>
+            <h2>Post a New Listing!</h2>
            {file && <img src={URL.createObjectURL(file)}></img>}
             <form onSubmit={handleSubmit} className='put'>
                 <Row className='mb-3'>
@@ -98,7 +101,9 @@ const PostCar = (props) => {
                     Submit
                 </Button>
             </form>
+            </div>
         </React.Fragment>
+
      );
 }
 

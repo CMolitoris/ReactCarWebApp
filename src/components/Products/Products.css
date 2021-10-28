@@ -1,0 +1,47 @@
+#product-panel{
+    background-color: #CBCACA;
+    margin: 3rem;
+    border-radius: 5rem;
+    width: 100rem;
+    height: 65rem;
+  }
+
+#card{
+    border-radius: 1rem;
+}
+
+.side-panel{
+    background-color: #C21E1E;
+}
+.details-font{
+    font-size: 2rem;
+    font-weight: 400;
+    color: #CBCACA;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    
+  }
+
+  ::-webkit-scrollbar-track-piece {
+    height: 5rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
