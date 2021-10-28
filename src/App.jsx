@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Switch, Route } from 'react-router';
 import './App.css';
+import { useLocation } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import NavBar from './components/Navbar/Navbar';
 import axios from 'axios';
@@ -19,7 +20,8 @@ class App extends Component {
     loginModalShow: false,
     regModalShow: false,
     cars: [],
-    car: []
+    car: [],
+    location: null,
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -101,9 +103,13 @@ class App extends Component {
 
     logoutUser = () => {
       localStorage.removeItem('token');
+      let location = window.location.pathname;
       this.setState({
         loggedUser: null
       })
+      if (location == '/account' || location == '/seller' || location == '/not-found'){
+        window.location = "/"
+      }
     }
 
     getAllCars = async () => {
