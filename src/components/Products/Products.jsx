@@ -12,22 +12,24 @@ const Products = (props) => {
     return ( 
         <div className="container mx-auto my-auto overflow-auto" id='product-panel'>
             <div className='row'>
+                <Col md={2} className='side-panel'>
+                    <Row>
+                        Search Filter
+                    </Row>
+                    {/* SEARCH BAR */}
+                    <Row>
+                        <Col>
+                        <input 
+                            type="text" 
+                            placeholder="Search By: Make, Model, or Type" 
+                            className="form-control input-sm" 
+                            onChange={(event) =>{setSearchTerm(event.target.value)}}
+                        />
+                        </Col>
+                    </Row>
+                </Col>
 
-                {/* SEARCH BAR */}
-                <Row>
-                    <Col></Col>
-                    <Col>
-                    <input 
-                        type="text" 
-                        placeholder="Search By: Make, Model, or Type" 
-                        className="form-control input-sm" 
-                        onChange={(event) =>{setSearchTerm(event.target.value)}}
-                    />
-                    </Col>
-                    <Col></Col>
-                </Row>
-
-
+                <Col>
                     {/* PRODUCT CARD */}
                 <Row xs={1} md={3} className="g-4">
                     <Col>a</Col>
@@ -60,7 +62,10 @@ const Products = (props) => {
                                             <Card.Text>
                                                 {car.description}
                                             </Card.Text>
-                                            <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
+                                            <Link 
+                                                to="/car-details"
+                                                onClick={() => props.getSingleCar(car)}
+                                            >
                                                 <span class="material-icons">info</span>
                                                 Car Details
                                             </Link>
@@ -76,7 +81,7 @@ const Products = (props) => {
                                 </Col>
                         ))}
                 </Row>
-                
+               </Col> 
             </div>
         </div>
     );
