@@ -12,7 +12,7 @@ function CarDetails(props) {
     
     useEffect(() => {
         props.getCarRatings(car[0].id)
-    }, []);
+    }, [props.ratings]);
 
     
     return ( 
@@ -99,7 +99,12 @@ function CarDetails(props) {
                     </Card.Body>
                 </Card>
                 {/* TODO: Add Accordion here for reviews section */}
-            <RatingSection carID={props.location.state.carID} postRating={props.postRating} getCarRatings={props.getCarRatings} ratings={props.ratings} />
+            <RatingSection 
+                carID={props.location.state.carID} 
+                postRating={props.postRating} 
+                getCarRatings={props.getCarRatings} 
+                ratings={props.ratings} 
+            />
             </div>
         </div>
     );
