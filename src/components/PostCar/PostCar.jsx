@@ -28,8 +28,15 @@ const PostCar = (props) => {
     const handleSubmit = (event, car) => {
         event.preventDefault();
         props.postCar(car)
+        
         if(props.hasOwnProperty('sellerConnection')){
-            props.addToSellerConnection(props.sellerConnection);
+            let carId = this.props.nextCarId();
+            console.log(carId);
+            props.addToSellerConnection({
+                UserId: this.props.user.id,
+                CarId: carId,
+                Quantity: 1
+            });
         }
     }
 
