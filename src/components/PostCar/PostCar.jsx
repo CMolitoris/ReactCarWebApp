@@ -24,23 +24,14 @@ const PostCar = (props) => {
         }));
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(car);
         car.mileage = parseInt(car.mileage);
         car.year = parseInt(car.year);
         car.price = parseFloat(car.price);
-        props.postCar(car)
+        await props.postCar(car,props.sellerFlag)
         
-        if(props.hasOwnProperty('sellerConnection')){
-            let carId = this.props.nextCarId();
-            console.log(carId);
-            props.addToSellerConnection({
-                UserId: this.props.user.id,
-                CarId: carId,
-                Quantity: 1
-            });
-        }
     }
 
     return ( 
