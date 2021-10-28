@@ -2,9 +2,11 @@ import React from 'react';
 import { Card, Button, Accordion} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+//! Bug: When the page refreshes the page is lost and the user will have to go back to the product page
+//! Not updating state for 'car' when calling props.getSingleCar() function
 
 function CarDetails(props) {
-
+    
     const car = props.cars.filter(car => car.id === props.location.state.carID)
     
     return ( 
@@ -12,38 +14,44 @@ function CarDetails(props) {
             <div className="col-sm-3 bg-danger">
                 <div className="container">
                     <h4>Related Cars</h4>
-                    {/* Related Cars - Filters cars by Type and excludes the current car from the list */}
+                    {/* Related Cars Cards - Filters cars by Type and excludes the current car from the list */}
                     {props.cars.filter(
                         value => value.type.toLowerCase() === car[0].type.toLowerCase() 
                         && value.id != car[0].id
                     )
                     .map((car)=>(
                         <Card className="mb-4">
-                            <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
+                            <div className="container mt-4">
+                                <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
+                            </div>
                             <Card.Body>
                                 <Card.Title>{car.make} {car.model}</Card.Title>
                                 <Card.Text>
-                                    $ {car.price} | {car.type}
+                                    ${car.price} | {car.type}
                                 </Card.Text>
                                 <hr />
+                                {/* Related Cars - Link to car-details */}
                                 <Link to={{ pathname: "/car-details", state: { carID: car.id} }}>
                                         <span class="material-icons">info</span>
                                         Car Details
                                     </Link>
                             </Card.Body>
+                            {/* Related Cars - Add to cart btn */}
                             <div className="container col-sm-10">
-                                <Button className="form-control" onClick={() => props.addToCart({
+                                <Button className="form-control mb-2" onClick={() => props.addToCart({
                                         UserId: props.user.id,
                                         CarId: car.id,
                                         Quantity: 1
                                     })} variant="success btn-sm">
                                     <span class="material-icons">add_shopping_cart</span>
+                                    Add to Cart
                                 </Button>
                             </div>
                         </Card>
                     ))}
                 </div>
             </div>
+            {/* Car Details Card */}
             <div className="col-md-8 card">
                 <Card>
                     <div className="col-md-6 container mt-3">
@@ -69,20 +77,24 @@ function CarDetails(props) {
                             Mileage: {car[0].mileage}
                         </Card.Text>
                         <hr />
-                        <Button onClick={() => props.addToCart({
-                                        UserId: props.user.id,
-                                        CarId: car.id,
-                                        Quantity: 1
-                                    })} variant="success">
-                                    <span class="material-icons">add_shopping_cart</span>
-                                    Add to Cart
-                                </Button> 
-                     
+                        {/* Car Details - Add to cart btn */}
+                        <div className=" container col-md-6">
+                            <Button className="form-control" 
+                                onClick={() => props.addToCart({
+                                    UserId: props.user.id,
+                                    CarId: car.id,
+                                    Quantity: 1
+                                })} 
+                                variant="success">
+                                <span class="material-icons">add_shopping_cart</span>
+                                Add to Cart
+                            </Button> 
+                        </div>
                     </Card.Body>
                 </Card>
+                {/* TODO: Add Accordion here for reviews section */}
             </div>
         </div>
     );
 }
-
 export default CarDetails;
