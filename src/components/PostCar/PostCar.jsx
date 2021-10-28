@@ -14,7 +14,6 @@ const PostCar = (props) => {
         type: '',
         description: '',
         mileage: '',
-        averageRating: 0.0
     })
 
     const handleChange = (event) => {
@@ -27,6 +26,10 @@ const PostCar = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(car);
+        car.mileage = parseInt(car.mileage);
+        car.year = parseInt(car.year);
+        car.price = parseFloat(car.price);
         props.postCar(car)
         
         if(props.hasOwnProperty('sellerConnection')){

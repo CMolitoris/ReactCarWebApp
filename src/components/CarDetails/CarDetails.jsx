@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, Button, Accordion} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import RatingSection from '../RatingSection/RatingSection';
@@ -9,6 +9,11 @@ import RatingSection from '../RatingSection/RatingSection';
 function CarDetails(props) {
     
     const car = props.cars.filter(car => car.id === props.location.state.carID)
+    
+    useEffect(() => {
+        props.getCarRatings(car[0].id)
+    }, []);
+
     
     return ( 
         <div className="row">
@@ -94,7 +99,12 @@ function CarDetails(props) {
                     </Card.Body>
                 </Card>
                 {/* TODO: Add Accordion here for reviews section */}
-                <RatingSection carID={car.id} postRating={props.postRating} />
+            <RatingSection 
+                carID={props.location.state.carID} 
+                postRating={props.postRating} 
+                getCarRatings={props.getCarRatings} 
+                ratings={props.ratings} 
+            />
             </div>
         </div>
     );
