@@ -235,10 +235,10 @@ class App extends Component {
 
     getCarRatings = async (carID) => {
       try {
-        let response = await axios.get(`https://localhost:44394/api/rating/${carID}/`);
+        const response = await axios.get(`https://localhost:44394/api/rating/${carID}/`);
         console.log(response);
         this.setState({
-          rating: response.data
+          ratings: response.data
         })
       } 
       catch (err) {
@@ -259,9 +259,9 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car}/>} />
+          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} />} />
           {/* Product Page */}
-          <Route path = "/car-details" render={props => <CarDetails {...props} modalShow={this.state.ratingModalShow} toggleModal={this.toggleRatingModal} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings}/>} />
+          <Route path = "/car-details" render={props => <CarDetails {...props} modalShow={this.state.ratingModalShow} toggleModal={this.toggleRatingModal} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} ratings={this.state.ratings}/>} />
           {/* Search Page */}
           <Route path = "/search"/>
           {/* Seller Page logged in*/}
