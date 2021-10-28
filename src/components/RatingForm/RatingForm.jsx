@@ -21,7 +21,7 @@ const RatingForm = (props) => {
         props.postRating({
             RatingScore: parseFloat(ratingValues.RatingScore),
             Message: ratingValues.Message,
-            CarId: props.carId
+            CarId: props.carID
         })
         setRatingValues(() => ({
             RatingScore: "", 
@@ -38,7 +38,7 @@ const RatingForm = (props) => {
                     type="text"
                     placeholder="0 - 10"
                     className="mr-2 form-control"
-                    aria-label='Comment'
+                    aria-label='Rating'
                     name='RatingScore'
                     onChange={handleChange}
                     size= "sm"
@@ -59,5 +59,4 @@ const RatingForm = (props) => {
         </div>
      );
 }
- 
 export default RatingForm;
