@@ -259,13 +259,13 @@ class App extends Component {
           {/* Product Page */}
           <Route path = "/car-details" render={props => <CarDetails {...props} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} ratings={this.state.ratings}/>} />
           {/* Search Page */}
-          <Route path = "/search"/>
+          {/* <Route path = "/search"/> */}
           {/* Cart Page */}
           <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart}user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
           <Route path = "/seller" render={props => <Seller {...props} sellerFlag={this.setState.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
+          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.editUser}/>} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>

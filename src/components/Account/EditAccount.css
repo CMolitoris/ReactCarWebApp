@@ -4,3 +4,12 @@
 .side-panel-height{
     height: 65rem;
 }
+.side-panel-title{
+    font-weight: 600;
+    color: #CBCACA;
+    text-decoration: underline;
+}
+.form-label-font{
+    font-weight: 400;
+    font-size: 2rem;
+}
