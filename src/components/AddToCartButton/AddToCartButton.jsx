@@ -5,7 +5,7 @@ function AddToCartButton(props) {
 
     //? Function that enables/disables the button if a user is logged in.
     const isDisabled = function(userID) {
-        if (userID === ""){
+        if (userID === null){
             return true
         }
         else{
