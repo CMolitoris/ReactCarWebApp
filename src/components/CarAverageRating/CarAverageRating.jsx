@@ -24,16 +24,16 @@ function CarAverageRating(props) {
 
     return ( 
           <Card.Text>
-                {/*//? Car Average Rating */}
-                    <h5>Average Rating:</h5>
-                    {   
-                        //? Returns stars array and maps string to className for icon.
-                        averageRating(props.ratings).map((star) =>{
-                            return <i className={star}></i>
-                        })
-                    }
-                    <p>({props.ratings.length} reviews)</p>
-            </Card.Text>
+            {/*//? Car Average Rating */}
+            <h6 className="fw-bold">Average Rating:</h6>
+            {   
+                //? Returns stars array and maps string to className for icon.
+                averageRating(props.ratings).map((star) =>{
+                    return <i className={star}></i>
+                })
+            }
+            <p>({props.ratings.length} reviews)</p>
+        </Card.Text>
      );
 }
 export default CarAverageRating;

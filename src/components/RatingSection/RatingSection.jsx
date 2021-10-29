@@ -11,7 +11,7 @@ function RatingSection(props) {
             <Accordion>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>
-                        <h6 className="text-black"> Reviews </h6>
+                        <h6 className="fw-bold">Reviews</h6>
                     </Accordion.Header>
                     <Accordion.Body>
                             <RatingForm postRating={props.postRating} carID={props.carID} />

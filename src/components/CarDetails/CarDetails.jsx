@@ -14,23 +14,8 @@ function CarDetails(props) {
     }, [props.car]);
 
     const car = props.car
-    
-    const averageRating = function(ratings) {
-        let avg = 0
-        let stars = []
-        ratings.forEach(rating => avg += rating.ratingScore)
-        avg = Math.round(avg / ratings.length)
-        for (let i = 0; i < 5; i++) {
-            if (i < avg){
-                stars.push("bi bi-star-fill text-warning")
-            }
-            else {
-                stars.push("bi bi-star-fill text-dark")
-            }
-        }
-        return stars
-    }
    
+    
     return ( 
         <div className="row">
             <div className="col-sm-3 bg-danger">
@@ -76,9 +61,9 @@ function CarDetails(props) {
                         <Card.Img src="staticImages\Ford_Shelby.jpg" fluid />
                     </div>
                     <Card.Body>
-                        <Card.Title>{car.make} {car.model}</Card.Title>
-                        <Card.Text>
-                            <h6>${car.price}</h6>
+                        <Card.Title className="fs-4 fw-bold">{car.make} {car.model}</Card.Title>
+                        <Card.Text className="fs-5">
+                            MSRP | ${car.price}
                         </Card.Text>
                         <hr />
                         {/*//? Car Average Rating */}
