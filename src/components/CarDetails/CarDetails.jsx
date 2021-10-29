@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import CarAverageRating from '../CarAverageRating/CarAverageRating';
@@ -25,7 +25,7 @@ function CarDetails(props) {
                     {/*//? Filters cars by Type and excludes the current car from the list */}
                     {props.cars.filter(
                         value => value.type === car.type 
-                        && value.id != car.id
+                        && value.id !== car.id
                     )
                     .map((related)=>(
                         <Card className="mb-4">
@@ -95,7 +95,8 @@ function CarDetails(props) {
                     carID={car.id} 
                     postRating={props.postRating} 
                     getCarRatings={props.getCarRatings} 
-                    ratings={props.ratings} 
+                    ratings={props.ratings}
+                    user={props.user} 
                 />
             </div>
         </div>
