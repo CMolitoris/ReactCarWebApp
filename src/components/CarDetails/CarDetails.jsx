@@ -14,7 +14,7 @@ function CarDetails(props) {
     }, [props.car]);
 
     const car = props.car
-   
+    
     
     return ( 
         <div className="row">
@@ -46,7 +46,7 @@ function CarDetails(props) {
                             <div className="container col-sm-10">
                                 <AddToCartButton 
                                     addToCart={props.addToCart} 
-                                    userID={props.user.id} 
+                                    userID={ props.user ? props.user.id : "" } 
                                     carID={car.id} 
                                 /> 
                             </div>
@@ -83,7 +83,7 @@ function CarDetails(props) {
                         <div className=" container col-md-6">
                             <AddToCartButton 
                                 addToCart={props.addToCart} 
-                                userID={props.user.id} 
+                                userID={ props.user ? props.user.id : "" }  
                                 carID={car.id} 
                             /> 
                         </div>
