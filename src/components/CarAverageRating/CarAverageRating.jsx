@@ -3,6 +3,8 @@ import Card from 'react-bootstrap/Card';
 
 function CarAverageRating(props) {
 
+    //? Returns an array of strings which will be used to passed into the icon.
+    // ? example: <i className={string} /> / <i className="bi bi-star-fill text-dark" />
     const averageRating = function(ratings) {
         let avg = 0
         let stars = []
@@ -19,14 +21,15 @@ function CarAverageRating(props) {
         return stars
     }
 
-    
+
     return ( 
           <Card.Text>
                 {/*//? Car Average Rating */}
                     <h5>Average Rating:</h5>
-                    {
+                    {   
+                        //? Returns stars array and maps string to className for icon.
                         averageRating(props.ratings).map((star) =>{
-                            return <i class={star}></i>
+                            return <i className={star}></i>
                         })
                     }
                     <p>({props.ratings.length} reviews)</p>
