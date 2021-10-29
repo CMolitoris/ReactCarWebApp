@@ -33,7 +33,7 @@ const Login = (props) => {
             
             <Offcanvas placement = "end" show = {props.modalShow} onHide = {hideModal}>
                 <OffcanvasHeader closeButton>
-                    <OffcanvasTitle>Log In</OffcanvasTitle>
+                    <OffcanvasTitle className = "offCanvasTitle">Log In</OffcanvasTitle>
                 </OffcanvasHeader>
                 <OffcanvasBody>
                     <form className = "my-auto" onSubmit={loginUser}>
