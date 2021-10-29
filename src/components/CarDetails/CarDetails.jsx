@@ -18,7 +18,7 @@ function CarDetails(props) {
     
     
     return ( 
-        <div className="container overflow-hidden shadow" id='product-panel'>
+        <div className="container mx-auto my-auto overflow-hidden shadow" id='product-panel'>
             <div className='row'>
                 <div className="col-sm-3 bg-danger shadow">
                     {/*//? RELATED CARS SIDE-PANEL */}
