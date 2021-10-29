@@ -161,7 +161,7 @@ class App extends Component {
         console.log(imageResponseData);
         this.postCarPhoto({
             imageResponseData: imageResponseData,
-            cardid: carId
+            CarId: carId
         });
      }
     }

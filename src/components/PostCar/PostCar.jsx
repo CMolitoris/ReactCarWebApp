@@ -8,8 +8,6 @@ import axios from 'axios';
 import './PostCar.css';
 import { Image } from 'cloudinary-react';
 
-
-
 const PostCar = (props) => {
     
     const [car, setCar] = useState({
@@ -44,10 +42,10 @@ const PostCar = (props) => {
         car.price = parseFloat(car.price);
 
         //-- Upload image to third-party API and store information in server --//
-        fileUploadHandler(newFormData);
-        
+        let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
+        console.log(response);
          //-- Post car/object data to server --//
-         await props.postCar(car,props.sellerFlag,imageResponseData);
+         props.postCar(car,props.sellerFlag,response.data.url);
        
     }
 
@@ -65,64 +63,73 @@ const PostCar = (props) => {
     const fileUploadHandler = async () => {
         let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
         console.log(response);
-        setImageResponseData(response.data.secure_url);
+        setImageResponseData(response.data.url);
         console.log(imageResponseData);  
     }
 
     return ( 
-        <React.Fragment>
-            {/* {imageResponseData && <Image cloudName="cmolitoris" publicId={imageResponseData} />} */}
-                
-            
-            <div className="col-lg-8 p-4" align = "center" id='main-panel'>
-            <h2>Post a New Listing!</h2>
-           {imageFile && <img src={URL.createObjectURL(imageFile)}></img>}
-            <form onSubmit={handleSubmit} className='put'>
-                <Row className='mb-3'>
-                    <Form.Group as={Col} controlID='file'>
-                            <Form.Label>Photo:</Form.Label>
-                            <Form.Control className='form-control shadow m-1' id='input-style-left' name='file' type='file' onChange={fileSelecterHandler} />
-                    </Form.Group>
-                </Row>
-                <Row className='mb-3'>
-                    <Form.Group as={Col} controlID='make'>
-                            <Form.Label>Make:</Form.Label>
-                            <Form.Control className='form-control shadow m-1' id='input-style-left' name='make' placeholder="Make..." onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlID='model'>
-                            <Form.Label>Model:</Form.Label>
-                            <Form.Control className='form-control shadow m-1' id='input-style-right' name='model' placeholder="Model..." onChange={handleChange} />
-                    </Form.Group>
-                </Row>
-                <Row className='mb-3'>
-                    <Form.Group as={Col} controlID='year'>
-                            <Form.Label>Year:</Form.Label>
-                            <Form.Control className='form-control shadow m-1' id='input-style-left' name='year' placeholder="Year..." onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlID='genre'>
-                            <Form.Label>Type:</Form.Label>
-                            <Form.Control className='form-control shadow m-1' id='input-style-middle' name='type' placeholder="Type..." onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlID='price'>
-                            <Form.Label>Price:</Form.Label>
-                            <Form.Control className='form-control shadow m-1' id='input-style-middle' name='price' placeholder="Price..." onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlID='mileage'>
-                            <Form.Label>Mileage:</Form.Label>
-                            <Form.Control className='form-control shadow m-1' id='input-style-middle' name='mileage' placeholder="Mileage..." onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlID='description'>
-                            <Form.Label>Description:</Form.Label>
-                            <Form.Control className='form-control shadow m-1' id='input-style-middle' name='description' placeholder="Description..." onChange={handleChange} />
-                    </Form.Group>
-                </Row>
-                <Button variant="secondary" className='shadow mt-4 m-1' id='submit-button' type="submit"  >
-                    Submit
-                </Button>
-            </form>
+        <div className='container mx-auto my-auto overflow-hidden shadow' id="product-panel">
+            <div className = "row">
+                <div className="col-md-3 side-panel side-panel-height">
+                    <div className='row h1 mt-5 justify-content-center side-panel-title'>Listed Cars</div>
+                    <div className='row justify-content-center'>
+                        <p className = "mt-3 h3" >
+                            {imageResponseData && <Image className="postCarImage" cloudName="cmolitoris" publicId={imageResponseData} />}
+                        </p>
+                    </div>
+                </div>
+        
+           
+            <div className="col-lg-8 p-4" align ="center" >
+                <h2>Post a New Listing!</h2>
+                {imageFile && <img className="postCarImage" src={URL.createObjectURL(imageFile)}></img>}
+                <form onSubmit={handleSubmit} className='put'>
+                    <Row className='mb-3'>
+                        <Form.Group as={Col} controlID='file'>
+                                <Form.Label>Photo:</Form.Label>
+                                <Form.Control className='form-control shadow m-1' id='input-style-left' name='file' type='file' onChange={fileSelecterHandler} />
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group as={Col} controlID='make'>
+                                <Form.Label>Make:</Form.Label>
+                                <Form.Control className='form-control shadow m-1' id='input-style-left' name='make' placeholder="Make..." onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlID='model'>
+                                <Form.Label>Model:</Form.Label>
+                                <Form.Control className='form-control shadow m-1' id='input-style-right' name='model' placeholder="Model..." onChange={handleChange} />
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group as={Col} controlID='year'>
+                                <Form.Label>Year:</Form.Label>
+                                <Form.Control className='form-control shadow m-1' id='input-style-left' name='year' placeholder="Year..." onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlID='genre'>
+                                <Form.Label>Type:</Form.Label>
+                                <Form.Control className='form-control shadow m-1' id='input-style-middle' name='type' placeholder="Type..." onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlID='price'>
+                                <Form.Label>Price:</Form.Label>
+                                <Form.Control className='form-control shadow m-1' id='input-style-middle' name='price' placeholder="Price..." onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlID='mileage'>
+                                <Form.Label>Mileage:</Form.Label>
+                                <Form.Control className='form-control shadow m-1' id='input-style-middle' name='mileage' placeholder="Mileage..." onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlID='description'>
+                                <Form.Label>Description:</Form.Label>
+                                <Form.Control className='form-control shadow m-1' id='input-style-middle' name='description' placeholder="Description..." onChange={handleChange} />
+                        </Form.Group>
+                    </Row>
+                    <Button variant="secondary" className='shadow mt-4 m-1' id='submit-button' type="submit"  >
+                        Submit
+                    </Button>
+                </form>
             </div>
-        </React.Fragment>
-
+        
+            </div>
+        </div>
      );
 }
 
