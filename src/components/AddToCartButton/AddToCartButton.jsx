@@ -2,6 +2,17 @@ import React from 'react';
 import Button from 'react-bootstrap/Button'
 
 function AddToCartButton(props) {
+
+    //? Function that enables/disables the button if a user is logged in.
+    const isDisabled = function(userID) {
+        if (userID === ""){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+
     return ( 
         <Button 
             className="form-control" 
@@ -11,11 +22,11 @@ function AddToCartButton(props) {
                 Quantity: 1
             })} 
             variant="primary"
+            disabled={isDisabled(props.userID)}
         >
             <i class="bi bi-cart-plus-fill p-2"></i>
-            Add to Cart
+            {props.userID === "" ? "Please Login" : "Add to Cart" }
         </Button>
      );
 }
-
 export default AddToCartButton;
