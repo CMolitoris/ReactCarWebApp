@@ -65,7 +65,7 @@ const Products = (props) => {
                                     </Card.Body>
                                     <AddToCartButton 
                                         addToCart={props.addToCart} 
-                                        userID={ props.user} 
+                                        userID={ props.user.id} 
                                         carID={car.id} 
                                     />  
                                 </Card>
