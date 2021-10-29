@@ -62,7 +62,7 @@ class Cart extends Component{
 
     render() {
     return ( 
-        <div className="container mx-auto my-auto">
+        <div className="container mx-auto my-auto cartPage">
             <div className="row">
                 <div className="col"></div>
                 <div className="col-lg-6 m-2 p-5 cartTableContainer background" align = "center">
