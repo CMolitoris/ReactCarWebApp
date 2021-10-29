@@ -2,8 +2,9 @@
     background-color: #CBCACA;
     margin: 3rem;
     border-radius: 5rem;
-    width: 100rem;
-    height: 65rem;
+    width: 90%;
+    height: 70%;
+    max-height: 60rem;
   }
 
 #card{

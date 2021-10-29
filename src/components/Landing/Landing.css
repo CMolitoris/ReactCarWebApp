@@ -3,12 +3,12 @@
     color: #CBCACA;
     margin: 3rem;
     border-radius: 5rem;
-    width: 100rem;
-    height: 100%;
+    width: 90%;
+    height: 70%;
   }
 
 .carousel{
-    width: 105%;
+    width: 110%;
     height: 100%;
     position: relative;
     right: 1rem;

@@ -49,7 +49,7 @@ class Landing extends Component {
                 </div>
                 <div className='row'>
                     <div className='col text-end me-5'>
-                        Store Copyright
+                    Car Get © Copyright 2021
                     </div>
                 </div>
             </div>
