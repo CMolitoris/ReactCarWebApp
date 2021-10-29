@@ -75,7 +75,7 @@ const RegisterUser = (props) => {
                             </Row>
                             <Row className = "buttonRow">
                                 <Col className = "submitButton" align= "center">
-                                    <Button className='btn btn-md btn-danger shadow' type="submit">Register</Button>
+                                    <Button className='btn btn-md shadow' id = "form-button-style" type="submit">Register</Button>
                                 </Col>
                             </Row>
                         </Form.Group>

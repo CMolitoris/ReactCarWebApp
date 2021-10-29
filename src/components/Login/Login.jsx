@@ -3,7 +3,7 @@ import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import Modal from 'react-bootstrap/Modal';
 import ModalTitle from 'react-bootstrap/ModalTitle';
 import ModalBody from 'react-bootstrap/ModalBody';
-import { FormGroup, Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle, FormControl, Col } from 'react-bootstrap';
+import { FormGroup, Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle, FormControl, Col, Button } from 'react-bootstrap';
 
 
 const Login = (props) => {
@@ -46,7 +46,7 @@ const Login = (props) => {
                             <FormControl name = "Password" placeholder = "Shhh... this one's a secret" type="password" value={loginValues.Password} onChange={handleChange}/>
                         </FormGroup>
                         <Col className = "submitButton" align = "center">
-                            <button className = "btn btn-danger" type = "submit">Log In</button>
+                            <Button className = "btn btn-md shadow" id = "form-button-style" type = "submit">Log In</Button>
                         </Col>
                     </form>
                 </OffcanvasBody>
