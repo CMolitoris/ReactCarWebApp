@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import {Row, Col, Button} from 'react-bootstrap';
+import {Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Products.css'
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
@@ -65,7 +65,7 @@ const Products = (props) => {
                                             </Card.Body>
                                             <AddToCartButton 
                                                 addToCart={props.addToCart} 
-                                                userID={ props.user ? props.user.id : "" } 
+                                                userID={ props.user ? props.user.id : null } 
                                                 carID={car.id} 
                                             />  
                                         </Card>

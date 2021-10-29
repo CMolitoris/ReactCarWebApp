@@ -20,7 +20,6 @@ const Login = (props) => {
 
     const hideModal = () => {
         props.toggleModal();
-        window.location = "/";
     }
 
 

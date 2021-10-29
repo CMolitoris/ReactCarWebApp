@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import CarAverageRating from '../CarAverageRating/CarAverageRating';
@@ -25,7 +25,7 @@ function CarDetails(props) {
                     {/*//? Filters cars by Type and excludes the current car from the list */}
                     {props.cars.filter(
                         value => value.type === car.type 
-                        && value.id != car.id
+                        && value.id !== car.id
                     )
                     .map((related)=>(
                         <Card className="mb-4">
@@ -46,7 +46,7 @@ function CarDetails(props) {
                             <div className="container col-sm-10">
                                 <AddToCartButton 
                                     addToCart={props.addToCart} 
-                                    userID={ props.user ? props.user.id : "" } 
+                                    userID={ props.user ? props.user.id : null } 
                                     carID={car.id} 
                                 /> 
                             </div>
@@ -83,7 +83,7 @@ function CarDetails(props) {
                         <div className=" container col-md-6">
                             <AddToCartButton 
                                 addToCart={props.addToCart} 
-                                userID={ props.user ? props.user.id : "" }  
+                                userID={ props.user ? props.user.id : null }  
                                 carID={car.id} 
                             /> 
                         </div>
@@ -91,11 +91,12 @@ function CarDetails(props) {
                 </Card>
                 {/*//? REVIEWS SECTION - Accordion */}
                 <RatingSection
-                    username={props.user.username} 
+                    username={props.username ? props.username : null } 
                     carID={car.id} 
                     postRating={props.postRating} 
                     getCarRatings={props.getCarRatings} 
-                    ratings={props.ratings} 
+                    ratings={props.ratings}
+                    user={props.user} 
                 />
             </div>
         </div>

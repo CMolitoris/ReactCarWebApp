@@ -16,13 +16,12 @@ const RegisterUser = (props) => {
 
     const registerUser = (event) => {
         event.preventDefault();
-        props.toggleModal()
+        props.toggleModal();
         props.register(registerValues)
     }
 
     const hideModal = () => {
         props.toggleModal();
-        window.location = "/";
     }
 
     return (
