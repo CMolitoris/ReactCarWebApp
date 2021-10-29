@@ -46,7 +46,7 @@ function CarDetails(props) {
                             <div className="container col-sm-10">
                                 <AddToCartButton 
                                     addToCart={props.addToCart} 
-                                    userID={ props.user ? props.user.id : "" } 
+                                    userID={ props.user ? props.user.id : null } 
                                     carID={car.id} 
                                 /> 
                             </div>
@@ -83,14 +83,15 @@ function CarDetails(props) {
                         <div className=" container col-md-6">
                             <AddToCartButton 
                                 addToCart={props.addToCart} 
-                                userID={ props.user ? props.user.id : "" }  
+                                userID={ props.user ? props.user.id : null }  
                                 carID={car.id} 
                             /> 
                         </div>
                     </Card.Body>
                 </Card>
                 {/*//? REVIEWS SECTION - Accordion */}
-                <RatingSection 
+                <RatingSection
+                    username={props.username ? props.username : null } 
                     carID={car.id} 
                     postRating={props.postRating} 
                     getCarRatings={props.getCarRatings} 

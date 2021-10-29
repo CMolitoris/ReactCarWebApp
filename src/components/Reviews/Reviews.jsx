@@ -18,7 +18,7 @@ function Reviews (props) {
                                         <div className="row row-cols-auto fs-5">
                                             <div className="col">
                                                 <i className="bi bi-person-circle p-2"></i>
-                                                Username
+                                                {review.userName}
                                             </div>
                                             <div className="col">
                                                 <CustomerReviewRating ratingScore={review.ratingScore} />
