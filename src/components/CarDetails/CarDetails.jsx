@@ -90,7 +90,8 @@ function CarDetails(props) {
                     </Card.Body>
                 </Card>
                 {/*//? REVIEWS SECTION - Accordion */}
-                <RatingSection 
+                <RatingSection
+                    username={props.user.username} 
                     carID={car.id} 
                     postRating={props.postRating} 
                     getCarRatings={props.getCarRatings} 

@@ -20,8 +20,9 @@ const RatingForm = (props) => {
         event.preventDefault()
         props.postRating({
             RatingScore: parseFloat(ratingValues.RatingScore),
+            CarId: props.carID,
             Message: ratingValues.Message,
-            CarId: props.carID
+            UserName: props.username
         })
         setRatingValues(() => ({
             RatingScore: "", 
