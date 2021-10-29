@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { Component } from 'react';
+import React, { Component, ReactDOM } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import './Cart.css'
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import paypal from "paypal-checkout"
 
 class Cart extends Component{
     constructor(props){
@@ -24,8 +25,9 @@ class Cart extends Component{
         let total = 0
         for (let x = 0; x < cartCarDetails.data.length; x++){
             carArray.push(cartCarDetails.data[x]);
-            total+= cartCarDetails.data[x].price
+            total+= cartCarDetails.data[x].extendedPrice
         }
+        console.log(cartCarDetails.data);
         this.setState({
             cars: carArray,
             cartTotal: total
@@ -43,7 +45,21 @@ class Cart extends Component{
         this.getShoppingCart()
     }
 
+    createOrder(data, actions) {
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: {
+                value: this.state.cartTotal,
+              },
+            },
+          ],
+        });
+      }
     
+      onApprove(data, actions) {
+        return actions.order.capture();
+      }
 
     render() {
     return ( 
@@ -72,8 +88,11 @@ class Cart extends Component{
                     <h2>Checkout</h2>
                     <br />
                     <p>Total: ${(this.state.cartTotal).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</p>
-                    <PayPalScriptProvider options={{"client-id": "AVG4Oa1RLFSqTn602N2kjF7l-qmZoqeTmXAkmQlfOmZqm3qo3IceqspCV_4o6dnYo7rOFjtva3CkG-l4"}}>
-                        <PayPalButtons total = {this.state.cartTotal} updateOrder = {this.createOrder} style={{layout: "vertical"}} />
+                    <PayPalScriptProvider>
+                        <PayPalButtons
+                          createOrder={(data, actions) => this.createOrder(data, actions)}
+                          onApprove={(data, actions) => this.onApprove(data, actions)}
+                        />
                     </PayPalScriptProvider>
                 </div>
             </div>
