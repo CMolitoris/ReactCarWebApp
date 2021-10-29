@@ -26,7 +26,7 @@ function AddToCartButton(props) {
             disabled={isDisabled(props.userID)}
         >
             <i class="bi bi-cart-plus-fill p-2 fs-5"></i>
-            {props.userID === "" ? "Please Login" : "Add to Cart" }
+            {props.userID === null ? "Please Login" : "Add to Cart" }
         </Button>
      );
 }
