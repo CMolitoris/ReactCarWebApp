@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import CustomerReviewRating from '../CustomerReviewRating/CustomerReviewRating';
 
 
 function Reviews (props) {
@@ -15,15 +16,16 @@ function Reviews (props) {
                                     <div>
                                         <Card border="light">
                                             <Card.Header className="text-start p-2">
-                                                <h4>
+                                                <h5>
                                                     <i className="bi bi-person-circle p-2"></i>
                                                     Username 
-                                                </h4>
+                                                    <CustomerReviewRating ratingScore={review.ratingScore} />
+                                                </h5>
                                             </Card.Header>
                                             <Card.Body>
                                                 <p className="d-flex justify-content-start">
-                                                    <span class="material-icons px-3">person</span>
-                                                    Rating: {review.ratingScore}/5 | {review.message}
+                                                    
+                                                    {review.message}
                                                 </p>    
                                             </Card.Body>
                                         </Card>
@@ -35,5 +37,4 @@ function Reviews (props) {
         </div>
      );
 }
-
 export default Reviews;
