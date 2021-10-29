@@ -86,7 +86,6 @@ const RatingForm = (props) => {
                                 value={ratingValues.Message}
                                 required
                             />
-                            <FormControl.Feedback>Looks Good!</FormControl.Feedback>
                         </FloatingLabel>
                     </Form.Group>
                 </Col>
