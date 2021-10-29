@@ -48,7 +48,7 @@ function CarDetails(props) {
                                 <div className="mx-auto col-sm-10">
                                     <AddToCartButton 
                                         addToCart={props.addToCart} 
-                                        userID={props.user.id} 
+                                        userID={props.user ? props.user.id : null} 
                                         carID={car.id} 
                                     /> 
                                 </div>
@@ -85,7 +85,7 @@ function CarDetails(props) {
                             <div className="mx-auto col-md-6">
                                 <AddToCartButton 
                                     addToCart={props.addToCart} 
-                                    userID={props.user.id}  
+                                    userID={props.user ? props.user.id : null}  
                                     carID={car.id} 
                                 /> 
                             </div>
