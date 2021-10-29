@@ -28,7 +28,7 @@ const EditAccount = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         props.updateDetails(accountValues)
-        // window.location = '/account';
+        window.location = '/account';
     }
 
     return ( 
@@ -47,7 +47,7 @@ const EditAccount = (props) => {
                         </p>
                     </div>
                 </div>
-                    <div className="col-md-6 p-5" align = "left">
+                    <div className="col-md-9 p-5" align = "left">
                         <div className='row'>
                             <p className='h1 mb-4 text-center form-panel-title'>Edit Details</p>
                         </div>
@@ -115,7 +115,6 @@ const EditAccount = (props) => {
                             </Form>
                         </div>
                     </div>
-                <div className="col-md-3"></div>
             </div>
         </div>
      );
