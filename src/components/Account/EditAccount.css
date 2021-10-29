@@ -1,3 +1,6 @@
+#form-button-style{
+    background-color: #5385B7;
+}
 .side-panel{
     background-color: #C21E1E;
 }
@@ -7,6 +10,10 @@
 .side-panel-title{
     font-weight: 600;
     color: #CBCACA;
+    text-decoration: underline;
+}
+.form-panel-title{
+    font-weight: 600;
     text-decoration: underline;
 }
 .form-label-font{
