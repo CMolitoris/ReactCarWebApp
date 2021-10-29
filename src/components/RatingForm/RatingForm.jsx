@@ -71,8 +71,6 @@ const RatingForm = (props) => {
                         </FloatingLabel>
                     </Form.Group>
                 </Col>
-
-
                 <Col>
                     <Form.Group controlId="messageValidation">
                         <FloatingLabel controlId="floatingInputGrid" label="Review">
