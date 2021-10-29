@@ -1,9 +1,8 @@
 import axios from 'axios';
-import React, { Component, ReactDOM } from 'react';
+import React, { Component } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import './Cart.css'
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import paypal from "paypal-checkout"
 
 class Cart extends Component{
     constructor(props){
@@ -19,14 +18,15 @@ class Cart extends Component{
     }
 
     getShoppingCart = async () => {
-        let cartCarDetails = await axios.get(`https://localhost:44394/api/shoppingcart/details/${this.props.user.id}`)
+        let cartCarDetails = await axios.get(`https://localhost:44394/api/shoppingcart/details/${this.props.user.id}`);
+        cartCarDetails = cartCarDetails.data
         let carArray = []
         let total = 0
-        for (let x = 0; x < cartCarDetails.data.length; x++){
-            carArray.push(cartCarDetails.data[x]);
-            total+= cartCarDetails.data[x].extendedPrice
+        for (let x = 0; x < cartCarDetails.length; x++){
+            carArray.push(cartCarDetails[x]);
+            total+= cartCarDetails[x].extendedPrice
         }
-        console.log(cartCarDetails.data);
+        console.log(cartCarDetails);
         this.setState({
             cars: carArray,
             cartTotal: total
@@ -34,7 +34,7 @@ class Cart extends Component{
     }
 
     deleteCar = async (carId) => {
-        await this.props.removeCarFromCart(this.props.user.id ,carId)
+        await this.props.removeCarFromCart(carId)
         let newCarList = this.state.cars
         for (let x = 0; x < this.state.cars; x++){
             if (this.state.cars.carId === carId){
