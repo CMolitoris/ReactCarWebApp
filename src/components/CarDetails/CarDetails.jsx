@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Button, Accordion} from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import RatingSection from '../RatingSection/RatingSection';
 
@@ -16,24 +16,33 @@ function CarDetails(props) {
     
     const averageRating = function(ratings) {
         let avg = 0
+        let stars = []
         ratings.forEach(rating => avg += rating.ratingScore)
-        avg =(avg / ratings.length)
-        return Math.ceil(avg*2)/2
+        avg = Math.round(avg / ratings.length)
+        for (let i = 0; i < 5; i++) {
+            if (i < avg){
+                stars.push("bi bi-star-fill text-warning")
+            }
+            else {
+                stars.push("bi bi-star-fill text-dark")
+            }
+        }
+        return stars
     }
-    
-    
+   
     return ( 
         <div className="row">
             <div className="col-sm-3 bg-danger">
                 <div className="container">
                     <h4>Related Cars</h4>
-                    {/* Related Cars Cards - Filters cars by Type and excludes the current car from the list */}
+                    {/*//? Related Cars Cards - Filters cars by Type and excludes the current car from the list */}
                     {props.cars.filter(
                         value => value.type === car.type 
                         && value.id != car.id
                     )
                     .map((related)=>(
                         <Card className="mb-4">
+                            {/*//? Related Cars - Link to car-details */}
                             <div className="container mt-4">
                                 <Link to="/car-details" onClick={() => props.getSingleCar(related)}>
                                     <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
@@ -45,9 +54,8 @@ function CarDetails(props) {
                                     ${related.price} | {related.type}
                                 </Card.Text>
                                 <hr />
-                                {/* Related Cars - Link to car-details */}
                             </Card.Body>
-                            {/* Related Cars - Add to cart btn */}
+                            {/*//? Related Cars - Add to cart btn */}
                             <div className="container col-sm-10">
                                 <Button className="form-control mb-2" onClick={() => props.addToCart({
                                         UserId: props.user.id,
@@ -62,7 +70,7 @@ function CarDetails(props) {
                     ))}
                 </div>
             </div>
-            {/* Car Details Card */}
+            {/*//? Car Details Card */}
             <div className="col-md-8 card">
                 <Card>
                     <div className="col-md-6 container mt-3">
@@ -75,11 +83,14 @@ function CarDetails(props) {
                         </Card.Text>
                         <hr />
                         <Card.Text>
-                            { // Average Rating
-                                (props.ratings.length > 0)
-                                ? <p> Average Rating: {averageRating(props.ratings)}/5 </p>
-                                : <p> No ratings available. </p>
-                            }
+                        {/*//? Car Rating */}
+                            <h5>Average Rating:</h5>
+                           {
+                            averageRating(props.ratings).map((star) =>{
+                                return <i class={star}></i>
+                            })
+                           }
+                            <p>({props.ratings.length} reviews)</p>
                         </Card.Text>
                         <hr />
                         <Card.Text>
@@ -92,7 +103,7 @@ function CarDetails(props) {
                             Mileage: {car.mileage}
                         </Card.Text>
                         <hr />
-                        {/* Car Details - Add to cart btn */}
+                        {/*//? Car Details - Add to cart btn */}
                         <div className=" container col-md-6">
                             <Button className="form-control" 
                                 onClick={() => props.addToCart({
@@ -107,7 +118,7 @@ function CarDetails(props) {
                         </div>
                     </Card.Body>
                 </Card>
-                {/* TODO: Add Accordion here for reviews section */}
+            {/*//? Accordion for reviews section */}
             <RatingSection 
                 carID={car.id} 
                 postRating={props.postRating} 
