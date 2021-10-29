@@ -89,13 +89,13 @@ function CarDetails(props) {
                         </div>
                     </Card.Body>
                 </Card>
-            {/*//? REVIEWS SECTION - Accordion */}
-            <RatingSection 
-                carID={car.id} 
-                postRating={props.postRating} 
-                getCarRatings={props.getCarRatings} 
-                ratings={props.ratings} 
-            />
+                {/*//? REVIEWS SECTION - Accordion */}
+                <RatingSection 
+                    carID={car.id} 
+                    postRating={props.postRating} 
+                    getCarRatings={props.getCarRatings} 
+                    ratings={props.ratings} 
+                />
             </div>
         </div>
     );
