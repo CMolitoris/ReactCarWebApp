@@ -4,9 +4,10 @@ import Accordion from 'react-bootstrap/Accordion';
 import RatingForm from '../RatingForm/RatingForm';
 import Reviews from '../Reviews/Reviews'
 
-function RatingSection(props) {
-    return ( 
 
+function RatingSection(props) {
+
+    return ( 
         <div className = "ratingSection">
             <Accordion>
                 <Accordion.Item eventKey="0">
@@ -14,7 +15,7 @@ function RatingSection(props) {
                         <h6 className="fw-bold">Reviews</h6>
                     </Accordion.Header>
                     <Accordion.Body>
-                            {/*//? Will display the review form to leave a review if the user is logged in. */}
+                            {/*//? Will display the review form if the user is logged in. */}
                             {props.user &&
                                 <RatingForm 
                                     postRating={props.postRating} 
@@ -23,7 +24,11 @@ function RatingSection(props) {
                                 />
                             }
                             <Card>
-                                <Reviews ratings={props.ratings} username={props.username} user={props.user}/>
+                                <Reviews 
+                                    ratings={props.ratings} 
+                                    username={props.username} 
+                                    hasReviews={props.ratings.length > 0}
+                                />
                             </Card>
                     </Accordion.Body>
                 </Accordion.Item>
@@ -31,4 +36,5 @@ function RatingSection(props) {
         </div>
     );
 }
+
 export default RatingSection;

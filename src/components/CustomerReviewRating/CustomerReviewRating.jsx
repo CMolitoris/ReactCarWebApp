@@ -1,7 +1,8 @@
 import React from 'react';
 
-function CustomerReviewRating(props) {
 
+function CustomerReviewRating(props) {
+    
     //? Returns an array of strings which will be used to passed into the icon.
     // ? example: <i className={string} /> / <i className="bi bi-star-fill text-dark" />
     const customerRating = function() {
@@ -29,4 +30,5 @@ function CustomerReviewRating(props) {
         </>
      );
 }
+
 export default CustomerReviewRating;

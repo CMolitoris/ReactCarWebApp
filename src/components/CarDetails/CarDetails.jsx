@@ -5,8 +5,8 @@ import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import CarAverageRating from '../CarAverageRating/CarAverageRating';
 import RatingSection from '../RatingSection/RatingSection';
 
-//! On page refresh the props.car(state) is lost.
 
+//! On page refresh all props are lost.
 function CarDetails(props) {
     
     useEffect(() => {
@@ -46,7 +46,7 @@ function CarDetails(props) {
                             <div className="container col-sm-10">
                                 <AddToCartButton 
                                     addToCart={props.addToCart} 
-                                    userID={ props.user ? props.user.id : null } 
+                                    userID={props.user} 
                                     carID={car.id} 
                                 /> 
                             </div>
@@ -83,7 +83,7 @@ function CarDetails(props) {
                         <div className=" container col-md-6">
                             <AddToCartButton 
                                 addToCart={props.addToCart} 
-                                userID={ props.user ? props.user.id : null }  
+                                userID={props.user}  
                                 carID={car.id} 
                             /> 
                         </div>
@@ -91,7 +91,7 @@ function CarDetails(props) {
                 </Card>
                 {/*//? REVIEWS SECTION - Accordion */}
                 <RatingSection
-                    username={props.username ? props.username : null } 
+                    username={props.username} 
                     carID={car.id} 
                     postRating={props.postRating} 
                     getCarRatings={props.getCarRatings} 
@@ -102,4 +102,5 @@ function CarDetails(props) {
         </div>
     );
 }
+
 export default CarDetails;

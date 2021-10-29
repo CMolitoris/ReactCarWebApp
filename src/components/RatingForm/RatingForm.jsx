@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { FormControl, Form, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
 
+
 const RatingForm = (props) => {
 
     const [ratingValues, setRatingValues] = useState({
@@ -51,7 +52,6 @@ const RatingForm = (props) => {
                                 <option value="3">3/5 - Average</option>
                                 <option value="4">4/5 - Above Average</option>
                                 <option value="5">5/5 - Excellent</option>
-
                             </Form.Select>
                         </FloatingLabel>
                     </Form.Group>
@@ -77,4 +77,5 @@ const RatingForm = (props) => {
         </Row>
      );
 }
+
 export default RatingForm;

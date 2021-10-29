@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
+
 function CarAverageRating(props) {
 
     //? Returns an array of strings which will be used to passed into the icon.
@@ -36,4 +37,5 @@ function CarAverageRating(props) {
         </Card.Text>
      );
 }
+
 export default CarAverageRating;

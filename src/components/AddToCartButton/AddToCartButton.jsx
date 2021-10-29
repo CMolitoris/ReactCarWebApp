@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 
+
 function AddToCartButton(props) {
 
     //? Function that enables/disables the button if a user is logged in.
@@ -12,6 +13,7 @@ function AddToCartButton(props) {
             return false
         }
     }
+
 
     return ( 
         <Button
@@ -30,4 +32,5 @@ function AddToCartButton(props) {
         </Button>
      );
 }
+
 export default AddToCartButton;
