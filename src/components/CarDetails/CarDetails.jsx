@@ -49,7 +49,7 @@ function CarDetails(props) {
                                     <AddToCartButton 
                                         addToCart={props.addToCart} 
                                         userID={props.user ? props.user.id : null} 
-                                        carID={car.id} 
+                                        carID={related.id} 
                                     /> 
                                 </div>
                             </Card>
