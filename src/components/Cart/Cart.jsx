@@ -62,12 +62,11 @@ class Cart extends Component{
 
     render() {
     return ( 
-        <div className="container mx-auto my-auto cartPage">
-            <div className="row">
-                <div className="col"></div>
-                <div className="col-lg-6 m-2 p-5 cartTableContainer background" align = "center">
-                    <h2>Shopping Cart</h2>
-                    <Table className = "cartTable">
+        <div className="container mx-auto my-auto overflow-hidden shadow shopping-cart-text" id='cart-panel'>
+            <div className="row align-item-middle">
+                <div className="col-md-7 m-2 p-5" align = "center" >
+                    <div className='shopping-cart-title'>Shopping Cart</div>
+                    <Table striped borderless hover className = "cartTable">
                         <thead>
                             <tr>
                                 <th>Product</th>
@@ -78,15 +77,15 @@ class Cart extends Component{
                         <tbody className = "cartTable">
                             {this.state.cars.map(car => {
                                 return <tr key = {car.carId}><td>{car.make} {car.model}</td><td>${car.price}</td><td>{car.quantity}</td><td>
-                                    <Button onClick = {() => this.deleteCar(car.carId)} variant = "light">Delete</Button></td></tr>
+                                    <Button onClick = {() => this.deleteCar(car.carId)} id='form-button-style'>Delete</Button></td></tr>
                             })}
                         </tbody>
                     </Table>
                 </div>
-                <div className="col-lg-3 m-2 p-5 background" align = "center">
-                    <h2>Checkout</h2>
+                <div className="col-md-3 p-5 checkout-background ms-auto shopping-cart-text-color shadow" align = "center">
+                    <h2 className='shopping-cart-title mt-3'>Checkout</h2>
                     <br />
-                    <p>Total: ${(this.state.cartTotal).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</p>
+                    <p>Total | ${(this.state.cartTotal).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</p>
                     <PayPalScriptProvider>
                         <PayPalButtons
                           createOrder={(data, actions) => this.createOrder(data, actions)}
