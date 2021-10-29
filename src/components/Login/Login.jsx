@@ -3,7 +3,7 @@ import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import Modal from 'react-bootstrap/Modal';
 import ModalTitle from 'react-bootstrap/ModalTitle';
 import ModalBody from 'react-bootstrap/ModalBody';
-import { Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle } from 'react-bootstrap';
+import { FormGroup, Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle, FormControl } from 'react-bootstrap';
 
 
 const Login = (props) => {
@@ -37,14 +37,14 @@ const Login = (props) => {
                 </OffcanvasHeader>
                 <OffcanvasBody>
                     <form className = "my-auto" onSubmit={loginUser}>
-                        <div>
+                        <FormGroup>
                             <label htmlFor="inputUsername">Username</label>
-                            <input name = "UserName" type="text" value={loginValues.UserName} onChange={handleChange}/>
-                        </div>
-                        <div>
+                            <FormControl name = "UserName" type="text" value={loginValues.UserName} onChange={handleChange}/>
+                        </FormGroup>
+                        <FormGroup>
                             <label htmlFor="inputPass">Password</label>
-                            <input name = "Password" type="text" value={loginValues.Password} onChange={handleChange}/>
-                        </div>
+                            <FormControl name = "Password" type="text" value={loginValues.Password} onChange={handleChange}/>
+                        </FormGroup>
                         <button className = "btn btn-danger" type = "submit">Log In</button>
                     </form>
                 </OffcanvasBody>
