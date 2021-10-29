@@ -14,9 +14,16 @@ function RatingSection(props) {
                         <h6 className="fw-bold">Reviews</h6>
                     </Accordion.Header>
                     <Accordion.Body>
-                            <RatingForm postRating={props.postRating} carID={props.carID} username={props.username} />
+                            {/*//? Will display the review form to leave a review if the user is logged in. */}
+                            {props.user &&
+                                <RatingForm 
+                                    postRating={props.postRating} 
+                                    carID={props.carID} 
+                                    username={props.username} 
+                                />
+                            }
                             <Card>
-                                <Reviews ratings={props.ratings} username={props.username}/>
+                                <Reviews ratings={props.ratings} username={props.username} user={props.user}/>
                             </Card>
                     </Accordion.Body>
                 </Accordion.Item>
