@@ -9,7 +9,9 @@ function Reviews (props) {
     return ( 
         <div className = "row">
             <div className = "col-md-12">
-                <h5 className="text-start p-2">See what others have to say!</h5>
+                <h5 className="text-start p-2">
+                    {props.hasReviews ? "See what others have to say!": "Be the first to leave a review!"}
+                </h5>
                 <ListGroup>
                     {props.ratings.map((review) => {
                         return   <ListGroupItem>
@@ -27,7 +29,6 @@ function Reviews (props) {
                                         </Card.Header>
                                         <Card.Body>
                                             <p className="d-flex justify-content-start">
-                                                
                                                 {review.message}
                                             </p>    
                                         </Card.Body>
@@ -39,4 +40,5 @@ function Reviews (props) {
         </div>
      );
 }
+
 export default Reviews;
