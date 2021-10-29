@@ -34,7 +34,7 @@ const EditAccount = (props) => {
     return ( 
         <div className='container mx-auto my-auto overflow-hidden shadow' id="product-panel">
             <div className = "row">
-                <div className="col-md-3 side-panel side-panel-height">
+                <div className="col-md-3 side-panel side-panel-height shadow">
                     <div className='row h1 mt-5 justify-content-center side-panel-title'>Account Links</div>
                     <div className='row justify-content-center'>
                         <p
@@ -58,7 +58,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>User Name</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "UserName" value = {accountValues.UserName} placeholder="John1234" />
+                                        <FormControl className='shadow' onChange = {handleChange} name = "UserName" value = {accountValues.UserName} placeholder="John1234" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -66,7 +66,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>First Name</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "FirstName" value = {accountValues.FirstName} placeholder="John" />
+                                        <FormControl className='shadow' onChange = {handleChange} name = "FirstName" value = {accountValues.FirstName} placeholder="John" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -74,7 +74,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>Last Name</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "LastName" value = {accountValues.LastName} placeholder="Doe" />
+                                        <FormControl className='shadow' onChange = {handleChange} name = "LastName" value = {accountValues.LastName} placeholder="Doe" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -82,7 +82,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>Email</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "Email" value = {accountValues.Email} placeholder="johndoe@gmail.com" />
+                                        <FormControl className='shadow' onChange = {handleChange} name = "Email" value = {accountValues.Email} placeholder="johndoe@gmail.com" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -90,7 +90,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>Address</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "StreetAddress" value = {accountValues.StreetAddress} placeholder="Ex: 123 Main St" />
+                                        <FormControl className='shadow' onChange = {handleChange} name = "StreetAddress" value = {accountValues.StreetAddress} placeholder="Ex: 123 Main St" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row} className='mt-1'>
@@ -98,7 +98,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>City</p> 
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "City" value = {accountValues.City} placeholder = "Chicago"/>
+                                        <FormControl className='shadow' onChange = {handleChange} name = "City" value = {accountValues.City} placeholder = "Chicago"/>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -106,7 +106,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>State</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "State" value = {accountValues.State} placeholder = "Illinois"/>
+                                        <FormControl className='shadow' onChange = {handleChange} name = "State" value = {accountValues.State} placeholder = "Illinois"/>
                                     </Col>
                                 </FormGroup>
                                 <div align = "center">

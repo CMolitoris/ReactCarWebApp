@@ -38,7 +38,7 @@ const Login = (props) => {
                         </FormGroup>
                         <FormGroup className = "registerInput">
                             <label htmlFor="inputPass">Password</label>
-                            <FormControl name = "Password" placeholder = "Shhh... this one's a secret" type="password" value={loginValues.Password} onChange={handleChange}/>
+                            <FormControl name = "Password" placeholder = "password1234" type="password" value={loginValues.Password} onChange={handleChange}/>
                         </FormGroup>
                         <Col className = "submitButton" align = "center">
                             <Button className = "btn btn-md shadow" id = "form-button-style" type = "submit">Log In</Button>
