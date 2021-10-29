@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-import { Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle, FormControlLabel } from 'react-bootstrap';
+import { Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle, Col, Row, Form } from 'react-bootstrap';
 import './RegisterUser.css'
 
 const RegisterUser = (props) => {
