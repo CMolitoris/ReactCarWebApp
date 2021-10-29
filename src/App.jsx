@@ -30,7 +30,7 @@ class App extends Component {
   loginURL = "https://localhost:44394/api/authentication/login"
   updateAddressURL = "https://localhost:44394/api/users/complete/"
 
-  componentDidMount() {
+  componentWillMount() {
     this.getAllCars();
     this.getToken();
   }
@@ -171,9 +171,9 @@ class App extends Component {
       }
     }
 
-    deleteFromCart = async (userId,carId) => {
+    deleteFromCart = async (carId) => {
       try {
-        await axios.delete(`https://localhost:44394/api/shoppingcart/${userId}/${carId}`);
+        await axios.delete(`https://localhost:44394/api/shoppingcart/${this.state.loggedUser.id}/${carId}`);
       } catch (e) {
         console.log("Error in deleteFromCart: " + e); 
       }
