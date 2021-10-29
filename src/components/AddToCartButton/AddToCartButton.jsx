@@ -14,7 +14,8 @@ function AddToCartButton(props) {
     }
 
     return ( 
-        <Button 
+        <Button
+            id="form-button-style"  
             className="form-control" 
             onClick={() => props.addToCart({
                 UserId: props.userID,
@@ -24,7 +25,7 @@ function AddToCartButton(props) {
             variant="primary"
             disabled={isDisabled(props.userID)}
         >
-            <i class="bi bi-cart-plus-fill p-2"></i>
+            <i class="bi bi-cart-plus-fill p-2 fs-5"></i>
             {props.userID === "" ? "Please Login" : "Add to Cart" }
         </Button>
      );
