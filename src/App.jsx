@@ -124,7 +124,15 @@ class App extends Component {
     //GET LAST CAR TO USE AS LAST INDEX
     getNextCarId = async () => {
       let response = await axios.get('https://localhost:44394/api/car/cars/last');
+      console.log(response.data);
       return response.data;
+      
+    }
+
+    postCarPhoto = async (carPhoto) => {
+      console.log(carPhoto)
+      let response = await axios.post(`https://localhost:44394/api/sellerphotos/`,carPhoto);
+      console.log(response.data);
     }
 
     getSingleCar = async (singleCar) => {
@@ -133,7 +141,7 @@ class App extends Component {
       })
     }
 
-    postCar = async (car,sellerFlag = false) => {
+    postCar = async (car,sellerFlag = false,imageResponseData) => {
       await axios.post('https://localhost:44394/api/car/', car)
       .then( res => {
         this.getAllCars();
@@ -149,7 +157,21 @@ class App extends Component {
             CarId: carId,
             Quantity: 1
         });
+
+        console.log(imageResponseData);
+        this.postCarPhoto({
+            imageResponseData: imageResponseData,
+            cardid: carId
+        });
+     }
     }
+
+    addToSellerConnection = async (car) => {
+      try {
+        await axios.post('https://localhost:44394/api/seller/',car);
+      } catch (e) {
+        console.log("Error from addSellerConnection: " + e);
+      }
     }
 
     editCar = async (id, car) => {
@@ -176,14 +198,6 @@ class App extends Component {
         await axios.delete(`https://localhost:44394/api/shoppingcart/${userId}/${carId}`);
       } catch (e) {
         console.log("Error in deleteFromCart: " + e); 
-      }
-    }
-
-    addToSellerConnection = async (car) => {
-      try {
-        await axios.post('https://localhost:44394/api/seller/',car);
-      } catch (e) {
-        console.log("Error from addSellerConnection: " + e);
       }
     }
 
@@ -263,7 +277,7 @@ class App extends Component {
           {/* Cart Page */}
           <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart}user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
-          <Route path = "/seller" render={props => <Seller {...props} sellerFlag={this.setState.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
+          <Route path = "/seller" render={props => <Seller {...props} sellerFlag={this.state.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
           <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
           {/* Invalid Page Redirect */}

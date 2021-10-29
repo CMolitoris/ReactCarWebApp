@@ -6,11 +6,12 @@ import Button from 'react-bootstrap/Button'
 import PhotoUpload from '../PhotoUpload/PhotoUpload';
 import axios from 'axios';
 import './PostCar.css';
+import { Image } from 'cloudinary-react';
 
 
 
 const PostCar = (props) => {
-   
+    
     const [car, setCar] = useState({
         price: '',
         make: '',
@@ -20,7 +21,11 @@ const PostCar = (props) => {
         description: '',
         mileage: '',
     })
-    const [file, setFile] = useState("");
+    const [newFormData, setNewFormData] = useState("");
+    const [imageFile, setImageFile] = useState("");
+    const [imageResponseData, setImageResponseData] = useState("");
+
+    
 
     const handleChange = (event) => {
         event.persist();
@@ -32,32 +37,46 @@ const PostCar = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(car);
+
+        //-- Update value types to correspond with database --//
         car.mileage = parseInt(car.mileage);
         car.year = parseInt(car.year);
         car.price = parseFloat(car.price);
-        await props.postCar(car,props.sellerFlag)
+
+        //-- Upload image to third-party API and store information in server --//
+        fileUploadHandler(newFormData);
         
+         //-- Post car/object data to server --//
+         await props.postCar(car,props.sellerFlag,imageResponseData);
+       
     }
 
 
     const fileSelecterHandler = (event) => {
         console.log(event.target.files[0]);
-        setFile(event.target.files[0]);
+        const formData = new FormData();
+        formData.append("file",event.target.files[0]);
+        formData.append("upload_preset","fbbvpjgu");
+        setNewFormData(formData);
+        setImageFile(event.target.files[0]);
+        
     }
 
     const fileUploadHandler = async () => {
-        await axios.post(`https://localhost:44394/api/sellerphotos/all/`,this.state)
-            .then(res => {
-                console.log(res);
-            })
+        let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
+        console.log(response);
+        setImageResponseData(response.data.secure_url);
+        console.log(imageResponseData);  
     }
 
     return ( 
         <React.Fragment>
+            {/* {imageResponseData && <Image cloudName="cmolitoris" publicId={imageResponseData} />} */}
+                
+            
             <div className="col-lg-8 p-4" align = "center" id='main-panel'>
             <h2>Post a New Listing!</h2>
-           {file && <img src={URL.createObjectURL(file)}></img>}
+           {imageFile && <img src={URL.createObjectURL(imageFile)}></img>}
             <form onSubmit={handleSubmit} className='put'>
                 <Row className='mb-3'>
                     <Form.Group as={Col} controlID='file'>
