@@ -11,9 +11,15 @@ function Reviews (props) {
                 <h5 className="text-start p-2">See what others have to say!</h5>
                 <ListGroup>
                     {props.ratings.map((review) => {
-                        return   <ListGroupItem className="bg-primary text-black">
+                        return   <ListGroupItem>
                                     <div>
-                                        <Card>
+                                        <Card border="light">
+                                            <Card.Header className="text-start p-2">
+                                                <h4>
+                                                    <i className="bi bi-person-circle p-2"></i>
+                                                    Username 
+                                                </h4>
+                                            </Card.Header>
                                             <Card.Body>
                                                 <p className="d-flex justify-content-start">
                                                     <span class="material-icons px-3">person</span>
