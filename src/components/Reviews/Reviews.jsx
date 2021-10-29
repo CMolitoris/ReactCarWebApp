@@ -13,23 +13,25 @@ function Reviews (props) {
                 <ListGroup>
                     {props.ratings.map((review) => {
                         return   <ListGroupItem>
-                                    <div>
-                                        <Card border="light">
-                                            <Card.Header className="text-start p-2">
-                                                <h5>
-                                                    <i className="bi bi-person-circle p-2"></i>
-                                                    Username 
-                                                    <CustomerReviewRating ratingScore={review.ratingScore} />
-                                                </h5>
-                                            </Card.Header>
-                                            <Card.Body>
-                                                <p className="d-flex justify-content-start">
-                                                    
-                                                    {review.message}
-                                                </p>    
-                                            </Card.Body>
-                                        </Card>
-                                    </div>
+                                    <Card border="light">
+                                        <Card.Header className="text-start p-2">
+                                        <div className="row row-cols-auto fs-5">
+                                            <div className="col">
+                                                <i className="bi bi-person-circle p-2"></i>
+                                                Username
+                                            </div>
+                                            <div className="col">
+                                                <CustomerReviewRating ratingScore={review.ratingScore} />
+                                            </div>
+                                        </div>
+                                        </Card.Header>
+                                        <Card.Body>
+                                            <p className="d-flex justify-content-start">
+                                                
+                                                {review.message}
+                                            </p>    
+                                        </Card.Body>
+                                    </Card>
                                 </ListGroupItem>
                     })}
                 </ListGroup>
