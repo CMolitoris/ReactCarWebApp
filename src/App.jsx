@@ -30,7 +30,7 @@ class App extends Component {
   loginURL = "https://localhost:44394/api/authentication/login"
   updateAddressURL = "https://localhost:44394/api/users/complete/"
 
-  componentDidMount() {
+  componentWillMount() {
     this.getAllCars();
     this.getToken();
   }
@@ -193,9 +193,9 @@ class App extends Component {
       }
     }
 
-    deleteFromCart = async (userId,carId) => {
+    deleteFromCart = async (carId) => {
       try {
-        await axios.delete(`https://localhost:44394/api/shoppingcart/${userId}/${carId}`);
+        await axios.delete(`https://localhost:44394/api/shoppingcart/${this.state.loggedUser.id}/${carId}`);
       } catch (e) {
         console.log("Error in deleteFromCart: " + e); 
       }
@@ -271,15 +271,15 @@ class App extends Component {
           {/* Product Page */}
           <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} />} />
           {/* Product Page */}
-          <Route path = "/car-details" render={props => <CarDetails {...props} modalShow={this.state.ratingModalShow} toggleModal={this.toggleRatingModal} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} ratings={this.state.ratings}/>} />
+          <Route path = "/car-details" render={props => <CarDetails {...props} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} ratings={this.state.ratings}/>} />
           {/* Search Page */}
-          <Route path = "/search"/>
+          {/* <Route path = "/search"/> */}
           {/* Cart Page */}
           <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart}user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
           <Route path = "/seller" render={props => <Seller {...props} sellerFlag={this.state.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.updateAddressDetails}/>} />
+          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.editUser}/>} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>

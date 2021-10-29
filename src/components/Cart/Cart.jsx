@@ -2,14 +2,13 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import './Cart.css'
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
 class Cart extends Component{
     constructor(props){
         super(props)
         this.state = {
             cars: [],
-            userId: this.props.user.id,
             cartTotal: 0,
         }
     }
@@ -19,13 +18,15 @@ class Cart extends Component{
     }
 
     getShoppingCart = async () => {
-        let cartCarDetails = await axios.get(`https://localhost:44394/api/shoppingcart/details/${this.state.userId}`)
+        let cartCarDetails = await axios.get(`https://localhost:44394/api/shoppingcart/details/${this.props.user.id}`);
+        cartCarDetails = cartCarDetails.data
         let carArray = []
         let total = 0
-        for (let x = 0; x < cartCarDetails.data.length; x++){
-            carArray.push(cartCarDetails.data[x]);
-            total+= cartCarDetails.data[x].price
+        for (let x = 0; x < cartCarDetails.length; x++){
+            carArray.push(cartCarDetails[x]);
+            total+= cartCarDetails[x].extendedPrice
         }
+        console.log(cartCarDetails);
         this.setState({
             cars: carArray,
             cartTotal: total
@@ -33,7 +34,7 @@ class Cart extends Component{
     }
 
     deleteCar = async (carId) => {
-        await this.props.removeCarFromCart(this.state.userId ,carId)
+        await this.props.removeCarFromCart(carId)
         let newCarList = this.state.cars
         for (let x = 0; x < this.state.cars; x++){
             if (this.state.cars.carId === carId){
@@ -43,7 +44,21 @@ class Cart extends Component{
         this.getShoppingCart()
     }
 
+    createOrder(data, actions) {
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: {
+                value: this.state.cartTotal,
+              },
+            },
+          ],
+        });
+      }
     
+      onApprove(data, actions) {
+        return actions.order.capture();
+      }
 
     render() {
     return ( 
@@ -72,8 +87,11 @@ class Cart extends Component{
                     <h2>Checkout</h2>
                     <br />
                     <p>Total: ${(this.state.cartTotal).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</p>
-                    <PayPalScriptProvider options={{"client-id": "AVG4Oa1RLFSqTn602N2kjF7l-qmZoqeTmXAkmQlfOmZqm3qo3IceqspCV_4o6dnYo7rOFjtva3CkG-l4"}}>
-                        <PayPalButtons total = {this.state.cartTotal} updateOrder = {this.createOrder} style={{layout: "vertical"}} />
+                    <PayPalScriptProvider>
+                        <PayPalButtons
+                          createOrder={(data, actions) => this.createOrder(data, actions)}
+                          onApprove={(data, actions) => this.onApprove(data, actions)}
+                        />
                     </PayPalScriptProvider>
                 </div>
             </div>

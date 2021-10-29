@@ -1,0 +1,17 @@
+.buttonRow {
+    margin-top: 1em;
+}
+
+.offCanvasTitle {
+    font-size: 3rem !important;
+    font-weight: 400 !important;
+}
+
+.registerInput {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+.submitButton {
+    margin-top: .5rem !important;
+}

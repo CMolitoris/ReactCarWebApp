@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import ModalHeader from 'react-bootstrap/esm/ModalHeader';
-import Modal from 'react-bootstrap/Modal';
-import ModalTitle from 'react-bootstrap/ModalTitle';
-import ModalBody from 'react-bootstrap/ModalBody';
+import { FormGroup, Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle, FormControl, Col, Button } from 'react-bootstrap';
 
 
 const Login = (props) => {
@@ -29,24 +26,27 @@ const Login = (props) => {
 
     return ( 
         <div>
-            <Modal show = {props.modalShow} onHide = {hideModal}>
-                <ModalHeader closeButton>
-                    <ModalTitle>Log In</ModalTitle>
-                </ModalHeader>
-                <ModalBody>
+            
+            <Offcanvas placement = "end" show = {props.modalShow} onHide = {hideModal}>
+                <OffcanvasHeader closeButton>
+                    <OffcanvasTitle className = "offCanvasTitle">Log In</OffcanvasTitle>
+                </OffcanvasHeader>
+                <OffcanvasBody>
                     <form className = "my-auto" onSubmit={loginUser}>
-                        <div>
+                        <FormGroup className = "registerInput">
                             <label htmlFor="inputUsername">Username</label>
-                            <input name = "UserName" type="text" value={loginValues.UserName} onChange={handleChange}/>
-                        </div>
-                        <div>
+                            <FormControl name = "UserName" placeholder = "JohnDoe123" type="text" value={loginValues.UserName} onChange={handleChange}/>
+                        </FormGroup>
+                        <FormGroup className = "registerInput">
                             <label htmlFor="inputPass">Password</label>
-                            <input name = "Password" type="text" value={loginValues.Password} onChange={handleChange}/>
-                        </div>
-                        <button className = "btn btn-danger" type = "submit">Log In</button>
+                            <FormControl name = "Password" placeholder = "Shhh... this one's a secret" type="password" value={loginValues.Password} onChange={handleChange}/>
+                        </FormGroup>
+                        <Col className = "submitButton" align = "center">
+                            <Button className = "btn btn-md shadow" id = "form-button-style" type = "submit">Log In</Button>
+                        </Col>
                     </form>
-                </ModalBody>
-            </Modal>
+                </OffcanvasBody>
+            </Offcanvas>
         </div>
      );
 }

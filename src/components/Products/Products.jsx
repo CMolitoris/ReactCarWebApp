@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import {Row, Col, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Products.css'
+import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
 
 const Products = (props) => {
@@ -62,13 +63,11 @@ const Products = (props) => {
                                                     {car.description}
                                                 </Card.Text>
                                             </Card.Body>
-                                            <Button onClick={() => props.addToCart({
-                                                    UserId: props.user.id,
-                                                    CarId: car.id,
-                                                    Quantity: 1
-                                                })} variant="primary" size="lg" className='border-circle'>
-                                                <i class="bi bi-cart4"></i>
-                                            </Button> 
+                                            <AddToCartButton 
+                                                addToCart={props.addToCart} 
+                                                userID={ props.user ? props.user.id : "" } 
+                                                carID={car.id} 
+                                            />  
                                         </Card>
                                 ))}
                     </Row>
