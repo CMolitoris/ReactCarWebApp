@@ -91,7 +91,7 @@ function CarDetails(props) {
                 </Card>
                 {/*//? REVIEWS SECTION - Accordion */}
                 <RatingSection
-                    username={props.user.username} 
+                    username={props.username ? props.username : null } 
                     carID={car.id} 
                     postRating={props.postRating} 
                     getCarRatings={props.getCarRatings} 
