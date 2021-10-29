@@ -57,7 +57,7 @@ const PostCar = (props) => {
         <React.Fragment>
             <div className="col-lg-8 p-4" align = "center" id='main-panel'>
             <h2>Post a New Listing!</h2>
-           {file && <img src={URL.createObjectURL(file)}></img>}
+           {file && <img className = "postCarImage"src={URL.createObjectURL(file)}></img>}
             <form onSubmit={handleSubmit} className='put'>
                 <Row className='mb-3'>
                     <Form.Group as={Col} controlID='file'>
