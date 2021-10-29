@@ -1,33 +1,34 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router';
 import { Row, Col, Button, Form , FormGroup, FormLabel, FormControl } from 'react-bootstrap';
-import Seller from '../Seller/Seller';
 import { Link } from 'react-router-dom';
 import './EditAccount.css'
 
 const EditAccount = (props) => {
 
     const [accountValues, setAccountValues] = useState({
-        userName: "",
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        email: "",
-        streetAddress: "",
-        city: "",
-        state: "",
+        UserName: "",
+        FirstName: "",
+        LastName: "",
+        Email: "",
+        StreetAddress: "",
+        City: "",
+        State: "",
     })
 
     const handleChange = (event) => {
+        event.persist();
+        console.log(accountValues)
         setAccountValues(prevstate => ({
             ...prevstate,
-            [event.target.name]: event.target.value
-        }));
+            [event.target.name]: event.target.value,
+        }
+        ));
     }
 
     const handleSubmit = (event) => {
+        event.preventDefault();
         props.updateDetails(accountValues)
-        window.location = '/account';
+        // window.location = '/account';
     }
 
     return ( 
@@ -57,7 +58,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>User Name</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "firstName" value = {accountValues.firstName} placeholder="John" />
+                                        <FormControl onChange = {handleChange} name = "UserName" value = {accountValues.UserName} placeholder="John1234" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -65,7 +66,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>First Name</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "firstName" value = {accountValues.firstName} placeholder="John" />
+                                        <FormControl onChange = {handleChange} name = "FirstName" value = {accountValues.FirstName} placeholder="John" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -73,15 +74,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>Last Name</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "lastName" value = {accountValues.lastName} placeholder="Doe" />
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup as = {Row}>
-                                    <FormLabel column sm={3}>
-                                        <p className='form-label-font'>Number</p>
-                                    </FormLabel>
-                                    <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "phoneNumber" value = {accountValues.phoneNumber} placeholder="1234567890" />
+                                        <FormControl onChange = {handleChange} name = "LastName" value = {accountValues.LastName} placeholder="Doe" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -89,7 +82,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>Email</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "email" value = {accountValues.email} placeholder="johndoe@gmail.com" />
+                                        <FormControl onChange = {handleChange} name = "Email" value = {accountValues.Email} placeholder="johndoe@gmail.com" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -97,7 +90,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>Address</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "streetAddress" value = {accountValues.streetAddress} placeholder="Ex: 123 Main St" />
+                                        <FormControl onChange = {handleChange} name = "StreetAddress" value = {accountValues.StreetAddress} placeholder="Ex: 123 Main St" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row} className='mt-1'>
@@ -105,7 +98,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>City</p> 
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "city" value = {accountValues.city} placeholder = "Chicago"/>
+                                        <FormControl onChange = {handleChange} name = "City" value = {accountValues.City} placeholder = "Chicago"/>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
@@ -113,7 +106,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>State</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl onChange = {handleChange} name = "state" value = {accountValues.state} placeholder = "Illinois"/>
+                                        <FormControl onChange = {handleChange} name = "State" value = {accountValues.State} placeholder = "Illinois"/>
                                     </Col>
                                 </FormGroup>
                                 <div align = "center">
