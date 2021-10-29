@@ -3,6 +3,7 @@ import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import Modal from 'react-bootstrap/Modal';
 import ModalTitle from 'react-bootstrap/ModalTitle';
 import ModalBody from 'react-bootstrap/ModalBody';
+import { Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle } from 'react-bootstrap';
 
 
 const Login = (props) => {
@@ -29,11 +30,12 @@ const Login = (props) => {
 
     return ( 
         <div>
-            <Modal show = {props.modalShow} onHide = {hideModal}>
-                <ModalHeader closeButton>
-                    <ModalTitle>Log In</ModalTitle>
-                </ModalHeader>
-                <ModalBody>
+            
+            <Offcanvas placement = "end" show = {props.modalShow} onHide = {hideModal}>
+                <OffcanvasHeader closeButton>
+                    <OffcanvasTitle>Log In</OffcanvasTitle>
+                </OffcanvasHeader>
+                <OffcanvasBody>
                     <form className = "my-auto" onSubmit={loginUser}>
                         <div>
                             <label htmlFor="inputUsername">Username</label>
@@ -45,8 +47,8 @@ const Login = (props) => {
                         </div>
                         <button className = "btn btn-danger" type = "submit">Log In</button>
                     </form>
-                </ModalBody>
-            </Modal>
+                </OffcanvasBody>
+            </Offcanvas>
         </div>
      );
 }

@@ -10,7 +10,6 @@ class Cart extends Component{
         super(props)
         this.state = {
             cars: [],
-            userId: this.props.user.id,
             cartTotal: 0,
         }
     }
@@ -20,7 +19,7 @@ class Cart extends Component{
     }
 
     getShoppingCart = async () => {
-        let cartCarDetails = await axios.get(`https://localhost:44394/api/shoppingcart/details/${this.state.userId}`)
+        let cartCarDetails = await axios.get(`https://localhost:44394/api/shoppingcart/details/${this.props.user.id}`)
         let carArray = []
         let total = 0
         for (let x = 0; x < cartCarDetails.data.length; x++){
@@ -35,7 +34,7 @@ class Cart extends Component{
     }
 
     deleteCar = async (carId) => {
-        await this.props.removeCarFromCart(this.state.userId ,carId)
+        await this.props.removeCarFromCart(this.props.user.id ,carId)
         let newCarList = this.state.cars
         for (let x = 0; x < this.state.cars; x++){
             if (this.state.cars.carId === carId){
