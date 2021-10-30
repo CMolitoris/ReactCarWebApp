@@ -3,10 +3,10 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import PhotoUpload from '../PhotoUpload/PhotoUpload';
 import axios from 'axios';
 import './PostCar.css';
 import { Image } from 'cloudinary-react';
+import Card from 'react-bootstrap/Card'
 
 const PostCar = (props) => {
     
@@ -54,6 +54,7 @@ const PostCar = (props) => {
          //-- Post car/object data to server --//
          props.postCar(car,props.sellerFlag,response.data.url);
          getAllCarPhotos();
+         window.location.reload();
     }
 
     const fileSelecterHandler = (event) => {
@@ -75,7 +76,7 @@ const PostCar = (props) => {
     const getAllCarPhotos = async () => {
         let userId = props.user.id;
         let response = await axios.get(`https://localhost:44394/api/sellerphotos/${userId}`);
-        
+        console.log(response.data);
         setCarData(response.data);   
         console.log(carData);    
         // return (
@@ -99,12 +100,26 @@ const PostCar = (props) => {
                 <div className="col-md-3 side-panel side-panel-height">
                     <div className='row h1 mt-5 justify-content-center side-panel-title'>Listed Cars</div>
                     <div className='row justify-content-center'>
-                        <p className = "mt-3 h3" >
-                            {/* {imageResponseData && <Image className="postCarImage" cloudName="cmolitoris" publicId={imageResponseData} />} */}
+                        {/* <p className = "mt-3 h3" >
+                            {imageResponseData && <Image className="postCarImage" cloudName="cmolitoris" publicId={imageResponseData} />}
                             {console.log(carData)}
-                            {/* {carData[0].car.make} */}
+                            {carData[0].car.make}
                             
-                        </p>
+                        </p> */}
+                        {carData.map((element, i) => {
+                            return (
+                                <Card className="shadow m-1" style={{ width: '12rem' }}>
+                                    <Card.Img variant="top" src={element.imageResponseData} />
+                                    <Card.Body>
+                                    <Card.Title>Car Details</Card.Title>
+                                    <Card.Text>
+                                        Make: {element.car.make} <br/>Model: {element.car.model}<br/> Price: {element.car.price}
+                                    </Card.Text>
+                                        <Button id="form-button-style" variant="primary">Delete</Button>
+                                    </Card.Body>
+                                </Card>
+                            )
+                        })}
                     </div>
                 </div>
         
