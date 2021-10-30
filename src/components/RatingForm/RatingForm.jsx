@@ -54,7 +54,7 @@ const RatingForm = (props) => {
             >
                 <Col md="auto">
                     <Form.Group controlId="ratingValidation">
-                        <FloatingLabel label="Rating">
+                        <FloatingLabel label="How was our service?">
                             <Form.Select
                                 type="select"
                                 aria-label='Select rating'
@@ -63,7 +63,7 @@ const RatingForm = (props) => {
                                 value={ratingValues.RatingScore}
                                 required
                             >
-                                <option selected disabled value="">Select a rating</option>
+                                <option  selected disabled value="">Select a rating</option>
                                 <option value="1">1/5 - Poor</option>
                                 <option value="2">2/5 - Below Average</option>
                                 <option value="3">3/5 - Average</option>
@@ -75,11 +75,12 @@ const RatingForm = (props) => {
                 </Col>
                 <Col>
                     <Form.Group controlId="messageValidation">
-                        <FloatingLabel controlId="floatingInputGrid" label="Review">
-                            <InputGroup hasValidation />
+                        <FloatingLabel 
+                            controlId="floatingInputGrid" 
+                            label="What did you like or dislike about our customer experience?">
                             <FormControl 
                                 type="text"
-                                placeholder="What's your thoughts..."
+                                placeholder="Review"
                                 aria-label='Message'
                                 name='Message'
                                 onChange={handleChange}
