@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FormControl, Button, FloatingLabel, Row, Col, InputGroup } from 'react-bootstrap';
+import {FormControl, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form'
 
 const RatingForm = (props) => {
