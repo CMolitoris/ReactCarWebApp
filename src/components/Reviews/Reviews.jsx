@@ -14,7 +14,7 @@ function Reviews (props) {
                 </h5>
                 <ListGroup>
                     {props.ratings.map((review) => {
-                        return   <ListGroupItem>
+                        return   <ListGroupItem key={review.id.toString()}>
                                     <Card border="light">
                                         <Card.Header className="text-start p-2">
                                         <div className="row row-cols-auto fs-5">
