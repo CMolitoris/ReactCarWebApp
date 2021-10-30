@@ -48,6 +48,7 @@ function CarDetails(props) {
                             </Card.Text>
                             <hr />
                             {/*//? Car Average Rating */}
+                            <h6 className="fw-bold">Average Rating:</h6>
                             <CarAverageRating ratings={props.ratings} />
                             <hr />
                             <Card.Text>
