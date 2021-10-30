@@ -22,7 +22,7 @@ function RelatedCars(props) {
                         </Link>
                     </div>
                     <Card.Body>
-                        <Card.Title>{related.make} {related.model}</Card.Title>
+                        <Card.Title>{related.year} {related.make} {related.model}</Card.Title>
                         <Card.Text>
                             ${related.price} | {related.type}
                         </Card.Text>

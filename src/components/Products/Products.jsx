@@ -74,7 +74,7 @@ const Products = (props) => {
                                         <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
                                     </Link>
                                     <Card.Body>
-                                        <Card.Title>{car.make} {car.model}</Card.Title>
+                                        <Card.Title>{car.year} {car.make} {car.model}</Card.Title>
                                         <Card.Text>
                                             MSRP | ${car.price}
                                         </Card.Text>
