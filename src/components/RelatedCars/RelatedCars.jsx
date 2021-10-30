@@ -14,7 +14,7 @@ function RelatedCars(props) {
                 && value.id !== props.car.id
             )
             .map((related)=>(
-                <Card className="mb-4 p-2 shadow" id='card'>
+                <Card key={`relatedCar${related.id}`} className="mb-4 p-2 shadow" id='card'>
                     {/*//? Related Cars - Link to car-details */}
                     <div className=" mt-4">
                         <Link to="/car-details" onClick={() => props.getSingleCar(related)}>
@@ -22,7 +22,7 @@ function RelatedCars(props) {
                         </Link>
                     </div>
                     <Card.Body>
-                        <Card.Title>{related.make} {related.model}</Card.Title>
+                        <Card.Title>{related.year} {related.make} {related.model}</Card.Title>
                         <Card.Text>
                             ${related.price} | {related.type}
                         </Card.Text>

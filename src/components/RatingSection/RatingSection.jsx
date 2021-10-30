@@ -20,14 +20,15 @@ function RatingSection(props) {
                                 <RatingForm 
                                     postRating={props.postRating} 
                                     carID={props.carID} 
-                                    username={props.user ? props.user.username : null} 
+                                    username={props.user ? props.user.username : null}
+                                    hasReviews={props.hasReviews} 
                                 />
                             }
                             <Card>
                                 <Reviews 
                                     ratings={props.ratings} 
                                     username={props.user ? props.user.username : null} 
-                                    hasReviews={props.ratings.length > 0}
+                                    hasReviews={props.hasReviews}
                                 />
                             </Card>
                     </Accordion.Body>

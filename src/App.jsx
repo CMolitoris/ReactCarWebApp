@@ -23,7 +23,8 @@ class App extends Component {
     car: [],
     location: null,
     ratings: [],
-    sellerFlag: true
+    sellerFlag: true,
+    carModels: []
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -116,9 +117,15 @@ class App extends Component {
 
     getAllCars = async () => {
       let response = await axios.get('https://localhost:44394/api/car');
+      this.getAllModels(response.data)
+    }
+
+    getAllModels = async (cars) => {
+      let carModels = await axios.get('https://localhost:44394/api/car/all-models');
       this.setState({
-          cars: response.data
-      });
+        carModels: carModels.data,
+        cars: cars
+    });
     }
 
     //GET LAST CAR TO USE AS LAST INDEX
@@ -271,7 +278,7 @@ class App extends Component {
           {/* Home Page */}
           <Route path = "/" exact component={Landing}  />
           {/* Product Page */}
-          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} />} />
+          <Route path = "/products" render={props => <Products {...props} user={this.state.loggedUser} carModels = {this.state.carModels} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} />} />
           {/* Product Page */}
           <Route path = "/car-details" render={props => <CarDetails {...props} postRating={this.postRating} user={this.state.loggedUser} addToCart={this.addToCart} cars={this.state.cars} getAllCars={this.getAllCars} getSingleCar={this.getSingleCar} car={this.state.car} getCarRatings={this.getCarRatings} ratings={this.state.ratings}/>} />
           {/* Search Page */}

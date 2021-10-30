@@ -10,11 +10,11 @@ function Reviews (props) {
         <div className = "row">
             <div className = "col-md-12">
                 <h5 className="text-start p-2">
-                    {props.hasReviews ? "See what others have to say!": "Be the first to leave a review!"}
+                    {props.hasReviews ? "See what others have to say!" : "No reviews have been posted."}
                 </h5>
                 <ListGroup>
                     {props.ratings.map((review) => {
-                        return   <ListGroupItem>
+                        return   <ListGroupItem key={review.id.toString()}>
                                     <Card border="light">
                                         <Card.Header className="text-start p-2">
                                         <div className="row row-cols-auto fs-5">

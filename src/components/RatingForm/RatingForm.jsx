@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FormControl, Button, FloatingLabel, Row, Col, InputGroup } from 'react-bootstrap';
+import {FormControl, Button, FloatingLabel, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form'
 
 const RatingForm = (props) => {
@@ -43,7 +43,9 @@ const RatingForm = (props) => {
 
     return ( 
         <Row className="g-2 mb-5">
-            <h5 className="text-start p-2">Leave a review!</h5>
+            <h5 className="text-start p-2">
+                {props.hasReviews ? "Leave a review!": "Be the first to leave a review!"}
+            </h5>
             <Form 
                 className="d-flex" 
                 noValidate
@@ -52,7 +54,7 @@ const RatingForm = (props) => {
             >
                 <Col md="auto">
                     <Form.Group controlId="ratingValidation">
-                        <FloatingLabel label="Rating">
+                        <FloatingLabel label="How was our service?">
                             <Form.Select
                                 type="select"
                                 aria-label='Select rating'
@@ -61,7 +63,7 @@ const RatingForm = (props) => {
                                 value={ratingValues.RatingScore}
                                 required
                             >
-                                <option selected disabled value="">Select a rating</option>
+                                <option  selected disabled value="">Select a rating</option>
                                 <option value="1">1/5 - Poor</option>
                                 <option value="2">2/5 - Below Average</option>
                                 <option value="3">3/5 - Average</option>
@@ -73,11 +75,12 @@ const RatingForm = (props) => {
                 </Col>
                 <Col>
                     <Form.Group controlId="messageValidation">
-                        <FloatingLabel controlId="floatingInputGrid" label="Review">
-                            <InputGroup hasValidation />
+                        <FloatingLabel 
+                            controlId="floatingInputGrid" 
+                            label="What did you like or dislike about our customer experience?">
                             <FormControl 
                                 type="text"
-                                placeholder="What's your thoughts..."
+                                placeholder="Review"
                                 aria-label='Message'
                                 name='Message'
                                 onChange={handleChange}
