@@ -79,18 +79,10 @@ const PostCar = (props) => {
         console.log(response.data);
         setCarData(response.data);   
         console.log(carData);    
-        // return (
-        //     <ul>
-        //         {carArray.map((car,index) => {
-        //             <li key={index}>
-        //                 <Image className="postCarImage" cloudName="cmolitoris" publicId={arrayOfArraysPhotos[index][0].imageResponseData}/>
-        //                 <p>
-        //                    Make: {car.make} Model: {car.model}
-        //                 </p>
-        //             </li>
-        //         })}
-        //     </ul>
-        // )
+    }
+
+    const deleteCar = async () => {
+        
     }
 
 
@@ -108,12 +100,12 @@ const PostCar = (props) => {
                         </p> */}
                         {carData.map((element, i) => {
                             return (
-                                <Card className="shadow m-1" style={{ width: '12rem' }}>
+                                <Card className="shadow m-1" style={{ height: '14rem', width: '12rem' }}>
                                     <Card.Img variant="top" src={element.imageResponseData} />
                                     <Card.Body>
-                                    <Card.Title>Car Details</Card.Title>
+                                    <Card.Title>{element.car.make} {element.car.model}</Card.Title>
                                     <Card.Text>
-                                        Make: {element.car.make} <br/>Model: {element.car.model}<br/> Price: {element.car.price}
+                                        
                                     </Card.Text>
                                         <Button id="form-button-style" variant="primary">Delete</Button>
                                     </Card.Body>
