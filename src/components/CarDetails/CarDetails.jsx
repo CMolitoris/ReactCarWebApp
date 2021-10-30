@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Badge } from 'react-bootstrap';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import CarAverageRating from '../CarAverageRating/CarAverageRating';
 import RatingSection from '../RatingSection/RatingSection';
@@ -42,7 +42,9 @@ function CarDetails(props) {
                             <Card.Img src="staticImages\Ford_Shelby.jpg" className='card-image shadow' fluid />
                         </div>
                         <Card.Body>
-                            <Card.Title className="fs-4 fw-bold" >{car.make} {car.model}</Card.Title>
+                            <Card.Title className="fs-4 fw-bold" >
+                                {car.year} {car.make} {car.model} 
+                            </Card.Title>
                             <Card.Text className="fs-5">
                                 MSRP | ${car.price}
                             </Card.Text>
@@ -52,13 +54,15 @@ function CarDetails(props) {
                             <CarAverageRating ratings={props.ratings} />
                             <hr />
                             <Card.Text>
+                                {car.mileage === 0
+                                    ?  <span className="badge bg-success me-2">Condition: New</span>
+                                    : <span className="badge bg-warning text-dark me-2">Condition: Used</span>
+                                }
                                 Type: {car.type} | Make: {car.make} | Model: {car.model}
+                                {car.mileage ? `| ${car.mileage} miles` : null}
                             </Card.Text>
                             <Card.Text>
                                 {car.description}
-                            </Card.Text>
-                            <Card.Text>
-                                Mileage: {car.mileage}
                             </Card.Text>
                             <hr />
                             {/*//? Car Details - Add to cart btn */}
