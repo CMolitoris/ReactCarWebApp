@@ -220,9 +220,10 @@ class App extends Component {
     }
 
     editUser = async (userDetails) => {
-      let userId = this.state.loggedUser.Id;
+      let userId = this.state.loggedUser.id;
       try {
-        await axios.put(`https://localhost:44394/api/users/edit/${userId}`,userDetails);
+        console.log(userDetails)
+        await axios.put(`https://localhost:44394/api/users/edit/${userId}`, userDetails);
       } catch (e) {
         console.log("Error in editUser: " + e); 
       }
@@ -276,11 +277,11 @@ class App extends Component {
           {/* Search Page */}
           {/* <Route path = "/search"/> */}
           {/* Cart Page */}
-          <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart}user = {this.state.loggedUser}/>} />
+          <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart} user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
           <Route path = "/seller" render={props => <Seller {...props} sellerFlag={this.state.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.editUser}/>} />
+          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.editUser} user = {this.state.loggedUser}/>} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>

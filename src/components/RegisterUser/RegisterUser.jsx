@@ -54,7 +54,7 @@ const RegisterUser = (props) => {
                             <Row>
                                 <Col className = "registerInput">
                                     <label htmlFor="password">Password</label>
-                                    <Form.Control placeholder="Shhh... this one's a secret" type = "password" name="password" onChange={handleChange} value={registerValues.password}/>
+                                    <Form.Control placeholder="password1234" type = "password" name="password" onChange={handleChange} value={registerValues.password}/>
                                 </Col>
                             </Row>
                             <Row>

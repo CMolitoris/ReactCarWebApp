@@ -1,15 +1,30 @@
-.cartTable{
-    color: white !important;
-    
-  }
-
-.background{
-  background-color: #C21E1E;
+#cart-panel{
+  background-color: #CBCACA;
+  margin: 3rem;
   border-radius: 5rem;
+  width: 70%;
+  height: 60%;
+  min-height: 40rem;
 }
 
-.cartPage{
-  font-size: 1.3em;
-  color: white
+
+.shopping-cart-title{
+  font-size: 3rem;
+  font-weight: 500;
 }
+.shopping-cart-text{
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.shopping-cart-text-color{
+  color: #CBCACA;
+}
+
+.checkout-background{
+  background-color: #C21E1E;
+  height: 65rem;
+}
+
+
+
   
