@@ -160,6 +160,7 @@ class App extends Component {
 
         console.log(imageResponseData);
         this.postCarPhoto({
+            UserId: this.state.loggedUser.id,
             imageResponseData: imageResponseData,
             CarId: carId
         });

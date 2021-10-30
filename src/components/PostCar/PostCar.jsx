@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
@@ -18,11 +18,12 @@ const PostCar = (props) => {
         type: '',
         description: '',
         mileage: '',
-    })
+    });
+
     const [newFormData, setNewFormData] = useState("");
     const [imageFile, setImageFile] = useState("");
     const [imageResponseData, setImageResponseData] = useState("");
-
+    const [carData, setCarData] = useState([]);
     
 
     const handleChange = (event) => {
@@ -31,7 +32,12 @@ const PostCar = (props) => {
             ...car,
             [event.target.name]: event.target.value,
         }));
+        
     }
+
+    useEffect(() => {
+        getAllCarPhotos();
+      },[]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -44,11 +50,11 @@ const PostCar = (props) => {
         //-- Upload image to third-party API and store information in server --//
         let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
         console.log(response);
+
          //-- Post car/object data to server --//
          props.postCar(car,props.sellerFlag,response.data.url);
-       
+         getAllCarPhotos();
     }
-
 
     const fileSelecterHandler = (event) => {
         console.log(event.target.files[0]);
@@ -57,15 +63,35 @@ const PostCar = (props) => {
         formData.append("upload_preset","fbbvpjgu");
         setNewFormData(formData);
         setImageFile(event.target.files[0]);
-        
     }
 
-    const fileUploadHandler = async () => {
-        let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
-        console.log(response);
-        setImageResponseData(response.data.url);
-        console.log(imageResponseData);  
+    // const fileUploadHandler = async () => {
+    //     let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
+    //     console.log(response);
+    //     setImageResponseData(response.data.url);
+    //     console.log(imageResponseData);  
+    // }
+
+    const getAllCarPhotos = async () => {
+        let userId = props.user.id;
+        let response = await axios.get(`https://localhost:44394/api/sellerphotos/${userId}`);
+        
+        setCarData(response.data);   
+        console.log(carData);    
+        // return (
+        //     <ul>
+        //         {carArray.map((car,index) => {
+        //             <li key={index}>
+        //                 <Image className="postCarImage" cloudName="cmolitoris" publicId={arrayOfArraysPhotos[index][0].imageResponseData}/>
+        //                 <p>
+        //                    Make: {car.make} Model: {car.model}
+        //                 </p>
+        //             </li>
+        //         })}
+        //     </ul>
+        // )
     }
+
 
     return ( 
         <div className='container mx-auto my-auto overflow-hidden shadow' id="product-panel">
@@ -74,7 +100,10 @@ const PostCar = (props) => {
                     <div className='row h1 mt-5 justify-content-center side-panel-title'>Listed Cars</div>
                     <div className='row justify-content-center'>
                         <p className = "mt-3 h3" >
-                            {imageResponseData && <Image className="postCarImage" cloudName="cmolitoris" publicId={imageResponseData} />}
+                            {/* {imageResponseData && <Image className="postCarImage" cloudName="cmolitoris" publicId={imageResponseData} />} */}
+                            {console.log(carData)}
+                            {/* {carData[0].car.make} */}
+                            
                         </p>
                     </div>
                 </div>

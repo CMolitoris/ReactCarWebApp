@@ -18,7 +18,7 @@ class Seller extends Component {
         return ( 
             <div className='row'>
                 <div className="col"></div>
-                    <PostCar sellerFlag={this.props.sellerFlag} postCar={this.props.postCar} nextCarId={this.props.nextCarId} 
+                    <PostCar user={this.props.user} sellerFlag={this.props.sellerFlag} postCar={this.props.postCar} nextCarId={this.props.nextCarId} 
                     addToSellerConnection={this.props.addToSellerConnection} user={this.props.user} />
                 <div className="col"></div>
             </div>
