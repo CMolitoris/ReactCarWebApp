@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import CarAverageRating from '../CarAverageRating/CarAverageRating';
 import RatingSection from '../RatingSection/RatingSection';
@@ -13,6 +12,7 @@ function CarDetails(props) {
     
     useEffect(() => {
         props.getCarRatings(car.id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.car]);
 
     const car = props.car
