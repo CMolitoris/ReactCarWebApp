@@ -87,10 +87,10 @@ const PostCar = (props) => {
 
 
     return ( 
-        <div className='container mx-auto my-auto overflow-hidden shadow' id="product-panel">
+        <div className='container mx-auto my-auto overflow-hidden shadow' id="seller-panel">
             <div className = "row">
-                <div className="col-md-3 side-panel side-panel-height">
-                    <div className='row h1 mt-5 justify-content-center side-panel-title'>Listed Cars</div>
+                <div className="col-md-2 side-panel side-panel-height">
+                    <div className='row details-font mt-5 justify-content-center side-panel-title'>Listed Cars</div>
                     <div className='row justify-content-center'>
                         {/* <p className = "mt-3 h3" >
                             {imageResponseData && <Image className="postCarImage" cloudName="cmolitoris" publicId={imageResponseData} />}
@@ -100,14 +100,14 @@ const PostCar = (props) => {
                         </p> */}
                         {carData.map((element, i) => {
                             return (
-                                <Card className="shadow m-1" style={{ height: '14rem', width: '12rem' }}>
-                                    <Card.Img variant="top" src={element.imageResponseData} />
-                                    <Card.Body>
+                                <Card className="shadow m-1 p-3" style={{ height: '14rem', width: '12rem' }} id='card'>
+                                    <Card.Img variant="top" src={element.imageResponseData} className='shadow' id='card'/>
+                                    <Card.Body >
                                     <Card.Title>{element.car.make} {element.car.model}</Card.Title>
-                                    <Card.Text>
-                                        
-                                    </Card.Text>
+                                        <hr />
+                                    <Card.Text >
                                         <Button id="form-button-style" variant="primary">Delete</Button>
+                                    </Card.Text>
                                     </Card.Body>
                                 </Card>
                             )
@@ -116,14 +116,14 @@ const PostCar = (props) => {
                 </div>
         
            
-            <div className="col-lg-8 p-4" align ="center" >
-                <h2>Post a New Listing!</h2>
-                {imageFile && <img className="postCarImage" src={URL.createObjectURL(imageFile)}></img>}
+            <div className="col-lg-8 p-4 mx-auto" >
+                <h2 className='post-title-font mt-4 mb-4'>Post a New Listing!</h2>
+                {imageFile && <img className="postCarImage shadow" id='card' src={URL.createObjectURL(imageFile)}></img>}
                 <form onSubmit={handleSubmit} className='put'>
                     <Row className='mb-3'>
                         <Form.Group as={Col} controlID='file'>
                                 <Form.Label>Photo:</Form.Label>
-                                <Form.Control className='form-control shadow m-1' id='input-style-left' name='file' type='file' onChange={fileSelecterHandler} />
+                                <Form.Control className='form-control shadow m-1' name='file' type='file' onChange={fileSelecterHandler} />
                         </Form.Group>
                     </Row>
                     <Row className='mb-3'>
@@ -158,7 +158,7 @@ const PostCar = (props) => {
                                 <Form.Control className='form-control shadow m-1' id='input-style-middle' name='description' placeholder="Description..." onChange={handleChange} />
                         </Form.Group>
                     </Row>
-                    <Button variant="secondary" className='shadow mt-4 m-1' id='submit-button' type="submit"  >
+                    <Button variant="secondary" className='shadow mt-4 m-1' id='form-button-style' type="submit"  >
                         Submit
                     </Button>
                 </form>
