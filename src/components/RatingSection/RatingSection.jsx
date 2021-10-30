@@ -20,13 +20,13 @@ function RatingSection(props) {
                                 <RatingForm 
                                     postRating={props.postRating} 
                                     carID={props.carID} 
-                                    username={props.username} 
+                                    username={props.user ? props.user.username : null} 
                                 />
                             }
                             <Card>
                                 <Reviews 
                                     ratings={props.ratings} 
-                                    username={props.username} 
+                                    username={props.user ? props.user.username : null} 
                                     hasReviews={props.ratings.length > 0}
                                 />
                             </Card>
