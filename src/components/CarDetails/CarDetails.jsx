@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Badge } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import CarAverageRating from '../CarAverageRating/CarAverageRating';
 import RatingSection from '../RatingSection/RatingSection';
