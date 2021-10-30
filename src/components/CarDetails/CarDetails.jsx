@@ -51,10 +51,10 @@ function CarDetails(props) {
                             <CarAverageRating ratings={props.ratings} />
                             <hr />
                             <Card.Text>
-                                {car.description}
+                                Type: {car.type} | Make: {car.make} | Model: {car.model}
                             </Card.Text>
                             <Card.Text>
-                                Type: {car.type} | Make: {car.make} | Model: {car.model}
+                                {car.description}
                             </Card.Text>
                             <Card.Text>
                                 Mileage: {car.mileage}
