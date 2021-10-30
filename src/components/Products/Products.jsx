@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import {Row, Col } from 'react-bootstrap';
+import {Row, Col, FormCheck, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Products.css'
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
@@ -9,7 +9,12 @@ import AddToCartButton from '../AddToCartButton/AddToCartButton';
 const Products = (props) => {
     
     const [SearchTerm, setSearchTerm] = useState("")
+    const [checked, setChecked] = useState(false, "");
 
+    const setSearch = (bool, make) => {
+        setChecked(bool, make)
+        setSearchTerm(make)
+    }
 
     return ( 
         <div className="container mx-auto my-auto overflow-auto shadow" id='product-panel'>
@@ -28,6 +33,22 @@ const Products = (props) => {
                                 onChange={(event) =>{setSearchTerm(event.target.value)}}
                             />
                         </Col>
+                    </Row>
+                    <Row>
+                        <div align = "center">
+                        <p className = "makeTitle">Filter by Make</p>
+                            {console.log(props.carModels)}
+                        {props.carModels.map(car => {
+                            return <FormCheck 
+                            onChange = {() => {setSearch(true, car)}}
+                            label = {car}
+                            value = {car}
+                            type = "checkbox"
+                            className = "filterByMake"
+                            />
+                        })}
+                        <Button onClick = {() => {setSearch(false, "")}}>Reset</Button>
+                        </div>
                     </Row>
                 </Col>
                 <Col>

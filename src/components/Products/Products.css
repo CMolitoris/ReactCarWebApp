@@ -12,6 +12,18 @@
     border-radius: 1rem;
 }
 
+.filterByMake {
+  width: 5% !important;
+  margin-right: 4rem;
+  color: white;
+}
+
+.makeTitle {
+  margin-top: 2rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
 .side-panel{
     background-color: #C21E1E;
     min-height: 40rem;
