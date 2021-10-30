@@ -79,6 +79,7 @@ function CarDetails(props) {
                         getCarRatings={props.getCarRatings} 
                         ratings={props.ratings}
                         user={props.user}
+                        hasReviews={props.ratings.length > 0}
                         />
                 </div>
             </div>

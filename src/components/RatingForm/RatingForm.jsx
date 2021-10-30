@@ -43,7 +43,9 @@ const RatingForm = (props) => {
 
     return ( 
         <Row className="g-2 mb-5">
-            <h5 className="text-start p-2">Leave a review!</h5>
+            <h5 className="text-start p-2">
+                {props.hasReviews ? "Leave a review!": "Be the first to leave a review!"}
+            </h5>
             <Form 
                 className="d-flex" 
                 noValidate
