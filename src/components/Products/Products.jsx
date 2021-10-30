@@ -45,6 +45,7 @@ const Products = (props) => {
                             {
                                 return value
                             }
+                            return null
                         })
                         .map((car) => (
                                 <Card>
