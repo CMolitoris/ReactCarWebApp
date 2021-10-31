@@ -85,10 +85,10 @@ class App extends Component {
       this.setState({
         loggedUser: response.data
       })
-      if (this.state.loggedUser.streetAddress == null || this.state.loggedUser.city == null || this.state.loggedUser.state == null){
-        //Redirect user to add address details page
-        window.location = "/account"
-      }
+      // if (this.state.loggedUser.streetAddress == null || this.state.loggedUser.city == null || this.state.loggedUser.state == null){
+      //   //Redirect user to add address details page
+      //   window.location = "/account"
+      // }
       }catch(err) {
         console.log("Error in getting user details", err)
       }

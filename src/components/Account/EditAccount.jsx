@@ -6,10 +6,10 @@ import './EditAccount.css'
 const EditAccount = (props) => {
 
     const [accountValues, setAccountValues] = useState({
-        UserName: "",
+        UserName: props.user.username,
         FirstName: "",
         LastName: "",
-        Email: "",
+        Email: props.user.email,
         StreetAddress: "",
         City: "",
         State: "",
@@ -17,7 +17,7 @@ const EditAccount = (props) => {
 
     const handleChange = (event) => {
         event.persist();
-        console.log(accountValues)
+        console.log(props.user)
         setAccountValues(prevstate => ({
             ...prevstate,
             [event.target.name]: event.target.value,
