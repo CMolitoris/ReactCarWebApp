@@ -12,6 +12,7 @@ import Products from './components/Products/Products';
 import CarDetails from './components/CarDetails/CarDetails';
 import Seller from './components/Seller/Seller';
 import Cart from './components/Cart/Cart';
+import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 
 class App extends Component {
@@ -24,7 +25,8 @@ class App extends Component {
     location: null,
     ratings: [],
     sellerFlag: true,
-    carModels: []
+    carModels: [],
+    carData: []
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -125,7 +127,7 @@ class App extends Component {
       this.setState({
         carModels: carModels.data,
         cars: cars
-    });
+      });
     }
 
     //GET LAST CAR TO USE AS LAST INDEX
@@ -164,15 +166,9 @@ class App extends Component {
             CarId: carId,
             Quantity: 1
         });
-
-        console.log(imageResponseData);
-        this.postCarPhoto({
-            UserId: this.state.loggedUser.id,
-            imageResponseData: imageResponseData,
-            CarId: carId
-        });
-     }
+      }
     }
+
 
     addToSellerConnection = async (car) => {
       try {
@@ -286,9 +282,9 @@ class App extends Component {
           {/* Cart Page */}
           <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart} user = {this.state.loggedUser}/>} />
           {/* Seller Page logged in*/}
-          <Route path = "/seller" render={props => <Seller {...props} sellerFlag={this.state.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
+          <Route path = "/seller" render={props => <Seller {...props} getNextCarId={this.getNextCarId} sellerFlag={this.state.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>} />
           {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props }updateDetails = {this.editUser} user = {this.state.loggedUser}/>} />
+          <Route path = "/account" render = {props => <EditAccount {...props } updateDetails = {this.editUser} user = {this.state.loggedUser}/>} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>

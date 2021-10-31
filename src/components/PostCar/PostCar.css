@@ -6,7 +6,12 @@
     height: 70%;
     min-height: 40rem;
     max-height: 60rem;
-  }
+}
+
+.vert-scroll {
+    
+    overflow-y: scroll;
+}
 
 
 .postCarImage {

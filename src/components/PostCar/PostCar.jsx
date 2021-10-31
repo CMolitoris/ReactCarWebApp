@@ -7,6 +7,7 @@ import axios from 'axios';
 import './PostCar.css';
 import { Image } from 'cloudinary-react';
 import Card from 'react-bootstrap/Card'
+import './PostCar.css';
 
 const PostCar = (props) => {
     
@@ -37,7 +38,7 @@ const PostCar = (props) => {
 
     useEffect(() => {
         getAllCarPhotos();
-      },[]);
+    },[]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -47,15 +48,29 @@ const PostCar = (props) => {
         car.year = parseInt(car.year);
         car.price = parseFloat(car.price);
 
+        try {
         //-- Upload image to third-party API and store information in server --//
         let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
-        console.log(response);
-
+  
          //-- Post car/object data to server --//
-         props.postCar(car,props.sellerFlag,response.data.url);
-         getAllCarPhotos();
-         window.location.reload();
+         let carId = await props.getNextCarId();
+         await axios.post(`https://localhost:44394/api/sellerphotos/`,{
+                UserId: props.user.id,
+                imageResponseData: response.data.url,
+                CarId: carId
+            });
+        props.postCar(car,props.sellerFlag,response.data.url);
+        } catch (e) {
+            console.log(e);
+        } 
+        getAllCarPhotos();
+       
+        
     }
+
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+      }
 
     const fileSelecterHandler = (event) => {
         console.log(event.target.files[0]);
@@ -74,44 +89,54 @@ const PostCar = (props) => {
     // }
 
     const getAllCarPhotos = async () => {
+        console.log(carData);  
         let userId = props.user.id;
         let response = await axios.get(`https://localhost:44394/api/sellerphotos/${userId}`);
         console.log(response.data);
-        setCarData(response.data);   
-        console.log(carData);    
+        setCarData(response.data); 
+        
     }
 
-    const deleteCar = async () => {
-        
+    const handleRemoveCar = async (carId) => {
+        try {
+            await axios.delete(`https://localhost:44394/api/car/delete/${carId}`);
+            getAllCarPhotos();
+        } catch(e) {
+            console.log("Error in handleRemove: " + e);
+        }
+
     }
 
 
     return ( 
-        <div className='container mx-auto my-auto overflow-hidden shadow' id="seller-panel">
-            <div className = "row">
-                <div className="col-md-2 side-panel side-panel-height">
-                    <div className='row details-font mt-5 justify-content-center side-panel-title'>Listed Cars</div>
-                    <div className='row justify-content-center'>
+        <div className='container mx-auto my-auto overflow-hidden shadow ' id="seller-panel">
+            <div className = "row ">
+                
+                <div className="col-md-2 side-panel side-panel-height overflow-auto">
+                    <div className='row details-font mt-5 justify-content-center side-panel-title '>Listed Cars</div>
+                    <div className='row justify-content-center '>
                         {/* <p className = "mt-3 h3" >
                             {imageResponseData && <Image className="postCarImage" cloudName="cmolitoris" publicId={imageResponseData} />}
                             {console.log(carData)}
                             {carData[0].car.make}
                             
                         </p> */}
+                        <React.Fragment>
                         {carData.map((element, i) => {
                             return (
-                                <Card className="shadow m-1 p-3" style={{ height: '14rem', width: '12rem' }} id='card'>
+                                <Card key={i} className="shadow m-1 p-3" style={{ height: '15rem', width: '11rem' }} id='card'>
                                     <Card.Img variant="top" src={element.imageResponseData} className='shadow' id='card'/>
                                     <Card.Body >
                                     <Card.Title>{element.car.make} {element.car.model}</Card.Title>
                                         <hr />
                                     <Card.Text >
-                                        <Button id="form-button-style" variant="primary">Delete</Button>
+                                        <Button onClick={() => handleRemoveCar(element.car.id)} id="form-button-style" variant="primary">Delete</Button>
                                     </Card.Text>
                                     </Card.Body>
                                 </Card>
                             )
                         })}
+                        </React.Fragment>
                     </div>
                 </div>
         
