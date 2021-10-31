@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import {Row, Col, FormCheck, Button } from 'react-bootstrap';
+import {Row, Col, Button, FloatingLabel, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Products.css'
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
 
 const Products = (props) => {
-    
     const [SearchTerm, setSearchTerm] = useState("")
-    const [checked, setChecked] = useState(false, "");
 
-    const setSearch = (bool, make) => {
-        setChecked(bool, make)
-        setSearchTerm(make)
-    }
 
     return ( 
         <div className="container mx-auto my-auto overflow-auto shadow" id='product-panel'>
@@ -36,18 +30,24 @@ const Products = (props) => {
                     </Row>
                     <Row>
                         <div align = "center">
-                        <p className = "makeTitle">Filter by Make</p>
-                            {console.log(props.carModels)}
-                        {props.carModels.map(car => {
-                            return <FormCheck 
-                            onChange = {() => {setSearch(true, car)}}
-                            label = {car}
-                            value = {car}
-                            type = "checkbox"
-                            className = "filterByMake"
-                            />
-                        })}
-                        <Button onClick = {() => {setSearch(false, "")}}>Reset</Button>
+                        <Form>
+                            <FloatingLabel className = "makeTitle">Filter by Make</FloatingLabel>
+                            <Form.Control 
+                                as='select' 
+                                aria-label='Make Filter' 
+                                onChange = {(event) => {setSearchTerm(event.target.value)}}>
+                                    <option defaultValue value = "">
+                                        Please Select a Make...
+                                    </option>
+                                {props.carModels.map(car => {
+                                    return <option  
+                                    value = {car} >
+                                        {car}
+                                    </option>
+
+                            })}</Form.Control>
+                        </Form>
+                        <Button id='form-button-style' className='mt-3 details-font' onClick = {() => {setSearchTerm("")}}>Reset</Button>
                         </div>
                     </Row>
                 </Col>
@@ -69,9 +69,9 @@ const Products = (props) => {
                             return null
                         })
                         .map((car) => (
-                                <Card key={car.id.toString()}>
+                                <Card key={car.id.toString()} id='card'>
                                     <Link to="/car-details" onClick={() => props.getSingleCar(car)}>
-                                        <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg"/>
+                                        <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg" className= 'shadow' id='card'/>
                                     </Link>
                                     <Card.Body>
                                         <Card.Title>{car.year} {car.make} {car.model}</Card.Title>
