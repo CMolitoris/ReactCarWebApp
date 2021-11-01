@@ -36,7 +36,10 @@ const NavBar = (props) => {
                         </li>   
                         <li className='nav-item'>
                             <Link to='/cart' className='nav-link'><i className="bi bi-cart4">
-                                <Badge id='form-button-style'>{props.carsInCart}</Badge>
+                                {props.carsInCart > 0
+                                    ? <Badge id='form-button-style'>{props.carsInCart}</Badge>
+                                    : null
+                                }
                                 </i> | Cart
                             </Link>
                         </li>
