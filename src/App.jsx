@@ -272,6 +272,7 @@ class App extends Component {
 
  
   render() {
+    const user = this.state.loggedUser
     return (
       <div className="App">
         <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} 
@@ -289,11 +290,26 @@ class App extends Component {
           {/* Search Page */}
           {/* <Route path = "/search"/> */}
           {/* Cart Page */}
-          <Route path = "/cart" render={props => <Cart {...props} removeCarFromCart = {this.deleteFromCart} user = {this.state.loggedUser}/>} />
+          <Route path = "/cart" render={props => {
+            if (!user){
+              return <Redirect to='/'/>;
+            } else {
+              return <Cart {...props} removeCarFromCart = {this.deleteFromCart} user = {this.state.loggedUser}/>;
+            }}}/>
           {/* Seller Page logged in*/}
-          <Route path = "/seller" render={props => <Seller {...props} getNextCarId={this.getNextCarId} sellerFlag={this.state.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>}/>
+          <Route path = "/seller" render={props => {
+            if (!user){
+              return <Redirect to='/'/>;
+            } else {
+              return <Seller {...props} getNextCarId={this.getNextCarId} sellerFlag={this.state.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>
+            }}}/>
           {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props } userInfo = {this.state.userInfo} updateDetails = {this.editUser} user = {this.state.loggedUser}/>} />
+          <Route path = "/account" render = {props => {
+            if (!user){
+              return <Redirect to='/'/>;
+            } else {
+              return <EditAccount {...props } userInfo = {this.state.userInfo} updateDetails = {this.editUser} user = {this.state.loggedUser}/>
+          }}}/>
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>
