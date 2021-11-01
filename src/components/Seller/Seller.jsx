@@ -5,9 +5,7 @@ import PostCar from '../PostCar/PostCar';
 class Seller extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            isSeller: null
-         }
+        this.state = { }
     }
 
     // id='main-panel'

@@ -52,12 +52,16 @@ const PostCar = (props) => {
         try {
         //-- Upload image to third-party API and store information in server --//
         let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
-        car.image = response.data.url
+        car.image = response.data.url;
+
         //-- Post car/object data to server --//
         // props.postCar(car,props.sellerFlag,response.data.url);
         await axios.post('https://localhost:44394/api/car/', car);
         let responseCarId = await axios.get('https://localhost:44394/api/car/cars/last');
         let carId = responseCarId.data;
+        console.log(carId);
+        console.log(props.user.id);
+        console.log(response.data.url);
         await axios.post(`https://localhost:44394/api/sellerphotos/`,{
                 UserId: props.user.id,
                 imageResponseData: response.data.url,
@@ -66,8 +70,8 @@ const PostCar = (props) => {
         } catch (e) {
             console.log(e);
         } finally {
-            getAllCarPhotos();
-        }  
+            getAllCarPhotos(); 
+        }
     }   
 
     const fileSelecterHandler = (event) => {
@@ -78,7 +82,6 @@ const PostCar = (props) => {
         setNewFormData(formData);
         setImageFile(event.target.files[0]);
     }
-
 
     const getAllCarPhotos = async () => {
         console.log(carData);  
