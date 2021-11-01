@@ -19,7 +19,7 @@ const PostCar = (props) => {
         type: '',
         description: '',
         mileage: '',
-        // image: ''
+        image: ''
     });
 
     const [newFormData, setNewFormData] = useState("");
@@ -52,11 +52,7 @@ const PostCar = (props) => {
         try {
         //-- Upload image to third-party API and store information in server --//
         let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
-        // car.image = response.data.url
-        // setCar(prevstate => ({
-        //     ...prevstate,
-        //     image: response.data.url
-        // }));
+        car.image = response.data.url
          //-- Post car/object data to server --//
         let carId = await props.getNextCarId();
          await axios.post(`https://localhost:44394/api/sellerphotos/`,{
