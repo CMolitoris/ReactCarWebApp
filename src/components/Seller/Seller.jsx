@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Container, Row, Col} from 'react-bootstrap';
-import PhotoUpload from '../PhotoUpload/PhotoUpload';
 import PostCar from '../PostCar/PostCar';
 
 
