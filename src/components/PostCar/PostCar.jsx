@@ -60,6 +60,7 @@ const PostCar = (props) => {
                 imageResponseData: response.data.url,
                 CarId: carId
             });
+
         props.postCar(car,props.sellerFlag,response.data.url);
         } catch (e) {
             console.log(e);
@@ -68,10 +69,6 @@ const PostCar = (props) => {
         
         
     }   
-
-    const sleep = (milliseconds) => {
-        return new Promise(resolve => setTimeout(resolve, milliseconds))
-      }
 
     const fileSelecterHandler = (event) => {
         console.log(event.target.files[0]);
@@ -95,7 +92,6 @@ const PostCar = (props) => {
         let response = await axios.get(`https://localhost:44394/api/sellerphotos/${userId}`);
         console.log(response.data);
         setCarData(response.data); 
-        
     }
 
     const handleRemoveCar = async (carId) => {
