@@ -82,7 +82,7 @@ class Cart extends Component{
                         </tbody>
                     </Table>
                 </div>
-                <div className="col-md-3 p-5 checkout-background ms-auto shopping-cart-text-color shadow" align = "center">
+                <div className="col-md-3 p-5 checkout-background ms-auto shopping-cart-text-color shadow overflow-auto" align = "center">
                     <h2 className='shopping-cart-title mt-3'>Checkout</h2>
                     <br />
                     <p>Total | ${(this.state.cartTotal).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</p>

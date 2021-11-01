@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import {Row, Col, Button, FloatingLabel, Form } from 'react-bootstrap';
+import {Row, Col, Button, Form, FloatingLabel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Products.css'
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
@@ -9,6 +9,9 @@ import AddToCartButton from '../AddToCartButton/AddToCartButton';
 const Products = (props) => {
     const [SearchTerm, setSearchTerm] = useState("")
 
+    const setSearch = (make) => {
+        setSearchTerm(make)
+    }
 
     return ( 
         <div className="container mx-auto my-auto overflow-auto shadow" id='product-panel'>
@@ -29,9 +32,9 @@ const Products = (props) => {
                         </Col>
                     </Row>
                     <Row>
-                        <div align = "center">
+                        <div align = "center" className = "p-4">
                         <Form>
-                            <FloatingLabel className = "makeTitle">Filter by Make</FloatingLabel>
+                            <FloatingLabel className = "make-title">Filter by Make</FloatingLabel>
                             <Form.Control 
                                 as='select' 
                                 aria-label='Make Filter' 
@@ -44,7 +47,6 @@ const Products = (props) => {
                                     value = {car} >
                                         {car}
                                     </option>
-
                             })}</Form.Control>
                         </Form>
                         <Button id='form-button-style' className='mt-3 details-font' onClick = {() => {setSearchTerm("")}}>Reset</Button>
@@ -71,7 +73,7 @@ const Products = (props) => {
                         .map((car) => (
                                 <Card key={car.id.toString()} id='card'>
                                     <Link to="/car-details" onClick={() => props.getSingleCar(car)}>
-                                        <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg" className= 'shadow' id='card'/>
+                                        <Card.Img variant="top" src={car.image} className= 'shadow' id='card'/>
                                     </Link>
                                     <Card.Body>
                                         <Card.Title>{car.year} {car.make} {car.model}</Card.Title>

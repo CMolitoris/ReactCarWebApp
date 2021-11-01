@@ -21,10 +21,10 @@ function CarDetails(props) {
     return ( 
         <div className="container mx-auto my-auto overflow-auto shadow" id='product-panel'>
             <div className='row'>
-                <div className="col-sm-3 bg-danger shadow">
+                <div className="col-sm-3 side-panel shadow">
                     {/*//? RELATED CARS SIDE-PANEL */}
                     <div className="col-10 mx-auto">
-                        <h4>Related Cars</h4>
+                        <p className='mt-3  make-title'>Related Cars</p>
                         {/*//? Filters cars by Type and excludes the current car from the list */}
                         <RelatedCars 
                             cars={props.cars} 
@@ -39,7 +39,7 @@ function CarDetails(props) {
                 <div className='col card' id='card'>
                     <Card id='card'>
                         <div className="col-md-6 mx-auto mt-3">
-                            <Card.Img src="staticImages\Ford_Shelby.jpg" className='card-image shadow' fluid />
+                            <Card.Img src={car.image} className='card-image shadow' id='card' fluid />
                         </div>
                         <Card.Body>
                             <Card.Title className="fs-4 fw-bold" >
