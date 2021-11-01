@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import {Row, Col, Button } from 'react-bootstrap';
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownToggle from 'react-bootstrap/DropdownToggle'
-import DropdownMenu from 'react-bootstrap/DropdownMenu'
-import DropdownItem from 'react-bootstrap/DropdownItem'
+import {Row, Col, Button, Form, FloatingLabel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Products.css'
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
@@ -37,17 +33,23 @@ const Products = (props) => {
                     </Row>
                     <Row>
                         <div align = "center" className = "p-4">
-                        <Dropdown>
-                            <DropdownToggle>
-                                Filter by Make
-                            </DropdownToggle>
-                            <DropdownMenu>
+                        <Form>
+                            <FloatingLabel className = "makeTitle">Filter by Make</FloatingLabel>
+                            <Form.Control 
+                                as='select' 
+                                aria-label='Make Filter' 
+                                onChange = {(event) => {setSearchTerm(event.target.value)}}>
+                                    <option defaultValue value = "">
+                                        Please Select a Make...
+                                    </option>
                                 {props.carModels.map(car => {
-                                    return <DropdownItem onClick = {() => setSearch(car)} value = {car}>{car}</DropdownItem>
-                                })}
-                            </DropdownMenu>
-                        </Dropdown>
-                        <Button className = "resetButton"onClick = {() => setSearch("")}>Reset search</Button>
+                                    return <option  
+                                    value = {car} >
+                                        {car}
+                                    </option>
+                            })}</Form.Control>
+                        </Form>
+                        <Button id='form-button-style' className='mt-3 details-font' onClick = {() => {setSearchTerm("")}}>Reset</Button>
                         </div>
                     </Row>
                 </Col>
