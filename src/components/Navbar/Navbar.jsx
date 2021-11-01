@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Badge } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 
 const NavBar = (props) => {
+
+
     return ( 
         <nav>
             <ul className='nav justify-content-center offset-lg-4'>
@@ -32,7 +35,10 @@ const NavBar = (props) => {
                             <Link to='/seller' className="nav-link"><i className="bi bi-currency-dollar"></i> | Sellers</Link>
                         </li>   
                         <li className='nav-item'>
-                            <Link to='/cart' className='nav-link'><i className="bi bi-cart4"></i> | Cart</Link>
+                            <Link to='/cart' className='nav-link'><i className="bi bi-cart4">
+                                <Badge id='form-button-style'>{props.carsInCart}</Badge>
+                                </i> | Cart
+                            </Link>
                         </li>
                         <li className='nav-item'>
                             <a onClick = {props.logoutUser} className='nav-link'><i className="bi bi-door-open"></i> | Log Out</a>
