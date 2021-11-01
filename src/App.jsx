@@ -25,7 +25,8 @@ class App extends Component {
     ratings: [],
     sellerFlag: true,
     carModels: [],
-    carData: []
+    carData: [],
+    carsInCart: 0,
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -190,7 +191,9 @@ class App extends Component {
 
     addToCart = async (car) => {
       try {
+        let cartTotal = this.state.carsInCart
         await axios.post('https://localhost:44394/api/shoppingcart/',car);
+        this.setState({carsInCart: cartTotal++})
       } catch (e) {
         console.log("Error from addShoppingCart: " + e);
       }
@@ -198,7 +201,9 @@ class App extends Component {
 
     deleteFromCart = async (carId) => {
       try {
+        let cartTotal = this.state.carsInCart
         await axios.delete(`https://localhost:44394/api/shoppingcart/${this.state.loggedUser.id}/${carId}`);
+        this.setState({carsInCart: cartTotal-- })
       } catch (e) {
         console.log("Error in deleteFromCart: " + e); 
       }
