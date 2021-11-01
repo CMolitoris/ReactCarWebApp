@@ -18,7 +18,7 @@ function RelatedCars(props) {
                     {/*//? Related Cars - Link to car-details */}
                     <div className=" mt-4">
                         <Link to="/car-details" onClick={() => props.getSingleCar(related)}>
-                            <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg" className='card-image shadow' id='card'/>
+                            <Card.Img variant="top" src={related.image} className='card-image shadow' id='card'/>
                         </Link>
                     </div>
                     <Card.Body>

@@ -73,7 +73,7 @@ const Products = (props) => {
                         .map((car) => (
                                 <Card key={car.id.toString()} id='card'>
                                     <Link to="/car-details" onClick={() => props.getSingleCar(car)}>
-                                        <Card.Img variant="top" src="staticImages\Ford_Shelby.jpg" className= 'shadow' id='card'/>
+                                        <Card.Img variant="top" src={car.image} className= 'shadow' id='card'/>
                                     </Link>
                                     <Card.Body>
                                         <Card.Title>{car.year} {car.make} {car.model}</Card.Title>

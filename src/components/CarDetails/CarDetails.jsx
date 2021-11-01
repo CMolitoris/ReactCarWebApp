@@ -39,7 +39,7 @@ function CarDetails(props) {
                 <div className='col card' id='card'>
                     <Card id='card'>
                         <div className="col-md-6 mx-auto mt-3">
-                            <Card.Img src="staticImages\Ford_Shelby.jpg" className='card-image shadow' id='card' fluid />
+                            <Card.Img src={car.image} className='card-image shadow' id='card' fluid />
                         </div>
                         <Card.Body>
                             <Card.Title className="fs-4 fw-bold" >
