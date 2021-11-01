@@ -27,7 +27,7 @@ class App extends Component {
     carModels: [],
     carData: [],
     carsInCart: 0,
-    userInfo: '',
+    userInfo: ''
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -47,7 +47,7 @@ class App extends Component {
         this.setState({
           loggedUser: user
         });
-        return user.id
+        return user.id;
       } catch(err){
           console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
         }

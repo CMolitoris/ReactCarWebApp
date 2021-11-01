@@ -117,7 +117,7 @@ const PostCar = (props) => {
                         <React.Fragment>
                         {carData.map((element, i) => {
                             return (
-                                <Card key={i} className="shadow m-1 mt-3 p-3" style={{ height: '17em', width: '16rem' }} id='card'>
+                                <Card key={i} className="shadow m-1 mt-3 p-3" style={{ height: '16em', width: '11rem' }} id='card'>
                                     <Card.Img variant="top" src={element.imageResponseData} className='shadow' id='card'/>
                                     <Card.Body >
                                     <Card.Title>{element.car.make} {element.car.model}</Card.Title>
