@@ -94,6 +94,7 @@ const Products = (props) => {
                                 </Card>
                             ))}
                     </Row>
+                    <Row className='my-5'></Row>
                 </Col>
             </div>
         </div>
