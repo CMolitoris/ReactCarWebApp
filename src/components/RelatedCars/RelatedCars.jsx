@@ -13,12 +13,18 @@ function RelatedCars(props) {
                 value => value.type === props.car.type 
                 && value.id !== props.car.id
             )
-            .map((related)=>(
+            .map((related)=> (
                 <Card key={`relatedCar${related.id}`} className="mb-4 p-2 shadow" id='card'>
                     {/*//? Related Cars - Link to car-details */}
-                    <div className=" mt-4">
+                    <div className="mt-4">
                         <Link to="/car-details" onClick={() => props.getSingleCar(related)}>
-                            <Card.Img variant="top" src={related.image} className='card-image shadow' id='card'/>
+                            <Card.Img 
+                                variant="top" 
+                                src={related.image} 
+                                className='card-image shadow' 
+                                id='card'
+                                alt={`${related.year} ${related.make} ${related.model}`}
+                            />
                         </Link>
                     </div>
                     <Card.Body>
@@ -39,7 +45,7 @@ function RelatedCars(props) {
                 </Card>
             ))}
         </>
-     );
+    );
 }
 
 export default RelatedCars;

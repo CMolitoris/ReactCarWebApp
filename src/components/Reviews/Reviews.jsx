@@ -14,9 +14,10 @@ function Reviews (props) {
                 </h5>
                 <ListGroup>
                     {props.ratings.map((review) => {
-                        return   <ListGroupItem key={review.id.toString()}>
-                                    <Card border="light">
-                                        <Card.Header className="text-start p-2">
+                        return (   
+                            <ListGroupItem key={review.id.toString()}>
+                                <Card border="light">
+                                    <Card.Header className="text-start p-2">
                                         <div className="row row-cols-auto fs-5">
                                             <div className="col">
                                                 <i className="bi bi-person-circle p-2"></i>
@@ -26,19 +27,20 @@ function Reviews (props) {
                                                 <CustomerReviewRating ratingScore={review.ratingScore} />
                                             </div>
                                         </div>
-                                        </Card.Header>
-                                        <Card.Body>
-                                            <p className="d-flex justify-content-start">
-                                                {review.message}
-                                            </p>    
-                                        </Card.Body>
-                                    </Card>
-                                </ListGroupItem>
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <p className="d-flex justify-content-start">
+                                            {review.message}
+                                        </p>    
+                                    </Card.Body>
+                                </Card>
+                            </ListGroupItem>
+                        )
                     })}
                 </ListGroup>
             </div>
         </div>
-     );
+    );
 }
 
 export default Reviews;
