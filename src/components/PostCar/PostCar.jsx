@@ -52,8 +52,12 @@ const PostCar = (props) => {
         try {
         //-- Upload image to third-party API and store information in server --//
         let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
+<<<<<<< HEAD
         car.image = response.data.url;
 
+=======
+        car.image = response.data.url
+>>>>>>> db491a3fa52b9e4ca0267a41e33d9a203c653270
         //-- Post car/object data to server --//
         // props.postCar(car,props.sellerFlag,response.data.url);
         await axios.post('https://localhost:44394/api/car/', car);
@@ -107,7 +111,7 @@ const PostCar = (props) => {
                 
                 <div className="col-md-2 side-panel side-panel-height overflow-auto">
                     <div className='row details-font mt-5 justify-content-center side-panel-title '>Listed Cars</div>
-                    <div className='row justify-content-center '>
+                    <Row xs={1} className='justify-content-center '>
                         {/* <p className = "mt-3 h3" >
                             {imageResponseData && <Image className="postCarImage" cloudName="cmolitoris" publicId={imageResponseData} />}
                             {console.log(carData)}
@@ -117,7 +121,7 @@ const PostCar = (props) => {
                         <React.Fragment>
                         {carData.map((element, i) => {
                             return (
-                                <Card key={i} className="shadow m-1 p-3" style={{ height: '15rem', width: '11rem' }} id='card'>
+                                <Card key={i} className="shadow m-1 mt-3 p-3" style={{ height: '17em', width: '16rem' }} id='card'>
                                     <Card.Img variant="top" src={element.imageResponseData} className='shadow' id='card'/>
                                     <Card.Body >
                                     <Card.Title>{element.car.make} {element.car.model}</Card.Title>
@@ -130,7 +134,7 @@ const PostCar = (props) => {
                             )
                         })}
                         </React.Fragment>
-                    </div>
+                    </Row>
                 </div>
            
             <div className="col-lg-8 p-4 mx-auto" >

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Alert } from 'react-bootstrap';
 import './Cart.css'
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
@@ -10,6 +10,7 @@ class Cart extends Component{
         this.state = {
             cars: [],
             cartTotal: 0,
+            showSuccess: false,
         }
     }
 
@@ -63,6 +64,7 @@ class Cart extends Component{
         this.setState({
             cars: [],
             cartTotal: 0,
+            showSuccess: true,
         })
         return actions.order.capture();
       }
@@ -88,6 +90,12 @@ class Cart extends Component{
                             })}
                         </tbody>
                     </Table>
+                    <Alert variant="success" onClose={() => this.setState({showSuccess: false})} dismissible show = {this.state.showSuccess}>
+                        <Alert.Heading>Payment Approved!</Alert.Heading>
+                        <p>
+                          Congratulations, your order has successfully been placed!
+                        </p>
+                        </Alert>
                 </div>
                 <div className="col-md-3 p-5 checkout-background ms-auto shopping-cart-text-color shadow overflow-auto" align = "center">
                     <h2 className='shopping-cart-title mt-3'>Checkout</h2>

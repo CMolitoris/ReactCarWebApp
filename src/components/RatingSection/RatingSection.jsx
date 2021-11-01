@@ -8,7 +8,7 @@ import Reviews from '../Reviews/Reviews'
 function RatingSection(props) {
 
     return ( 
-        <div className = "ratingSection">
+        <div className="ratingSection">
             <Accordion>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>

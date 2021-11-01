@@ -14,10 +14,9 @@ function CarAverageRating(props) {
         ratings.forEach(rating => avg += rating.ratingScore)
         avg = Math.round(avg / ratings.length)
         for (let i = 0; i < 5; i++) {
-            if (i < avg){
+            if (i < avg) {
                 stars.push("bi bi-star-fill text-warning")
-            }
-            else {
+            } else {
                 stars.push("bi bi-star-fill text-dark")
             }
         }
@@ -25,18 +24,17 @@ function CarAverageRating(props) {
     }
 
 
+    //? Returns stars array and maps string to className for icon.
     return ( 
-          <Card.Text>
-            {   
-                //? Returns stars array and maps string to className for icon.
-                averageRating(props.ratings).map((star) =>{
+        <Card.Text>
+            {averageRating(props.ratings).map((star) => {
                     return <i key={`carAvgRating${key += 1}`} className={star}></i>
                 })
             }
             <br />
             ({props.ratings.length} reviews)
         </Card.Text>
-     );
+    );
 }
 
 export default CarAverageRating;

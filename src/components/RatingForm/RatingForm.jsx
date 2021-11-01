@@ -54,7 +54,7 @@ const RatingForm = (props) => {
             >
                 <Col md="auto">
                     <Form.Group controlId="ratingValidation">
-                        <FloatingLabel label="How was our service?">
+                        <FloatingLabel label="Rate the car">
                             <Form.Select
                                 type="select"
                                 aria-label='Select rating'
@@ -77,7 +77,7 @@ const RatingForm = (props) => {
                     <Form.Group controlId="messageValidation">
                         <FloatingLabel 
                             controlId="floatingInputGrid" 
-                            label="What did you like or dislike about our customer experience?">
+                            label="What did you like or dislike about the car?">
                             <FormControl 
                                 type="text"
                                 placeholder="Review"
@@ -91,11 +91,11 @@ const RatingForm = (props) => {
                     </Form.Group>
                 </Col>
                 <Button variant="primary" type='submit' size ="lg">
-                    Submit
+                    Submit Review
                 </Button>
             </Form>
         </Row>
-     );
+    );
 }
 
 export default RatingForm;
