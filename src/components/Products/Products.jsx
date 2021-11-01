@@ -11,7 +11,7 @@ const Products = (props) => {
 
     useEffect(() => {
         props.getAllCars()
-    })
+    },[])
 
     const setSearch = (make) => {
         setSearchTerm(make)
