@@ -19,6 +19,7 @@ const PostCar = (props) => {
         type: '',
         description: '',
         mileage: '',
+        // image: ''
     });
 
     const [newFormData, setNewFormData] = useState("");
@@ -42,18 +43,22 @@ const PostCar = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        
         //-- Update value types to correspond with database --//
         car.mileage = parseInt(car.mileage);
         car.year = parseInt(car.year);
         car.price = parseFloat(car.price);
-
+        
         try {
         //-- Upload image to third-party API and store information in server --//
         let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
-  
+        // car.image = response.data.url
+        // setCar(prevstate => ({
+        //     ...prevstate,
+        //     image: response.data.url
+        // }));
          //-- Post car/object data to server --//
-         let carId = await props.getNextCarId();
+        let carId = await props.getNextCarId();
          await axios.post(`https://localhost:44394/api/sellerphotos/`,{
                 UserId: props.user.id,
                 imageResponseData: response.data.url,
@@ -64,9 +69,9 @@ const PostCar = (props) => {
             console.log(e);
         } 
         getAllCarPhotos();
-       
         
-    }
+        
+    }   
 
     const sleep = (milliseconds) => {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -104,7 +109,6 @@ const PostCar = (props) => {
         } catch(e) {
             console.log("Error in handleRemove: " + e);
         }
-
     }
 
 
@@ -139,7 +143,6 @@ const PostCar = (props) => {
                         </React.Fragment>
                     </div>
                 </div>
-        
            
             <div className="col-lg-8 p-4 mx-auto" >
                 <h2 className='post-title-font mt-4 mb-4'>Post a New Listing!</h2>
