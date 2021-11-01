@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import {Row, Col, Button, Form, FloatingLabel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,10 @@ import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
 const Products = (props) => {
     const [SearchTerm, setSearchTerm] = useState("")
+
+    useEffect(() => {
+        props.getAllCars()
+    })
 
     const setSearch = (make) => {
         setSearchTerm(make)
