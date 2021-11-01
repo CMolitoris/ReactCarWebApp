@@ -55,7 +55,7 @@ class Cart extends Component{
             },
           ],
         });
-      }
+    }
     
       onApprove(data, actions) {
         this.state.cars.map(car => {
@@ -66,6 +66,7 @@ class Cart extends Component{
             cartTotal: 0,
             showSuccess: true,
         })
+        this.props.carsInCart = 0
         return actions.order.capture();
       }
 

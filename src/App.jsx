@@ -294,7 +294,7 @@ class App extends Component {
             if (!user){
               return <Redirect to='/'/>;
             } else {
-              return <Cart {...props} removeCarFromCart = {this.deleteFromCart} user = {this.state.loggedUser}/>;
+              return <Cart {...props} removeCarFromCart = {this.deleteFromCart} user = {this.state.loggedUser} carsInCart={this.state.carsInCart}/>;
             }}}/>
           {/* Seller Page logged in*/}
           <Route path = "/seller" render={props => {
