@@ -12,15 +12,9 @@
     border-radius: 1rem;
 }
 
-.filterByMake {
-  width: 5% !important;
-  margin-right: 4rem;
-  color: white;
-}
-
-.makeTitle {
+.make-title {
   margin-top: 2rem;
-  color: white;
+  color: #CBCACA;
   font-size: 1.5rem;
 }
 
@@ -29,7 +23,7 @@
     min-height: 40rem;
 }
 
-.resetButton {
+.reset-button {
   margin-top: 22rem;
 }
 

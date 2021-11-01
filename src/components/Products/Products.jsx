@@ -34,7 +34,7 @@ const Products = (props) => {
                     <Row>
                         <div align = "center" className = "p-4">
                         <Form>
-                            <FloatingLabel className = "makeTitle">Filter by Make</FloatingLabel>
+                            <FloatingLabel className = "make-title">Filter by Make</FloatingLabel>
                             <Form.Control 
                                 as='select' 
                                 aria-label='Make Filter' 

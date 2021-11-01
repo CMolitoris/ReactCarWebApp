@@ -8,3 +8,8 @@
 .card-image{
     border-radius: 2rem;
 }
+.make-title {
+    margin-top: 2rem;
+    color: #CBCACA;
+    font-size: 1.5rem;
+  }
