@@ -158,14 +158,14 @@ class App extends Component {
         console.log("Error in postCar: " + err);
       });
 
-      if(sellerFlag === true){
-        let carId = await this.getNextCarId();
-        this.addToSellerConnection({
-            UserId: this.state.loggedUser.id,
-            CarId: carId,
-            Quantity: 1
-        });
-      }
+      // if(sellerFlag === true){
+      //   let carId = await this.getNextCarId();
+      //   this.addToSellerConnection({
+      //       UserId: this.state.loggedUser.id,
+      //       CarId: carId,
+      //       Quantity: 1
+      //   });
+      // }
     }
 
 
