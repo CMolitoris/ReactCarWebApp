@@ -52,12 +52,8 @@ const PostCar = (props) => {
         try {
         //-- Upload image to third-party API and store information in server --//
         let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
-<<<<<<< HEAD
         car.image = response.data.url;
 
-=======
-        car.image = response.data.url
->>>>>>> db491a3fa52b9e4ca0267a41e33d9a203c653270
         //-- Post car/object data to server --//
         // props.postCar(car,props.sellerFlag,response.data.url);
         await axios.post('https://localhost:44394/api/car/', car);
