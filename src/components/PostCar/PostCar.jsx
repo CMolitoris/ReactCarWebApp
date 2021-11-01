@@ -52,22 +52,28 @@ const PostCar = (props) => {
         try {
         //-- Upload image to third-party API and store information in server --//
         let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
-        car.image = response.data.url
-         //-- Post car/object data to server --//
-        let carId = await props.getNextCarId();
-         await axios.post(`https://localhost:44394/api/sellerphotos/`,{
+        // car.image = response.data.url
+        // setCar(prevstate => ({
+        //     ...prevstate,
+        //     image: response.data.url
+        // }));
+
+        //-- Post car/object data to server --//
+        // props.postCar(car,props.sellerFlag,response.data.url);
+        await axios.post('https://localhost:44394/api/car/', car);
+        let responseCarId = await axios.get('https://localhost:44394/api/car/cars/last');
+        let carId = responseCarId.data;
+        await axios.post(`https://localhost:44394/api/sellerphotos/`,{
                 UserId: props.user.id,
                 imageResponseData: response.data.url,
                 CarId: carId
-            });
-
-        props.postCar(car,props.sellerFlag,response.data.url);
+        });
         } catch (e) {
             console.log(e);
-        } 
-        getAllCarPhotos();
-        
-        
+        } finally {
+            getAllCarPhotos(); 
+        }
+           
     }   
 
     const fileSelecterHandler = (event) => {
@@ -79,12 +85,6 @@ const PostCar = (props) => {
         setImageFile(event.target.files[0]);
     }
 
-    // const fileUploadHandler = async () => {
-    //     let response = await axios.post(`https://api.cloudinary.com/v1_1/cmolitoris/image/upload`,newFormData)
-    //     console.log(response);
-    //     setImageResponseData(response.data.url);
-    //     console.log(imageResponseData);  
-    // }
 
     const getAllCarPhotos = async () => {
         console.log(carData);  
@@ -139,7 +139,7 @@ const PostCar = (props) => {
             <div className="col-lg-8 p-4 mx-auto" >
                 <h2 className='post-title-font mt-4 mb-4'>Post a New Listing!</h2>
                 {imageFile && <img className="postCarImage shadow" id='card' src={URL.createObjectURL(imageFile)}></img>}
-                <form onSubmit={handleSubmit} className='put'>
+                <form onSubmit={(event) => handleSubmit(event)} className='put'>
                     <Row className='mb-3'>
                         <Form.Group as={Col} controlID='file'>
                                 <Form.Label>Photo:</Form.Label>
