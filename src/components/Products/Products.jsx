@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import {Row, Col, Button, FloatingLabel, Form } from 'react-bootstrap';
+import {Row, Col, Button } from 'react-bootstrap';
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownToggle from 'react-bootstrap/DropdownToggle'
+import DropdownMenu from 'react-bootstrap/DropdownMenu'
+import DropdownItem from 'react-bootstrap/DropdownItem'
 import { Link } from 'react-router-dom';
 import './Products.css'
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
@@ -9,6 +13,9 @@ import AddToCartButton from '../AddToCartButton/AddToCartButton';
 const Products = (props) => {
     const [SearchTerm, setSearchTerm] = useState("")
 
+    const setSearch = (make) => {
+        setSearchTerm(make)
+    }
 
     return ( 
         <div className="container mx-auto my-auto overflow-auto shadow" id='product-panel'>
@@ -29,25 +36,18 @@ const Products = (props) => {
                         </Col>
                     </Row>
                     <Row>
-                        <div align = "center">
-                        <Form>
-                            <FloatingLabel className = "makeTitle">Filter by Make</FloatingLabel>
-                            <Form.Control 
-                                as='select' 
-                                aria-label='Make Filter' 
-                                onChange = {(event) => {setSearchTerm(event.target.value)}}>
-                                    <option defaultValue value = "">
-                                        Please Select a Make...
-                                    </option>
+                        <div align = "center" className = "p-4">
+                        <Dropdown>
+                            <DropdownToggle>
+                                Filter by Make
+                            </DropdownToggle>
+                            <DropdownMenu>
                                 {props.carModels.map(car => {
-                                    return <option  
-                                    value = {car} >
-                                        {car}
-                                    </option>
-
-                            })}</Form.Control>
-                        </Form>
-                        <Button id='form-button-style' className='mt-3 details-font' onClick = {() => {setSearchTerm("")}}>Reset</Button>
+                                    return <DropdownItem onClick = {() => setSearch(car)} value = {car}>{car}</DropdownItem>
+                                })}
+                            </DropdownMenu>
+                        </Dropdown>
+                        <Button className = "resetButton"onClick = {() => setSearch("")}>Reset search</Button>
                         </div>
                     </Row>
                 </Col>
