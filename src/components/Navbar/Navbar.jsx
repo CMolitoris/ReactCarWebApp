@@ -23,19 +23,19 @@ const NavBar = (props) => {
                 {props.user && 
                     <React.Fragment>
                         <li className='nav-item'>
+                            <Link to='/products' className='nav-link'><i className="bi bi-truck"></i> | Products </Link>
+                        </li>
+                        <li className='nav-item'>
                             <Link to='/account' className='nav-link'><i className="bi bi-person"></i> | Account</Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link to='/cart' className='nav-link'><i className="bi bi-cart4"></i> | Cart</Link>
-                        </li>
-                        <li className='nav-item'>
-                            <a onClick = {props.logoutUser} className='nav-link'><i className="bi bi-door-open"></i> | Log Out</a>
                         </li>
                         <li className='nav-item'>
                             <Link to='/seller' className="nav-link"><i className="bi bi-currency-dollar"></i> | Sellers</Link>
                         </li>   
                         <li className='nav-item'>
-                            <Link to='/products' className='nav-link'><i className="bi bi-truck"></i> | Products </Link>
+                            <Link to='/cart' className='nav-link'><i className="bi bi-cart4"></i> | Cart</Link>
+                        </li>
+                        <li className='nav-item'>
+                            <a onClick = {props.logoutUser} className='nav-link'><i className="bi bi-door-open"></i> | Log Out</a>
                         </li>
                     </React.Fragment>
                 }
