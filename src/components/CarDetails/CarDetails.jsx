@@ -86,6 +86,7 @@ function CarDetails(props) {
                         user={props.user}
                         hasReviews={props.ratings.length > 0}
                         />
+                    <div className='row my-4'></div>
                 </div>
             </div>
         </div>

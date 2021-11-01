@@ -19,7 +19,7 @@ const PostCar = (props) => {
         type: '',
         description: '',
         mileage: '',
-        // image: ''
+        image: ''
     });
 
     const [newFormData, setNewFormData] = useState("");
