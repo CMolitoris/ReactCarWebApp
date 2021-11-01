@@ -195,9 +195,9 @@ class App extends Component {
 
     addToCart = async (car) => {
       try {
-        let cartTotal = this.state.carsInCart
         await axios.post('https://localhost:44394/api/shoppingcart/',car);
-        this.setState({carsInCart: cartTotal++})
+        let cartTotal = this.state.carsInCart + 1
+        this.setState({carsInCart: cartTotal})
       } catch (e) {
         console.log("Error from addShoppingCart: " + e);
       }
@@ -205,9 +205,10 @@ class App extends Component {
 
     deleteFromCart = async (carId) => {
       try {
-        let cartTotal = this.state.carsInCart
         await axios.delete(`https://localhost:44394/api/shoppingcart/${this.state.loggedUser.id}/${carId}`);
-        this.setState({carsInCart: cartTotal-- })
+        let cartTotal = this.state.carsInCart - 1
+        cartTotal = cartTotal > 0 ? cartTotal : 0
+        this.setState({carsInCart: cartTotal})
       } catch (e) {
         console.log("Error in deleteFromCart: " + e); 
       }
@@ -274,7 +275,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} 
-        toggleLogModal = {this.toggleLoginModal} toggleRegModal = {this.toggleRegModal} carsInCart={this.carsInCart}/>
+        toggleLogModal = {this.toggleLoginModal} toggleRegModal = {this.toggleRegModal} carsInCart={this.state.carsInCart}/>
         {this.state.loginModalShow && <Login login = {this.loginUser} modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>}
         {this.state.regModalShow && <RegisterUser register = {this.registerUser} modalShow = {this.state.regModalShow} toggleModal={this.toggleRegModal} registerUser={this.registerUser}/>}
         <div>
