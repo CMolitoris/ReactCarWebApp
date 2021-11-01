@@ -27,6 +27,7 @@ class App extends Component {
     carModels: [],
     carData: [],
     carsInCart: 0,
+    userInfo: '',
   }
 
   registerURL = "https://localhost:44394/api/authentication/"
@@ -35,7 +36,8 @@ class App extends Component {
 
   componentWillMount() {
     this.getAllCars();
-    this.getToken();
+    let id = this.getToken();
+    this.getUserDetails(id);
   }
 
     getToken = () => {
@@ -45,6 +47,7 @@ class App extends Component {
         this.setState({
           loggedUser: user
         });
+        return user.id
       } catch(err){
           console.log("🚀 ~ file: App.jsx ~ line 26 ~ App ~ componentDidMount ~ err", err)
         }
@@ -81,10 +84,11 @@ class App extends Component {
 
     getUserDetails = async (userId) => {
       try{
-      let response = await axios.get(`https://localhost:44394/api/users/${userId}`, {headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}})
+      let response = await axios.get(`https://localhost:44394/api/users/${userId}`)
       this.setState({
-        loggedUser: response.data
+        userInfo: response.data
       })
+      console.log(response.data)
       // if (this.state.loggedUser.streetAddress == null || this.state.loggedUser.city == null || this.state.loggedUser.state == null){
       //   //Redirect user to add address details page
       //   window.location = "/account"
@@ -288,7 +292,7 @@ class App extends Component {
           {/* Seller Page logged in*/}
           <Route path = "/seller" render={props => <Seller {...props} getNextCarId={this.getNextCarId} sellerFlag={this.state.sellerFlag} postCar={this.postCar} user={this.state.loggedUser}/>}/>
           {/* Cart/Account logged in*/}
-          <Route path = "/account" render = {props => <EditAccount {...props } updateDetails = {this.editUser} user = {this.state.loggedUser}/>} />
+          <Route path = "/account" render = {props => <EditAccount {...props } userInfo = {this.state.userInfo} updateDetails = {this.editUser} user = {this.state.loggedUser}/>} />
           {/* Invalid Page Redirect */}
           <Redirect to='/not-found' />
         </Switch>

@@ -7,12 +7,12 @@ const EditAccount = (props) => {
 
     const [accountValues, setAccountValues] = useState({
         UserName: props.user.username,
-        FirstName: "",
-        LastName: "",
+        FirstName: props.userInfo.firstName,
+        LastName: props.userInfo.lastName,
         Email: props.user.email,
-        StreetAddress: "",
-        City: "",
-        State: "",
+        StreetAddress: props.userInfo.streetAddress,
+        City: props.userInfo.city,
+        State: props.userInfo.state,
     })
 
     const handleChange = (event) => {
@@ -58,7 +58,7 @@ const EditAccount = (props) => {
                                         <p className='form-label-font'>User Name</p>
                                     </FormLabel>
                                     <Col className='pt-3'>
-                                        <FormControl className='shadow' onChange = {handleChange} name = "UserName" value = {accountValues.UserName} placeholder="John1234" />
+                                        <FormControl disabled className='shadow' onChange = {handleChange} name = "UserName" value = {accountValues.UserName} placeholder="John1234" />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup as = {Row}>
