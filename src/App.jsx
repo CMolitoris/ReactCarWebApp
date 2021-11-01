@@ -83,8 +83,9 @@ class App extends Component {
     }
 
     getUserDetails = async (userId) => {
+      let auth = localStorage.getItem('token');
       try{
-      let response = await axios.get(`https://localhost:44394/api/users/${userId}`)
+      let response = await axios.get(`https://localhost:44394/api/users/${userId}`, {headers: {Authorization:`Bearer ${auth}`}})
       this.setState({
         userInfo: response.data
       })
