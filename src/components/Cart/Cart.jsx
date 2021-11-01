@@ -57,6 +57,13 @@ class Cart extends Component{
       }
     
       onApprove(data, actions) {
+        this.state.cars.map(car => {
+            this.props.removeCarFromCart(car.carId) 
+        })
+        this.setState({
+            cars: [],
+            cartTotal: 0,
+        })
         return actions.order.capture();
       }
 
