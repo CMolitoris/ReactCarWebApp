@@ -270,7 +270,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar user = {this.state.loggedUser} login={this.loginUser} logoutUser = {this.logoutUser} 
-        toggleLogModal = {this.toggleLoginModal} toggleRegModal = {this.toggleRegModal}/>
+        toggleLogModal = {this.toggleLoginModal} toggleRegModal = {this.toggleRegModal} carsInCart={this.carsInCart}/>
         {this.state.loginModalShow && <Login login = {this.loginUser} modalShow = {this.state.loginModalShow} toggleModal={this.toggleLoginModal}/>}
         {this.state.regModalShow && <RegisterUser register = {this.registerUser} modalShow = {this.state.regModalShow} toggleModal={this.toggleRegModal} registerUser={this.registerUser}/>}
         <div>
