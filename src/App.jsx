@@ -12,7 +12,6 @@ import Products from './components/Products/Products';
 import CarDetails from './components/CarDetails/CarDetails';
 import Seller from './components/Seller/Seller';
 import Cart from './components/Cart/Cart';
-import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 
 class App extends Component {
