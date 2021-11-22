@@ -5,7 +5,7 @@
 #### Stack: msSQL - C# | ASP.NET Core | Entity Framework | Identity - Javascript | React JS
 ##### APIs: Paypal API | Cloudinary
 
-Description in progress
+An eCommerce website that allows users to buy and sell cars. Customers can view the car selection, search for a particular vehicle, see related vehicles, and checkout. Sellers can post their car on the website and upload an image.
 
 ### Notable Features:
 
